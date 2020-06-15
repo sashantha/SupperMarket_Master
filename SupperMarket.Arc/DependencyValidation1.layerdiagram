@@ -1,1 +1,50 @@
-﻿ 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="c4bb401a-f869-482d-886a-1b0b7027f322" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="320932f4-2577-46d7-9571-96f287d41e3b" name="Supper Market System">
+      <childLayers>
+        <layer Id="45b1934b-c584-4b3f-b752-89e37fa03cb3" name="UI Element" />
+        <layer Id="79d077b7-d6ff-4874-bc8f-6516a329b3b9" name="Strok Control" />
+        <layer Id="1f5e9afe-cadf-4fb3-af09-ed97221f1462" name="Expense Management" />
+        <layer Id="eb357bc7-b011-4fd7-b0a5-80023d3d5fd3" name="Sales Control" />
+        <layer Id="06741a5a-7fba-4cc6-9b71-bf5401fb1474" name="Employe Management" />
+        <layer Id="d449f817-e586-4974-88a5-46d76e719fdd" name="User Management" />
+        <layer Id="6c0fc6bc-0321-42a0-87e3-d527ad43e1b2" name="Customer Control" />
+        <layer Id="b584c733-94be-43cf-86b5-b3b213bac265" name="Supplier Management" />
+      </childLayers>
+    </layer>
+    <layer Id="aaf7aa34-6d14-462c-8669-56de4d777bf9" name="Dotnet Dependency">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="90b14eab-066b-42bf-8e55-fbf6bcd67bf6" direction="Forward">
+          <layerMoniker Id="cb19f2d6-d667-4276-8e53-4e213b5c346a" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="ca83308d-a368-48e1-8a2c-62e76d7eccaf" direction="Forward">
+          <layerMoniker Id="320932f4-2577-46d7-9571-96f287d41e3b" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="ed726233-ae57-4174-92b4-46cb9802f9fd" name="C# dotnet Dependency" />
+        <layer Id="f3943175-19ae-4529-8290-4d9ec6bdba10" name="Prisum Modular" />
+        <layer Id="eb07d845-69c3-46a9-ac53-03a20bad4623" name="WPF" />
+      </childLayers>
+    </layer>
+    <layer Id="f36a8748-c0d7-480c-a87d-aabb9bff1aca" name="Wingcode Framework (My Solution)">
+      <childLayers>
+        <layer Id="ab1cb082-5206-4ce2-bc25-7bf5671fa8a0" name="Startup" />
+        <layer Id="8b006b93-e6d8-4f8c-a938-5dc38e005e76" name="Update and Version Control" />
+        <layer Id="255ac79c-ca0c-458e-99c9-286f2b1d38ac" name="Look and Feel Control" />
+        <layer Id="123ff56a-2b71-43a3-b8f7-43d017b02093" name="File System" />
+        <layer Id="cb19f2d6-d667-4276-8e53-4e213b5c346a" name="Validation" />
+        <layer Id="1c1111cb-8941-426a-83ac-bc9609a57bad" name="Data Reporting" />
+        <layer Id="6cc99880-60e2-4ea3-b19c-add8101d6934" name="Data Access and Control" />
+      </childLayers>
+    </layer>
+    <layer Id="b94cdf29-6f48-4c47-b47e-2273f3864adc" name="Database">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="fcd5a940-3d5c-475e-a927-8d7cf832c5db" direction="Forward">
+          <layerMoniker Id="6cc99880-60e2-4ea3-b19c-add8101d6934" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+    </layer>
+  </layers>
+</layerModel>
