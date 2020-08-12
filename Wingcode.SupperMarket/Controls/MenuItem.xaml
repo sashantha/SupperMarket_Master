@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="Wingcode.SupperMarket.Controls.MenuItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wingcode.SupperMarket.Controls"
+             xmlns:wbc="http://wingcodems.net/base"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DataContext="{x:Static wbc:MenuItemDesignViewModel.instance}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>        
+    </UserControl.Resources>    
+    <Grid x:Name="container" Background="Transparent">
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <!--All animations should be storyboarded-->
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="{StaticResource Primary300}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <EventTrigger RoutedEvent="MouseLeave">
+                <!--All animations should be storyboarded-->
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+        <materialDesign:PackIcon Kind="{Binding IconKind}" Width="24" Height="24" Margin="10 16" Foreground="White"/>
+        <TextBlock Text="{Binding Text}" Padding="50,14" FontSize="15" Foreground="White" VerticalAlignment="Center" 
+                                               Visibility="{Binding ItemMenuVisibility, Converter={wbc:BooleanToVisibilityGoneConverter}, ConverterParameter=true}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+        <!--<ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Text}" Padding="50 14" FontSize="15" Foreground="White" 
+                                                 VerticalContentAlignment="Center" Visibility="{Binding ItemMenuVisibility, Converter={wbc:BooleanToVisibilityGoneConverter}, ConverterParameter=true}" MouseLeftButtonDown="ListViewItemMenu_MouseLeftButtonDown"/>-->
+        <Expander x:Name="ExpanderMenu" Header="{Binding Text}" IsExpanded="False" Width="200" HorizontalAlignment="Stretch" Background="Transparent" Foreground="White" 
+                                              Visibility="{Binding HasChilds, Converter={wbc:BooleanToVisibilityGoneConverter}, ConverterParameter=true}"
+                                              materialDesign:ExpanderAssist.DownHeaderPadding="50,15,5,10">
+            <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=Childs}" 
+                      SelectionMode="Single"
+                      Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}" Padding="45 10" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_1"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Expander>
+    </Grid>
+</UserControl>
