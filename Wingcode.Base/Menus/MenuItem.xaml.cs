@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using Wingcode.Base.Api;
 using Wingcode.Base.ViewModels;
 
-namespace Wingcode.SupperMarket.Controls
+namespace Wingcode.Base.Menus
 {
     /// <summary>
     /// Interaction logic for MenuItem.xaml
@@ -40,10 +40,11 @@ namespace Wingcode.SupperMarket.Controls
                 DataContext = mViewModel;
             }
         }
+
         public MenuItem()
         {
             InitializeComponent();
-            controller = ServiceLocator.Current.GetInstance<IApplicationController>();            
+            controller = ServiceLocator.Current.GetInstance<IApplicationController>();
         }
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,7 +80,7 @@ namespace Wingcode.SupperMarket.Controls
             {
                 SubMenuItemViewModel sub = ListViewMenu.Items.Cast<SubMenuItemViewModel>().Where(i => i.Name.Equals(tb.Text)).FirstOrDefault();
                 controller.ShowView(sub.AttachedControl);
-            }            
+            }
         }
     }
 }

@@ -1,25 +1,13 @@
 ﻿using CommonServiceLocator;
 using Prism.Events;
 using Prism.Regions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Wingcode.Base.Event;
-using Wingcode.Base.Extensions;
 using Wingcode.Base.ViewModels;
-using MenuItem = Wingcode.SupperMarket.Controls.MenuItem;
+using MenuItem = Wingcode.Base.Menus.MenuItem;
 
 namespace Wingcode.SupperMarket.Views
 {
@@ -85,25 +73,6 @@ namespace Wingcode.SupperMarket.Views
                 MenuItem menu = new MenuItem() { ViewModelObject = item};
                 MenuHolder.Children.Add(menu);
             }
-        }
-
-        private void LoadHolderControl(UserControl control)
-        {
-            //if(lastView != null)
-            //{
-            //    ControlHolder.Children.Remove(lastView);
-            //    ControlHolder.UpdateLayout();
-            //}
-            //lastView = control;
-            //ControlHolder.Children.Add(control);
-            //ControlHolder.UpdateLayout();
-            
-            //ControlHolder.Items.Clear();
-            //ControlHolder.Items.Add(control);
-            //if (!ControlHolder.Children.Contains(control))
-            //{
-            //    ControlHolder.Children.Add(control);
-            //}
         }
     }
 }

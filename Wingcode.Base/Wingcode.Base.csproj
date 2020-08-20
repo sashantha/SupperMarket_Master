@@ -99,6 +99,9 @@
     <Compile Include="Input\RelayCommand.cs" />
     <Compile Include="Input\RelayParameterizedCommand.cs" />
     <Compile Include="LoginInfor.cs" />
+    <Compile Include="Menus\MenuItem.xaml.cs">
+      <DependentUpon>MenuItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Native\WindowResizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -164,6 +167,12 @@
     <PackageReference Include="System.Windows.Interactivity.WPF">
       <Version>2.0.20525</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Menus\MenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

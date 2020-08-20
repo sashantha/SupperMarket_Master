@@ -1,11 +1,7 @@
-﻿using CommonServiceLocator;
-using Prism.Events;
+﻿using Prism.Events;
 using Prism.Ioc;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Wingcode.Authanatication.Views;
@@ -13,7 +9,6 @@ using Wingcode.Base;
 using Wingcode.Base.Api;
 using Wingcode.Base.Event;
 using Wingcode.SupperMarket.Views;
-using MenuItem = Wingcode.SupperMarket.Controls.MenuItem;
 
 namespace Wingcode.SupperMarket
 {

@@ -71,9 +71,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationController.cs" />
-    <Compile Include="Controls\MenuItem.xaml.cs">
-      <DependentUpon>MenuItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MenuRegistryProvider.cs" />
     <Compile Include="CustomRegion\StackPanelRegionAdapter.cs" />
     <Compile Include="SplashManager.cs" />
@@ -87,10 +84,6 @@
     <Compile Include="Views\TopContent.xaml.cs">
       <DependentUpon>TopContent.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\MenuItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\EmptyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

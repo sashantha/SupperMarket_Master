@@ -17,7 +17,16 @@ namespace Wingcode.Base.ViewModels
         {
             Name = "Home";
             Text = "Home";
-            IconKind = PackIconKind.Home;
+            IconKind = PackIconKind.Home;            
+            Childs = new List<SubMenuItemViewModel>
+            {
+                new SubMenuItemViewModel()
+                {
+                    Index = 1,
+                    Name = "TextMenu",
+                    ParentName = "Home"
+                }
+            };
         }
     }
 }
