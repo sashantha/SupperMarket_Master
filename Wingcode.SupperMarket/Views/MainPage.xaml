@@ -18,11 +18,11 @@
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
+            <!--<ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>-->
 
             <Style x:Key="WingcodeMenuButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0"/>
@@ -30,22 +30,22 @@
                 <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="true">
-                        <Setter Property="Background" Value="{StaticResource PrimaryHueLightBrush}" />
+                        <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
                     </Trigger>
                     <Trigger Property="IsPressed" Value="true">
-                        <Setter Property="Background" Value="{StaticResource PrimaryHueDarkBrush}" />
+                        <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
                     </Trigger>
                 </Style.Triggers>
             </Style>
 
             <Storyboard x:Key="CloseMenu">
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Width)" Storyboard.TargetName="MenuGrid">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(materialDesign:ColorZone.Width)" Storyboard.TargetName="MenuGrid">
                     <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="50"/>
                 </DoubleAnimationUsingKeyFrames>
             </Storyboard>
             <Storyboard x:Key="OpenMenu">
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Width)" Storyboard.TargetName="MenuGrid">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(materialDesign:ColorZone.Width)" Storyboard.TargetName="MenuGrid">
                     <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="200"/>
                 </DoubleAnimationUsingKeyFrames>
@@ -68,8 +68,39 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+            <materialDesign:ColorZone Grid.Column="0" Mode="PrimaryMid" x:Name="MenuGrid" Width="200"
+                                      materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                      materialDesign:ShadowAssist.ShadowEdges="Right"
+                                      materialDesign:ShadowAssist.Darken="True"
+                                      VerticalAlignment="Stretch"
+                                      RenderTransformOrigin="0.5,0.5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Button x:Name="Open" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2" Style="{StaticResource WingcodeMenuButton}" Click="button_Click">
+                            <materialDesign:PackIcon Kind="Menu" Foreground="White"/>
+                        </Button>
+                        <Button x:Name="Close" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2" Style="{StaticResource WingcodeMenuButton}" Click="button_Click">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
+                        </Button>
+                    </Grid>
+
+                    <ScrollViewer Grid.Row="1" Style="{StaticResource WingcodeScrollViewer}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="MenuHolder" Orientation="Vertical"/>
+                    </ScrollViewer>
+                </Grid>
+            </materialDesign:ColorZone>
             
-            <Grid x:Name="MenuGrid" Width="200" Background="{StaticResource PrimaryHueMidBrush}" RenderTransformOrigin="0.5,0.5" Grid.Column="0">
+            <!--<Grid x:Name="MenuGrid" Width="200" 
+                  Background="{DynamicResource PrimaryHueMidBrush}"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                  materialDesign:ShadowAssist.ShadowEdges="Right"
+                  RenderTransformOrigin="0.5,0.5" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
@@ -87,7 +118,7 @@
                 <ScrollViewer Grid.Row="1" Style="{StaticResource WingcodeScrollViewer}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
                     <StackPanel x:Name="MenuHolder" Orientation="Vertical"/>
                 </ScrollViewer>
-            </Grid>
+            </Grid>-->
             <ScrollViewer Grid.Column="1" Style="{StaticResource WingcodeScrollViewer}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ContentControl x:Name="ControlHolder" Focusable="False"/>
                 <!--<ItemsControl x:Name="ControlHolder" />-->

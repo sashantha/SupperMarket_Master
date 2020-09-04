@@ -1,0 +1,174 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+    xmlns:local="clr-namespace:Wingcode.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="PagingControlButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0"/>
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="8 4 8 4"/>
+        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth0" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Background" Value="{DynamicResource SecondaryAccentBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type local:PaginDataGrid}" BasedOn="{StaticResource MaterialDesignDataGrid}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PaginDataGrid}">
+                    <Border Grid.Row="0"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}"                        
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+
+                            <ScrollViewer x:Name="DG_ScrollViewer" Grid.Row="0" Focusable="false">
+                                <ScrollViewer.Template>
+                                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Button 
+                                            Command="{x:Static DataGrid.SelectAllCommand}" 
+                                            Focusable="false" 
+                                            Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" 
+                                            Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                            Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                            <Border 
+                                            Grid.Row="0"
+                                            Grid.Column="1" 
+                                            Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
+                                                <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" />
+                                            </Border>
+                                            <ScrollContentPresenter 
+                                            x:Name="PART_ScrollContentPresenter" 
+                                            CanContentScroll="{TemplateBinding CanContentScroll}"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2" 
+                                            Grid.Row="1"/>
+                                            <ScrollBar 
+                                            x:Name="PART_VerticalScrollBar" 
+                                            Grid.Column="2" 
+                                            Maximum="{TemplateBinding ScrollableHeight}" 
+                                            Orientation="Vertical" 
+                                            Grid.Row="1"
+                                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                            Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                            ViewportSize="{TemplateBinding ViewportHeight}"/>
+                                            <Grid Grid.Column="1" Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <ScrollBar 
+                                                x:Name="PART_HorizontalScrollBar" 
+                                                Grid.Column="1" 
+                                                Maximum="{TemplateBinding ScrollableWidth}" 
+                                                Orientation="Horizontal" 
+                                                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" 
+                                                Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                ViewportSize="{TemplateBinding ViewportWidth}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ScrollViewer.Template>
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+
+                            <StackPanel Grid.Row="1" x:Name="PART_PagingControls" 
+                                    Background="{DynamicResource SecondaryAccentBrush}"
+                                    VerticalAlignment="Center">
+                                <Border Padding="2" SnapsToDevicePixels="True">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="90"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"/>
+                                        </Grid.RowDefinitions>
+                                        <Button Name="PART_FirstPageButton" Grid.Column="0" Style="{StaticResource PagingControlButton}">
+                                            <materialDesign:PackIcon Kind="PageFirst" Width="20" Height="20"/>
+                                        </Button>
+                                        <Button Name="PART_PreviousPageButton" Grid.Column="1" Style="{StaticResource PagingControlButton}">
+                                            <materialDesign:PackIcon Kind="ChevronLeft" Width="20" Height="20"/>
+                                        </Button>
+                                        <TextBox Name="PART_PageTextBox" 
+                                             Grid.Column="2" 
+                                             VerticalAlignment="Center"
+                                             materialDesign:HintAssist.Hint="CurrenrPage"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             TextAlignment="Center"/>
+                                        <TextBox x:Name="PART_Seperator" 
+                                             IsEnabled="False" 
+                                             Text="/" Grid.Column="3" 
+                                             VerticalAlignment="Center"
+                                             materialDesign:HintAssist.Hint=""
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             TextAlignment="Center"/>
+                                        <TextBox x:Name="PART_PageTotal" 
+                                             Grid.Column="4" 
+                                             IsEnabled="False" 
+                                             VerticalAlignment="Center"
+                                             materialDesign:HintAssist.Hint="TotalPages"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             TextAlignment="Center"/>
+                                        <Button Name="PART_NextPageButton" Grid.Column="5" Style="{StaticResource PagingControlButton}">
+                                            <materialDesign:PackIcon Kind="ChevronRight" Width="20" Height="20"/>
+                                        </Button>
+                                        <Button Name="PART_LastPageButton" Grid.Column="6" Style="{StaticResource PagingControlButton}">
+                                            <materialDesign:PackIcon Kind="PageLast" Width="20" Height="20"/>
+                                        </Button>
+                                        <ComboBox Name="PART_PageSizesCombobox"
+                                                  materialDesign:HintAssist.Hint="Page Record"
+                                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                                  Grid.Column="7"/>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!--<Setter Property="ItemsSource" Value="{Binding Path=ItemsSource, RelativeSource={RelativeSource AncestorType=local:PagingControl}}"/>-->
+    </Style>
+</ResourceDictionary>

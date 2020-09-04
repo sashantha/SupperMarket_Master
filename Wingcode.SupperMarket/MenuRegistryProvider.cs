@@ -43,6 +43,7 @@ namespace Wingcode.SupperMarket
         {
             Registry.Clear();
             CreateDefualts();
+            Register(new MainModuleMenusRegistry());
             MergeRegistry();
             await Task.Delay(0);
         }

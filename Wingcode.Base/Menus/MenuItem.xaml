@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wingcode.Base.Menus"
-             xmlns:cnvs="clr-namespace:Wingcode.Base.ValueConverters"
              xmlns:vms="clr-namespace:Wingcode.Base.ViewModels"
              xmlns:wbc="http://wingcodems.net/base"
+             xmlns:wcvs="http://wingcodems.net/convertors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DataContext="{x:Static vms:MenuItemDesignViewModel.instance}"
              mc:Ignorable="d">
 
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
@@ -19,36 +19,56 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </UserControl.Resources>
+    </UserControl.Resources>-->
 
     <Grid x:Name="container" Background="Transparent">
-        <Grid.Triggers>
+        
+        <!--<Grid.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
-                <!--All animations should be storyboarded-->
+                --><!--All animations should be storyboarded--><!--
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation To="{StaticResource Primary300}" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                        <ColorAnimation To="{Binding SelectionColor}" Duration="0:0:0.1" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                        --><!--<DoubleAnimation Storyboard.TargetName="container"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="1"
+                                     To="0.9"
+                                     Duration="0:0:1"
+                                     AutoReverse="False"/>--><!--
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
 
             <EventTrigger RoutedEvent="MouseLeave">
-                <!--All animations should be storyboarded-->
+                --><!--All animations should be storyboarded--><!--
                 <BeginStoryboard>
-                    <Storyboard>
-                        <ColorAnimation To="Transparent" Duration="0:0:0.3" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                    <Storyboard>                        
+                        <ColorAnimation To="Transparent" Duration="0:0:0.1" Storyboard.TargetName="container" Storyboard.TargetProperty="Background.Color"/>
+                        --><!--<DoubleAnimation Storyboard.TargetName="container"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0.9"
+                                     To="1"
+                                     Duration="0:0:1"
+                                     AutoReverse="False"/>--><!--
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
-        </Grid.Triggers>
+        </Grid.Triggers>-->
+        
         <materialDesign:PackIcon Kind="{Binding IconKind}" Width="24" Height="24" Margin="10 16" Foreground="White"/>
         <TextBlock Text="{Binding Text}" Padding="50,14" FontSize="15" Foreground="White" VerticalAlignment="Center" 
-                                               Visibility="{Binding ItemMenuVisibility, Converter={cnvs:BooleanToVisibilityGoneConverter}, ConverterParameter=true}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                               Visibility="{Binding ItemMenuVisibility, Converter={wcvs:BooleanToVisibilityGoneConverter}, ConverterParameter=true}" 
+                   MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
         <!--<ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Text}" Padding="50 14" FontSize="15" Foreground="White" 
                                                  VerticalContentAlignment="Center" Visibility="{Binding ItemMenuVisibility, Converter={wbc:BooleanToVisibilityGoneConverter}, ConverterParameter=true}" MouseLeftButtonDown="ListViewItemMenu_MouseLeftButtonDown"/>-->
-        <Expander x:Name="ExpanderMenu" Header="{Binding Text}" IsExpanded="False" Width="200" HorizontalAlignment="Stretch" Background="Transparent" Foreground="White" 
-                                              Visibility="{Binding HasChilds, Converter={cnvs:BooleanToVisibilityGoneConverter}, ConverterParameter=true}"
-                                              materialDesign:ExpanderAssist.DownHeaderPadding="50,15,5,10">
+        <Expander x:Name="ExpanderMenu" 
+                  Header="{Binding Text}" 
+                  IsExpanded="{Binding IsExpanded}" Width="200"
+                  PreviewMouseLeftButtonUp="ExpanderMenu_MouseLeftButtonDown"
+                  HorizontalAlignment="Stretch" 
+                  Background="Transparent" Foreground="White"
+                  Visibility="{Binding HasChilds, Converter={wcvs:BooleanToVisibilityGoneConverter}, ConverterParameter=true}"
+                  materialDesign:ExpanderAssist.DownHeaderPadding="50,15,5,10">
             <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=Childs}" 
                       SelectionMode="Single"
                       Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">

@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="CustomerMenusRegistry.cs" />
     <Compile Include="CustomerModule.cs" />
+    <Compile Include="NotEmptyValidationRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -65,9 +66,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\ViewAViewModel.cs" />
-    <Compile Include="Views\ViewA.xaml.cs">
-      <DependentUpon>ViewA.xaml</DependentUpon>
+    <Compile Include="TestModel.cs" />
+    <Compile Include="ViewModels\CustomerRegisterViewModel.cs" />
+    <Compile Include="Views\CustomerRegister.xaml.cs">
+      <DependentUpon>CustomerRegister.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -88,9 +90,17 @@
       <Project>{9946d938-4d07-4ce3-a369-d4860daa7128}</Project>
       <Name>Wingcode.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wingcode.Controls\Wingcode.Controls.csproj">
+      <Project>{64e3d73c-c7d6-4f8c-8085-d42b15646c8f}</Project>
+      <Name>Wingcode.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wingcode.ValueConverters\Wingcode.ValueConverters.csproj">
+      <Project>{cdcec252-69ba-4622-8858-ed0ebe9b9e60}</Project>
+      <Name>Wingcode.ValueConverters</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\ViewA.xaml">
+    <Page Include="Views\CustomerRegister.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -79,6 +79,7 @@
     <Compile Include="AttachedProperties\BorderAttachedProperties.cs" />
     <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
     <Compile Include="AttachedProperties\FrameworkElementAnimationAttachedProperties.cs" />
+    <Compile Include="AttachedProperties\IsFocusedProperty.cs" />
     <Compile Include="AttachedProperties\NoFrameHistory.cs" />
     <Compile Include="AttachedProperties\PanelChildMarginProperty.cs" />
     <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
@@ -90,12 +91,39 @@
     <Compile Include="DataModel\ElementHorizontalAlignment.cs" />
     <Compile Include="DataModel\IconType.cs" />
     <Compile Include="DataModel\MenuItemType.cs" />
-    <Compile Include="Event\MenuAttachedControlLoadEvent.cs" />
+    <Compile Include="DataModel\MsgDialogButtonType.cs" />
+    <Compile Include="DataModel\MsgDialogType.cs" />
+    <Compile Include="Dialog\IDialogWindowExtensions.cs" />
+    <Compile Include="Dialog\DialogParameterKeys.cs" />
+    <Compile Include="Dialog\WingcodeDialogBox.xaml.cs">
+      <DependentUpon>WingcodeDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\WingcodeDialogService.cs" />
+    <Compile Include="Dialog\WingcodeDialogWindow.xaml.cs">
+      <DependentUpon>WingcodeDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\WingcodeMsgDialog.xaml.cs">
+      <DependentUpon>WingcodeMsgDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Event\MenuItemControlExpandEvent.cs" />
     <Compile Include="Event\MenuCreationEvent.cs" />
     <Compile Include="Event\MenuExpndControlEvent.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
     <Compile Include="Extensions\FrameworkElementHelper.cs" />
     <Compile Include="Extensions\IconTypeExtensions.cs" />
+    <Compile Include="Extensions\WingcodeDialogServiceExtensions.cs" />
+    <Compile Include="FileSystem\FileManager.cs" />
+    <Compile Include="FileSystem\FileSystemType.cs" />
+    <Compile Include="FileSystem\IFileManager.cs" />
+    <Compile Include="FileSystem\IFileSystem.cs" />
+    <Compile Include="FileSystem\Internal\EmptyFileSystem.cs" />
+    <Compile Include="FileSystem\Internal\FileManagerHelperExtension.cs" />
+    <Compile Include="FileSystem\Internal\LogFileSystem.cs" />
+    <Compile Include="FileSystem\Internal\SettingsFileSystem.cs" />
+    <Compile Include="FileSystem\PhysicalFileSystem.cs" />
+    <Compile Include="Input\Behaviors\TextBoxInputBehavior.cs" />
+    <Compile Include="Input\KeyDownFocusAction.cs" />
+    <Compile Include="Input\KeyToCommandAndFocusAction.cs" />
     <Compile Include="Input\RelayCommand.cs" />
     <Compile Include="Input\RelayParameterizedCommand.cs" />
     <Compile Include="LoginInfor.cs" />
@@ -117,20 +145,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="SplashScreen.cs" />
-    <Compile Include="ValueConverters\BaseValueConverter.cs" />
-    <Compile Include="ValueConverters\BooleanInvertConverter.cs" />
-    <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="ValueConverters\BooleanToVisibilityGoneConverter.cs" />
-    <Compile Include="ValueConverters\HorizontalAlignmentConverter.cs" />
-    <Compile Include="ValueConverters\IconTypeToFontAwesomeConverter.cs" />
-    <Compile Include="ValueConverters\InvertBooleanConverter.cs" />
-    <Compile Include="ValueConverters\MenuItemTypeToVisibilityConverter.cs" />
-    <Compile Include="ValueConverters\StringRGBToBrushConverter.cs" />
-    <Compile Include="ValueConverters\TimeToDisplayTimeConverter.cs" />
-    <Compile Include="ValueConverters\TimeToReadTimeConverter.cs" />
+    <Compile Include="Tasks\Async\AsyncAwaiter.cs" />
+    <Compile Include="Tasks\ITaskManager.cs" />
+    <Compile Include="Tasks\TaskManager.cs" />
+    <Compile Include="ViewModels\BaseDialogHostViewModel.cs" />
+    <Compile Include="ViewModels\BaseDialogViewModel.cs" />
+    <Compile Include="ViewModels\WingcodeDialogBoxViewModel.cs" />
+    <Compile Include="ViewModels\WingcodeDialogWindowViewModel.cs" />
     <Compile Include="ViewModels\MenuItemDesignViewModel.cs" />
     <Compile Include="ViewModels\SubMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\WingcodeMsgDialogDesignViewModel.cs" />
+    <Compile Include="ViewModels\WingcodeMsgDialogViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -169,10 +195,28 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Dialog\WingcodeDialogBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\WingcodeDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\WingcodeMsgDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Menus\MenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wingcode.ValueConverters\Wingcode.ValueConverters.csproj">
+      <Project>{cdcec252-69ba-4622-8858-ed0ebe9b9e60}</Project>
+      <Name>Wingcode.ValueConverters</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

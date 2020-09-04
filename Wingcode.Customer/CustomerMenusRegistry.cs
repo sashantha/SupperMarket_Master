@@ -24,7 +24,7 @@ namespace Wingcode.Customer
                 {
                     Index = 0,
                     Name = "Customer Register",
-                    AttachedControl = typeof(ViewA)
+                    AttachedControl = typeof(CustomerRegister)
                 }
             };
             Dictionary<string, List<SubMenuItemViewModel>> dic = new Dictionary<string, List<SubMenuItemViewModel>>

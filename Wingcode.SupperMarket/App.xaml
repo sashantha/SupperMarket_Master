@@ -22,7 +22,7 @@
                         <ControlTemplate TargetType="{x:Type Thumb}">
                             <Border x:Name="rectangle"
                                 SnapsToDevicePixels="True"
-                                Background="{StaticResource PrimaryHueLightBrush}"
+                                Background="{DynamicResource PrimaryHueLightBrush}"
                                 CornerRadius="3"
                                 Height="{TemplateBinding Height}"
                                 Width="{TemplateBinding Width}"/>

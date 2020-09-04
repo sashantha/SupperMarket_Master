@@ -1,11 +1,16 @@
 ﻿using CommonServiceLocator;
 using Prism.Ioc;
+using Prism.Services.Dialogs;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Wingcode.Authanatication.Views;
 using Wingcode.Base;
 using Wingcode.Base.Api;
 using Wingcode.Base.DataModel;
+using Wingcode.Base.Dialog;
+using Wingcode.Base.Extensions;
+using Wingcode.Base.FileSystem;
 using Wingcode.Base.Input;
 
 namespace Wingcode.Authanatication.ViewModels
@@ -31,6 +36,15 @@ namespace Wingcode.Authanatication.ViewModels
 
         private async Task ProcessLoging(object parameter) 
         {
+            //IDialogService dialog = containerExtension.Resolve<IDialogService>();
+            //dialog.ShowMsgDialog("Ok This Message","My Message", 
+            //    MsgDialogButtonType.YesNo, 
+            //    MsgDialogType.Confirmation, 
+            //    r => { Console.WriteLine(r.Result.ToString()); });
+
+            //IFileManager fileManager = containerExtension.Resolve<IFileManager>();
+
+            //string a = await fileManager.ReadFileAsync<string>(FileSystemType.physical, "");
             if (parameter is IHavePassword havePassword)
             {
                 IApplicationController controller = containerExtension.Resolve<IApplicationController>();

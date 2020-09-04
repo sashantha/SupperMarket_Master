@@ -48,7 +48,7 @@ namespace Wingcode.SupperMarket.ViewModels
         /// <summary>
         /// The Window Title
         /// </summary>
-        public string Title { get; set; } = "Test Titel";
+        public string Title { get; set; } = "Supper Market Master";
 
         /// <summary>
         /// The smallest width the window can go to
@@ -125,7 +125,7 @@ namespace Wingcode.SupperMarket.ViewModels
         /// <summary>
         /// True if we should have a dimmed overlay on the window
         /// </summary>
-        public bool DimmableOverlayVisible { get; set; }
+        public bool DimmableOverlayVisible { get; set; } = false;
 
 
 

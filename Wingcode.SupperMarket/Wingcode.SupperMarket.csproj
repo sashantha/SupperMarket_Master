@@ -71,19 +71,31 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationController.cs" />
+    <Compile Include="MainModuleMenusRegistry.cs" />
     <Compile Include="MenuRegistryProvider.cs" />
     <Compile Include="CustomRegion\StackPanelRegionAdapter.cs" />
     <Compile Include="SplashManager.cs" />
     <Compile Include="ViewModels\SplashWindowViewModel.cs" />
+    <Compile Include="ViewModels\ThemeSelectorViewModel.cs" />
+    <Compile Include="Views\DefaultTheme.xaml.cs">
+      <DependentUpon>DefaultTheme.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EmptyView.xaml.cs">
       <DependentUpon>EmptyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ThemeSelector.xaml.cs">
+      <DependentUpon>ThemeSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TopContent.xaml.cs">
       <DependentUpon>TopContent.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\DefaultTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EmptyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +121,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\SplashWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThemeSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +193,10 @@
       <Project>{9946d938-4d07-4ce3-a369-d4860daa7128}</Project>
       <Name>Wingcode.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wingcode.Controls\Wingcode.Controls.csproj">
+      <Project>{64e3d73c-c7d6-4f8c-8085-d42b15646c8f}</Project>
+      <Name>Wingcode.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wingcode.Customer\Wingcode.Customer.csproj">
       <Project>{55f8441a-d20c-48bf-91a9-cdee88b0b389}</Project>
       <Name>Wingcode.Customer</Name>
@@ -184,6 +204,10 @@
     <ProjectReference Include="..\Wingcode.Item\Wingcode.Item.csproj">
       <Project>{e13f33f0-0df1-42cb-8b8b-107b477eac22}</Project>
       <Name>Wingcode.Item</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wingcode.ValueConverters\Wingcode.ValueConverters.csproj">
+      <Project>{cdcec252-69ba-4622-8858-ed0ebe9b9e60}</Project>
+      <Name>Wingcode.ValueConverters</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using CommonServiceLocator;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wingcode.Base.Api;
+using Wingcode.Base.Event;
 using Wingcode.Base.ViewModels;
 
 namespace Wingcode.Base.Menus
@@ -26,6 +28,7 @@ namespace Wingcode.Base.Menus
 
         private MenuItemViewModel mViewModel;
         private IApplicationController controller;
+        private IEventAggregator eventAggregator;
 
         public MenuItemViewModel ViewModelObject
         {
@@ -45,6 +48,7 @@ namespace Wingcode.Base.Menus
         {
             InitializeComponent();
             controller = ServiceLocator.Current.GetInstance<IApplicationController>();
+            eventAggregator = ServiceLocator.Current.GetInstance<IEventAggregator>();
         }
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,7 +71,7 @@ namespace Wingcode.Base.Menus
                 if (provider != null)
                 {
                     MenuItemViewModel mv = provider.GetMenu(tb.Text);
-                    controller.ShowView(mv.AttachedControl);
+                    controller.ShowView(mv.AttachedControl);                    
                 }
             }
         }
@@ -82,5 +86,12 @@ namespace Wingcode.Base.Menus
                 controller.ShowView(sub.AttachedControl);
             }
         }
+
+        private void ExpanderMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            eventAggregator.GetEvent<MenuItemControlExpandEvent>().Publish(ViewModelObject.Name);
+            eventAggregator.GetEvent<MenuExpndControlEvent>().Publish(true);
+        }
+
     }
 }

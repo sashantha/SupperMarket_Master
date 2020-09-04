@@ -1,6 +1,7 @@
 ﻿using CommonServiceLocator;
 using Prism.Events;
 using Prism.Regions;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,9 +31,41 @@ namespace Wingcode.SupperMarket.Views
             {
                 aggregator.GetEvent<MenuCreationEvent>().Subscribe(UpdateMenuHolder, ThreadOption.UIThread, true);
                 aggregator.GetEvent<MenuExpndControlEvent>().Subscribe(MenuExpandControl, ThreadOption.UIThread, true);
+                aggregator.GetEvent<MenuItemControlExpandEvent>().Subscribe(MenuItemControlExpand, ThreadOption.UIThread, true);
             }
             RegionManager.SetRegionName(ControlHolder, "ContentPaneRegion");
             RegionManager.SetRegionManager(ControlHolder, regionManager);
+        }
+
+        private void MenuItemControlExpand(string name)
+        {
+            foreach (var item in MenuHolder.Children)
+            {
+                if (item is MenuItem menu)
+                {
+                    if (!menu.ViewModelObject.Name.Equals(name))
+                    {
+                        if (menu.ViewModelObject.IsExpanded)
+                        {
+                            menu.ViewModelObject.IsExpanded = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void MenuItemControlColleps()
+        {
+            foreach (var item in MenuHolder.Children)
+            {
+                if (item is MenuItem menu)
+                {
+                    if (menu.ViewModelObject.IsExpanded)
+                    {
+                        menu.ViewModelObject.IsExpanded = false;
+                    }
+                }
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -50,6 +83,7 @@ namespace Wingcode.SupperMarket.Views
                 Close.Visibility = Visibility.Collapsed;
                 Storyboard closeMenu = (Storyboard)Close.FindResource("CloseMenu");
                 closeMenu.Begin();
+                MenuItemControlColleps();
             }
             MenuClosed = !MenuClosed;
         }
@@ -70,7 +104,7 @@ namespace Wingcode.SupperMarket.Views
             MenuHolder.Children.Clear();
             foreach (MenuItemViewModel item in menuItemViews)
             {
-                MenuItem menu = new MenuItem() { ViewModelObject = item};
+                MenuItem menu = new MenuItem() { ViewModelObject = item};               
                 MenuHolder.Children.Add(menu);
             }
         }

@@ -17,6 +17,18 @@
         /// A file icon
         /// </summary>
         File = 2,
+        /// <summary>
+        /// A Information Icon
+        /// </summary>
+        Infor = 3,
+        /// <summary>
+        /// A Warrning Icon
+        /// </summary>
+        Warrning = 4,
+        /// <summary>
+        /// A Error Icon
+        /// </summary>
+        Error=5
 
     }
 }

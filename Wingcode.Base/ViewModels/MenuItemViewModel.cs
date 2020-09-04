@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Wingcode.Base.DataModel;
 
 namespace Wingcode.Base.ViewModels
@@ -26,6 +27,18 @@ namespace Wingcode.Base.ViewModels
         public bool HasChilds => Childs == null ? true : false;
 
         public bool ItemMenuVisibility => Childs == null ? false : true;
+
+        public Color SelectionColor => new PaletteHelper().GetTheme().Selection;
+
+        private bool _isExpanded = false;
+
+        public bool IsExpanded
+        {
+            get { return _isExpanded; }
+            set { 
+                SetProperty(ref _isExpanded, value);
+            }
+        }
 
         public MenuItemViewModel()
         {

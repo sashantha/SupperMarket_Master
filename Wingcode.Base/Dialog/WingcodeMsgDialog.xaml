@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="Wingcode.Base.Dialog.WingcodeMsgDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wingcode.Base.Dialog"
+             xmlns:vms="clr-namespace:Wingcode.Base.ViewModels"
+             xmlns:atp="clr-namespace:Wingcode.Base.AttachedProperties"
+             xmlns:wcvs="http://wingcodems.net/convertors"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Background="{DynamicResource MaterialDesignPaper}"        
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{materialDesign:MaterialDesignFont}"
+             x:Name="MessageBox"
+             mc:Ignorable="d"
+             d:DataContext="{x:Static vms:WingcodeMsgDialogDesignViewModel.Instance}">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--<ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>-->
+
+            <Style x:Key="IconButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>            
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Style="{StaticResource IconButton}" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding IsNotIconVisible, Converter={wcvs:BooleanToVisibilityGoneConverter}, ConverterParameter=false}">
+                <materialDesign:PackIcon 
+                    Kind="{Binding IconKind}" 
+                    Width="24" 
+                    Height="24"
+                    Foreground="{StaticResource SecondaryAccentForegroundBrush}"/>
+            </Button>
+            <TextBlock Grid.Column="1"
+                   Text="{Binding Message}"
+                   Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                   MaxWidth="450"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center" 
+                   TextAlignment="Center"/>
+
+        </Grid>
+        
+        <Grid Grid.Row="1" Margin="0,5,0,0">
+            <StackPanel Orientation="Horizontal" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding OkEnable, Converter={wcvs:BooleanToVisibilityConverter}, ConverterParameter=false}">
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Content="OK"
+                        atp:IsFocusedProperty.Value ="True"
+                        Command="{Binding OkDialogCommand}" 
+                        CommandParameter="ok"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding OkCancelEnable, Converter={wcvs:BooleanToVisibilityConverter}, ConverterParameter=false}">
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                        Content="OK" 
+                        Margin="0,0,5,0"
+                        atp:IsFocusedProperty.Value ="True"
+                        Command="{Binding OkDialogCommand}" 
+                        CommandParameter="ok"/>
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                        Content="Cancel" Command="{Binding CloseCommand}" 
+                        CommandParameter="cancel"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding YesNoEnable, Converter={wcvs:BooleanToVisibilityConverter}, ConverterParameter=false}">
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                        Content="Yes" 
+                        atp:IsFocusedProperty.Value ="True"
+                        Margin="0,0,5,0" 
+                        Command="{Binding YesDialogCommand}" 
+                        CommandParameter="yes"/>
+                <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                        Content="No" 
+                        Command="{Binding NoDialogCommand}" 
+                        CommandParameter="no"/>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</UserControl>

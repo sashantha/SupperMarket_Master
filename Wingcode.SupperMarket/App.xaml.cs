@@ -16,6 +16,11 @@ using System.Windows.Controls;
 using Wingcode.SupperMarket.CustomRegion;
 using System.Windows.Navigation;
 using Wingcode.Customer;
+using Prism.Services.Dialogs;
+using Wingcode.Base.Dialog;
+using Wingcode.Base.ViewModels;
+using Wingcode.Base.FileSystem;
+using Wingcode.Base.Tasks;
 
 namespace Wingcode.SupperMarket
 {
@@ -33,6 +38,13 @@ namespace Wingcode.SupperMarket
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<ITaskManager, TaskManager>();
+            containerRegistry.RegisterSingleton<IFileManager, FileManager>();
+
+            containerRegistry.RegisterSingleton<IDialogService, WingcodeDialogService>();
+            containerRegistry.RegisterDialogWindow<WingcodeDialogWindow>();
+            containerRegistry.RegisterDialog<WingcodeMsgDialog, WingcodeMsgDialogViewModel>();
+            containerRegistry.RegisterDialog<WingcodeDialogBox, WingcodeDialogBoxViewModel>();
             containerRegistry.RegisterSingleton<IApplicationController, ApplicationController>();
             containerRegistry.RegisterSingleton<IMenuRegistryProvider, MenuRegistryProvider>();
         }
@@ -41,6 +53,8 @@ namespace Wingcode.SupperMarket
         {
             base.ConfigureViewModelLocator();
             ViewModelLocationProvider.Register<MainWindow>(() => new MainWindowViewModel(this.MainWindow));
+            ViewModelLocationProvider.Register<WingcodeMsgDialog, WingcodeMsgDialogViewModel>();
+            ViewModelLocationProvider.Register<WingcodeDialogBox, WingcodeDialogBoxViewModel>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

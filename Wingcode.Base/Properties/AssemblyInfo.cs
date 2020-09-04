@@ -17,7 +17,6 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Expressions")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Native")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Extensions")]
-[assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.ValueConverters")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.ViewModels")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Menus")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Animation")]

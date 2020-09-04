@@ -24,5 +24,6 @@ namespace Wingcode.Item.Views
         {
             InitializeComponent();
         }
+
     }
 }
