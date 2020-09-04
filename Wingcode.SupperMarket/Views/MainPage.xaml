@@ -96,58 +96,8 @@
                 </Grid>
             </materialDesign:ColorZone>
             
-            <!--<Grid x:Name="MenuGrid" Width="200" 
-                  Background="{DynamicResource PrimaryHueMidBrush}"
-                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
-                  materialDesign:ShadowAssist.ShadowEdges="Right"
-                  RenderTransformOrigin="0.5,0.5" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
-                <Grid Grid.Row="0">
-                    <Button x:Name="Open" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2" Style="{StaticResource WingcodeMenuButton}" Click="button_Click">
-                        <materialDesign:PackIcon Kind="Menu" Foreground="White"/>
-                    </Button>
-                    <Button x:Name="Close" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2" Style="{StaticResource WingcodeMenuButton}" Click="button_Click">
-                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
-                    </Button>
-                </Grid>
-
-                <ScrollViewer Grid.Row="1" Style="{StaticResource WingcodeScrollViewer}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="MenuHolder" Orientation="Vertical"/>
-                </ScrollViewer>
-            </Grid>-->
             <ScrollViewer Grid.Column="1" Style="{StaticResource WingcodeScrollViewer}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ContentControl x:Name="ControlHolder" Focusable="False"/>
-                <!--<ItemsControl x:Name="ControlHolder" />-->
-                <!--<Grid x:Name="ControlHolder" Background="{StaticResource MaterialDesignBackground}">-->
-
-                    <!--<ItemsControl prism:RegionManager.RegionName="ContentPaneRegion" />
-
-                    <Grid Height="100" Background="#FFEEEEEE" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Border BorderBrush="White" BorderThickness="0 0 1 0" Grid.Column="0">
-                                <TextBlock FontSize="30" Text="R$ 860,90" Foreground="Black" Margin="15"/>
-                            </Border>
-                            <Border BorderBrush="White" BorderThickness="0 0 1 0" Grid.Column="1">
-                                <TextBlock FontSize="30" Text="R$ 750,90" Foreground="Black" Margin="15"/>
-                            </Border>
-                            <Border BorderBrush="White" BorderThickness="0 0 1 0" Grid.Column="2">
-                                <TextBlock FontSize="30" Text="R$ 60,90" Foreground="Black" Margin="15"/>
-                            </Border>
-                            <Border BorderBrush="White" BorderThickness="0 0 1 0" Grid.Column="3">
-                                <TextBlock FontSize="30" Text="R$ 865,90" Foreground="Black" Margin="15"/>
-                            </Border>
-                        </Grid>-->
-                    <!--</Grid>-->
             </ScrollViewer>
 
         </Grid>

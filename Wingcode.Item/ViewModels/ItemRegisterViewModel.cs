@@ -28,13 +28,6 @@ namespace Wingcode.Item.ViewModels
             set { SetProperty(ref _searchText, value); }
         }
 
-        private DelegateCommand _showCommand;
-        public DelegateCommand ShowCommand
-        {
-            get { return _showCommand; }
-            set { SetProperty(ref _showCommand, value); }
-        }
-
         private DelegateCommand _searchCommand;
         public DelegateCommand SearchCommand
         {
@@ -49,18 +42,12 @@ namespace Wingcode.Item.ViewModels
             dialogService = dialog;
             containerExtension = container;
             SearchText = string.Empty;
-            ShowCommand = new DelegateCommand(ShowMessage);
             SearchCommand = new DelegateCommand(SearchItem);
         }
 
         private void SearchItem()
         {
             
-        }
-
-        private void ShowMessage()
-        {
-            dialogService.ShowMsgDialog("Item Control", "Item Control Working", MsgDialogButtonType.Ok, r => { });            
         }
     }
 }

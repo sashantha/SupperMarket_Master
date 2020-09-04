@@ -96,6 +96,11 @@ namespace Wingcode.SupperMarket
                     }
                 }
             }
+            foreach (var item in Registry.Keys)
+            {
+                List<SubMenuItemViewModel> slist = Registry[item].Childs?.OrderBy(i => i.Index).ToList();
+                Registry[item].Childs = slist;
+            }
         }
     }
 }

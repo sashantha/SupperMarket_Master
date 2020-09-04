@@ -22,7 +22,7 @@ namespace Wingcode.Customer
             {
                 new SubMenuItemViewModel()
                 {
-                    Index = 0,
+                    Index = 1,
                     Name = "Customer Register",
                     AttachedControl = typeof(CustomerRegister)
                 }

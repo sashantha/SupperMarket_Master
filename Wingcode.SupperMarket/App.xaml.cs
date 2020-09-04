@@ -21,6 +21,11 @@ using Wingcode.Base.Dialog;
 using Wingcode.Base.ViewModels;
 using Wingcode.Base.FileSystem;
 using Wingcode.Base.Tasks;
+using Wingcode.Master;
+using Wingcode.Supplier;
+using Wingcode.Purchase;
+using Wingcode.Sales;
+using Wingcode.Expens;
 
 namespace Wingcode.SupperMarket
 {
@@ -61,8 +66,13 @@ namespace Wingcode.SupperMarket
         {
             base.ConfigureModuleCatalog(moduleCatalog);
             moduleCatalog.AddModule<AuthanaticationModule>();
+            moduleCatalog.AddModule<MasterModule>();
             moduleCatalog.AddModule<ItemModule>();
             moduleCatalog.AddModule<CustomerModule>();
+            moduleCatalog.AddModule<SupplierModule>();
+            moduleCatalog.AddModule<PurchaseModule>();
+            moduleCatalog.AddModule<SalesModule>();
+            moduleCatalog.AddModule<ExpensModule>();
         }
 
         protected override void OnActivated(EventArgs e)

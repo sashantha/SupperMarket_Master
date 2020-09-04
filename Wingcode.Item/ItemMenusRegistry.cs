@@ -22,7 +22,7 @@ namespace Wingcode.Item
             {
                 new SubMenuItemViewModel()
                 {
-                    Index = 0,
+                    Index = 3,
                     Name = "Item Register",
                     AttachedControl = typeof(ItemRegister)
                 }
