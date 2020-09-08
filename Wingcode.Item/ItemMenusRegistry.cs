@@ -25,7 +25,7 @@ namespace Wingcode.Item
                     Index = 3,
                     Name = "Item Register",
                     AttachedControl = typeof(ItemRegister)
-                }
+                },
             };
             Dictionary<string, List<SubMenuItemViewModel>> dic = new Dictionary<string, List<SubMenuItemViewModel>>
             {

@@ -210,14 +210,14 @@
 
                 <TextBox Grid.Row="7" 
                          Grid.ColumnSpan="2" 
-                         materialDesign:HintAssist.Hint="Item Price Level1 :"                 
+                         materialDesign:HintAssist.Hint="Wholesale Price :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Text="Item Price Level 1"
                          VerticalAlignment="Center"/>
 
                 <TextBox Grid.Row="8" 
                          Grid.ColumnSpan="2" 
-                         materialDesign:HintAssist.Hint="Item Price Level2 :"                 
+                         materialDesign:HintAssist.Hint="Retail Price :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Text="Item Price Level 2"
                          VerticalAlignment="Center"/>
@@ -358,8 +358,8 @@
                     <DataGridTextColumn Header="Item Barcode"/>
                     <DataGridTextColumn Header="Item Name"/>
                     <DataGridTextColumn Header="Cost"/>
-                    <DataGridTextColumn Header="Retail Price1"/>
-                    <DataGridTextColumn Header="Retail Price2"/>
+                    <DataGridTextColumn Header="Wholesale Price"/>
+                    <DataGridTextColumn Header="Retail Price"/>
                     <DataGridTextColumn Header="Available Qty"/>
                     <DataGridTextColumn Header="Group Name"/>
                     <DataGridTextColumn Header="Sub Group Name"/>
