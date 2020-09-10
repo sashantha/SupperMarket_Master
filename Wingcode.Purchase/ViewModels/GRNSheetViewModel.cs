@@ -10,16 +10,22 @@ namespace Wingcode.Purchase.ViewModels
 {
     public class GRNSheetViewModel : BindableBase
     {
-        private string _message;
-        public string Message
+
+        private DelegateCommand _searchCommand;
+        public DelegateCommand SearchCommand
         {
-            get { return _message; }
-            set { SetProperty(ref _message, value); }
+            get { return _searchCommand; }
+            set { SetProperty(ref _searchCommand, value); }
         }
 
         public GRNSheetViewModel()
         {
-            Message = "View A from your Prism Module";
+            SearchCommand = new DelegateCommand(SearchItem);
+        }
+
+        private void SearchItem()
+        {
+            
         }
     }
 }
