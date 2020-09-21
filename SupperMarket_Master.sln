@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.SupperMarket", "Wi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Authanatication", "Wingcode.Authanatication\Wingcode.Authanatication.csproj", "{DFBE9CBA-E819-46BC-9ADF-D2E693E4E657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Item", "Wingcode.Item\Wingcode.Item.csproj", "{E13F33F0-0DF1-42CB-8B8B-107B477EAC22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Items", "Wingcode.Items\Wingcode.Items.csproj", "{E13F33F0-0DF1-42CB-8B8B-107B477EAC22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Customer", "Wingcode.Customer\Wingcode.Customer.csproj", "{55F8441A-D20C-48BF-91A9-CDEE88B0B389}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Customers", "Wingcode.Customers\Wingcode.Customers.csproj", "{55F8441A-D20C-48BF-91A9-CDEE88B0B389}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.ValueConverters", "Wingcode.ValueConverters\Wingcode.ValueConverters.csproj", "{CDCEC252-69BA-4622-8858-ED0EBE9B9E60}"
 EndProject
@@ -21,13 +21,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Controls", "Wingco
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Master", "Wingcode.Master\Wingcode.Master.csproj", "{C50BDA19-5E8A-43C1-84AB-B24C28F9C1EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Supplier", "Wingcode.Supplier\Wingcode.Supplier.csproj", "{11458D98-93AE-4AEC-86D2-DDE1BC76C804}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Suppliers", "Wingcode.Suppliers\Wingcode.Suppliers.csproj", "{11458D98-93AE-4AEC-86D2-DDE1BC76C804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Purchase", "Wingcode.Purchase\Wingcode.Purchase.csproj", "{C66AE73B-D5AD-4342-A4C8-5A8B5FF6840D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Purchases", "Wingcode.Purchases\Wingcode.Purchases.csproj", "{C66AE73B-D5AD-4342-A4C8-5A8B5FF6840D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Sales", "Wingcode.Sales\Wingcode.Sales.csproj", "{4CA2C1A7-3C1B-47C7-AFA1-FE9DEB82EC63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Expens", "Wingcode.Expens\Wingcode.Expens.csproj", "{58C77554-106C-482D-A7B0-459D5F6FF755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Expenses", "Wingcode.Expenses\Wingcode.Expenses.csproj", "{58C77554-106C-482D-A7B0-459D5F6FF755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Data.Rest", "Wingcode.Data.Rest\Wingcode.Data.Rest.csproj", "{15EED3E4-E43E-4D10-98D7-C12EC2B2A89D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wingcode.Validation", "Wingcode.Validation\Wingcode.Validation.csproj", "{66901529-817D-4753-9DC1-BDE591494CC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +90,14 @@ Global
 		{58C77554-106C-482D-A7B0-459D5F6FF755}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58C77554-106C-482D-A7B0-459D5F6FF755}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58C77554-106C-482D-A7B0-459D5F6FF755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15EED3E4-E43E-4D10-98D7-C12EC2B2A89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15EED3E4-E43E-4D10-98D7-C12EC2B2A89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15EED3E4-E43E-4D10-98D7-C12EC2B2A89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15EED3E4-E43E-4D10-98D7-C12EC2B2A89D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66901529-817D-4753-9DC1-BDE591494CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66901529-817D-4753-9DC1-BDE591494CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66901529-817D-4753-9DC1-BDE591494CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66901529-817D-4753-9DC1-BDE591494CC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

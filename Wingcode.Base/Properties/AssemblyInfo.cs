@@ -10,7 +10,7 @@ using System.Windows.Markup;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
+// associated with an assembly. 
 [assembly: XmlnsPrefix("http://wingcodems.net/base", "wcb")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Api")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.DataModel")]
@@ -23,6 +23,7 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.AttachedProperties")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Event")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Input")]
+[assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Input.Behaviors")]
 
 [assembly: CompilationRelaxations(8)]
 [assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]

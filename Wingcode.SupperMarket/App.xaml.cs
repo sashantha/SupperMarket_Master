@@ -1,31 +1,30 @@
-﻿using Prism.Ioc;
+﻿using CommonServiceLocator;
+using Prism.Ioc;
 using Prism.Modularity;
-using System.Windows;
-using System;
 using Prism.Mvvm;
-using Prism.Unity;
-using Prism;
-using Wingcode.SupperMarket.Views;
-using Wingcode.SupperMarket.ViewModels;
+using Prism.Regions;
+using Prism.Services.Dialogs;
+using System;
+using System.Windows;
+using System.Windows.Controls;
 using Wingcode.Authanatication;
 using Wingcode.Base.Api;
-using CommonServiceLocator;
-using Wingcode.Item;
-using Prism.Regions;
-using System.Windows.Controls;
-using Wingcode.SupperMarket.CustomRegion;
-using System.Windows.Navigation;
-using Wingcode.Customer;
-using Prism.Services.Dialogs;
 using Wingcode.Base.Dialog;
-using Wingcode.Base.ViewModels;
 using Wingcode.Base.FileSystem;
 using Wingcode.Base.Tasks;
+using Wingcode.Base.ViewModels;
+using Wingcode.Customers;
+using Wingcode.Data.Rest;
+using Wingcode.Data.Rest.Service;
+using Wingcode.Expenses;
+using Wingcode.Items;
 using Wingcode.Master;
-using Wingcode.Supplier;
-using Wingcode.Purchase;
+using Wingcode.Purchases;
 using Wingcode.Sales;
-using Wingcode.Expens;
+using Wingcode.SupperMarket.CustomRegion;
+using Wingcode.SupperMarket.ViewModels;
+using Wingcode.SupperMarket.Views;
+using Wingcode.Suppliers;
 
 namespace Wingcode.SupperMarket
 {
@@ -45,6 +44,7 @@ namespace Wingcode.SupperMarket
         {
             containerRegistry.RegisterSingleton<ITaskManager, TaskManager>();
             containerRegistry.RegisterSingleton<IFileManager, FileManager>();
+            containerRegistry.RegisterSingleton<IRestDataMapper, RestDataMapper>();
 
             containerRegistry.RegisterSingleton<IDialogService, WingcodeDialogService>();
             containerRegistry.RegisterDialogWindow<WingcodeDialogWindow>();
@@ -68,7 +68,7 @@ namespace Wingcode.SupperMarket
             moduleCatalog.AddModule<AuthanaticationModule>();
             moduleCatalog.AddModule<MasterModule>();
             moduleCatalog.AddModule<ItemModule>();
-            moduleCatalog.AddModule<CustomerModule>();
+            moduleCatalog.AddModule<CustomersModule>();
             moduleCatalog.AddModule<SupplierModule>();
             moduleCatalog.AddModule<PurchaseModule>();
             moduleCatalog.AddModule<SalesModule>();
@@ -77,7 +77,15 @@ namespace Wingcode.SupperMarket
 
         protected override void OnActivated(EventArgs e)
         {
-            base.OnActivated(e);
+
+            bool b = RestConnection.GetRestConnection().TestConnectionAsync();
+            if (!b)
+            {
+                if (MessageBox.Show("Application Server not found", "Internal Server Error", MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                    Current.Shutdown();
+            }
+
+            base.OnActivated(e);            
             IMenuRegistryProvider registryProvider = ServiceLocator.Current.GetInstance<IMenuRegistryProvider>();
             registryProvider.InitializeMenu();
             IApplicationController controller = ServiceLocator.Current.GetInstance<IApplicationController>();

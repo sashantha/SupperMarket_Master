@@ -11,10 +11,10 @@ namespace Wingcode.Base.Api
     {
 
         bool IsInitilized { get; set; }
-
+                
         Task InitializeApplication();
 
-        Task LogingApplication(LoginInfor loginInfor);
+        Task LogingApplication(object loggedUser);
 
         Task ShowMainView();
 

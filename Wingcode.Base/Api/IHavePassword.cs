@@ -10,6 +10,8 @@ namespace Wingcode.Base.Api
         /// <summary>
         /// The Secure Password
         /// </summary>
-        SecureString SecurePassword { get; }
+        string Password { get; }
+
+        void ClearPassword();
     }
 }

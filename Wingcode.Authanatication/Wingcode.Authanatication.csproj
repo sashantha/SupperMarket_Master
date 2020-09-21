@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthanaticationModule.cs" />
+    <Compile Include="LoggedUserProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -121,6 +122,10 @@
     <ProjectReference Include="..\Wingcode.Base\Wingcode.Base.csproj">
       <Project>{9946d938-4d07-4ce3-a369-d4860daa7128}</Project>
       <Name>Wingcode.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wingcode.Data.Rest\Wingcode.Data.Rest.csproj">
+      <Project>{15eed3e4-e43e-4d10-98d7-c12ec2b2a89d}</Project>
+      <Name>Wingcode.Data.Rest</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

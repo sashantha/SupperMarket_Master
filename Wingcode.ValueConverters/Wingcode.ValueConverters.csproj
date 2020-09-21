@@ -31,6 +31,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>wcms.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -59,6 +65,7 @@
     <Compile Include="Convertors\BooleanToVisibilityConverter.cs" />
     <Compile Include="Convertors\BooleanToVisibilityGoneConverter.cs" />
     <Compile Include="Convertors\HorizontalAlignmentConverter.cs" />
+    <Compile Include="Convertors\IgnoreNewItemPlaceHolderConverter.cs" />
     <Compile Include="Convertors\InvertBooleanConverter.cs" />
     <Compile Include="Convertors\StringRGBToBrushConverter.cs" />
     <Compile Include="Convertors\TimeToDisplayTimeConverter.cs" />
@@ -85,6 +92,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="wcms.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

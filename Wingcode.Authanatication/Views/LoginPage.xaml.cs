@@ -14,6 +14,12 @@ namespace Wingcode.Authanatication.Views
             InitializeComponent();
         }
 
-        public SecureString SecurePassword => password.SecurePassword;
-    }
+        public string Password => password.Password;
+
+        public void ClearPassword()
+        {            
+            password.Password = string.Empty;
+            userName.Focus();
+        }
+}
 }

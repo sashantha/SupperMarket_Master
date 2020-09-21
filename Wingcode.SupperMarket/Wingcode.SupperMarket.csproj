@@ -192,33 +192,41 @@
       <Project>{64e3d73c-c7d6-4f8c-8085-d42b15646c8f}</Project>
       <Name>Wingcode.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wingcode.Customer\Wingcode.Customer.csproj">
+    <ProjectReference Include="..\Wingcode.Customers\Wingcode.Customers.csproj">
       <Project>{55f8441a-d20c-48bf-91a9-cdee88b0b389}</Project>
-      <Name>Wingcode.Customer</Name>
+      <Name>Wingcode.Customers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wingcode.Expens\Wingcode.Expens.csproj">
+    <ProjectReference Include="..\Wingcode.Data.Rest\Wingcode.Data.Rest.csproj">
+      <Project>{15eed3e4-e43e-4d10-98d7-c12ec2b2a89d}</Project>
+      <Name>Wingcode.Data.Rest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wingcode.Expenses\Wingcode.Expenses.csproj">
       <Project>{58c77554-106c-482d-a7b0-459d5f6ff755}</Project>
-      <Name>Wingcode.Expens</Name>
+      <Name>Wingcode.Expenses</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wingcode.Item\Wingcode.Item.csproj">
+    <ProjectReference Include="..\Wingcode.Items\Wingcode.Items.csproj">
       <Project>{e13f33f0-0df1-42cb-8b8b-107b477eac22}</Project>
-      <Name>Wingcode.Item</Name>
+      <Name>Wingcode.Items</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wingcode.Master\Wingcode.Master.csproj">
       <Project>{c50bda19-5e8a-43c1-84ab-b24c28f9c1ea}</Project>
       <Name>Wingcode.Master</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wingcode.Purchase\Wingcode.Purchase.csproj">
+    <ProjectReference Include="..\Wingcode.Purchases\Wingcode.Purchases.csproj">
       <Project>{c66ae73b-d5ad-4342-a4c8-5a8b5ff6840d}</Project>
-      <Name>Wingcode.Purchase</Name>
+      <Name>Wingcode.Purchases</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wingcode.Sales\Wingcode.Sales.csproj">
       <Project>{4ca2c1a7-3c1b-47c7-afa1-fe9deb82ec63}</Project>
       <Name>Wingcode.Sales</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wingcode.Supplier\Wingcode.Supplier.csproj">
+    <ProjectReference Include="..\Wingcode.Suppliers\Wingcode.Suppliers.csproj">
       <Project>{11458d98-93ae-4aec-86d2-dde1bc76c804}</Project>
-      <Name>Wingcode.Supplier</Name>
+      <Name>Wingcode.Suppliers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wingcode.Validation\Wingcode.Validation.csproj">
+      <Project>{66901529-817d-4753-9dc1-bde591494cc3}</Project>
+      <Name>Wingcode.Validation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wingcode.ValueConverters\Wingcode.ValueConverters.csproj">
       <Project>{cdcec252-69ba-4622-8858-ed0ebe9b9e60}</Project>

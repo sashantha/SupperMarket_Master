@@ -5,9 +5,9 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Wingcode.Authanatication.Views;
-using Wingcode.Base;
 using Wingcode.Base.Api;
 using Wingcode.Base.Event;
+using Wingcode.Data.Rest.Service;
 using Wingcode.SupperMarket.Views;
 
 namespace Wingcode.SupperMarket
@@ -47,21 +47,22 @@ namespace Wingcode.SupperMarket
             rtRegion.Add(mainPage);
 
             tcRegion.Deactivate(topContent);
-            //rtRegion.Deactivate(loginPage);
-            //rtRegion.Activate(mainPage);
             IMenuRegistryProvider menu = containerExtension.Resolve<IMenuRegistryProvider>();
             if (menu != null)
                 eventAggregator.GetEvent<MenuCreationEvent>().Publish(menu.GetMenuItemViews());
-            //eventAggregator.GetEvent<MenuExpndControlEvent>().Publish(false);
             cpRegion = regionManager.Regions["ContentPaneRegion"];
             IsInitilized = true;
             await Task.Delay(1000);
         }
 
-        public async Task LogingApplication(LoginInfor loginInfor)
+        public async Task LogingApplication(object loggedUser)
         {
-            rtRegion.Deactivate(loginPage);
-            rtRegion.Activate(mainPage);
+            if (loggedUser is ILoggedUserProvider provider)
+            {
+                containerExtension.RegisterInstance(provider);
+                rtRegion.Deactivate(loginPage);
+                rtRegion.Activate(mainPage);
+            }           
             await Task.Delay(1000);
         }
 

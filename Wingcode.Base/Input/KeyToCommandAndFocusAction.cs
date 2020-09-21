@@ -121,7 +121,7 @@ namespace Wingcode.Base.Input
 			return result;
 		}
 
-		private void focusAction()
+		private void FocusAction()
 		{
 			if (Target != null && TargetN != null)
 			{
@@ -161,7 +161,7 @@ namespace Wingcode.Base.Input
 			}
 		}
 
-		private void executeAction(object parameter)
+		private void ExecuteAction(object parameter)
 		{
 			if (AssociatedObject != null)
 			{
@@ -179,8 +179,8 @@ namespace Wingcode.Base.Input
 				&& !Validation.GetHasError(AssociatedObject) 
 				&& (!(AssociatedObject is TextBox) || !string.IsNullOrEmpty((AssociatedObject as TextBox).Text)))
 			{
-				focusAction();
-				executeAction(parameter);
+				FocusAction();
+				ExecuteAction(parameter);
 			}
 		}
 	}

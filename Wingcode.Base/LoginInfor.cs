@@ -9,6 +9,6 @@ namespace Wingcode.Base
     public class LoginInfor
     {
 
-
+       
     }
 }

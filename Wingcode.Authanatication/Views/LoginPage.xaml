@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wingcode.Authanatication.Views"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:wbc="http://wingcodems.net/base"
              xmlns:domain="clr-namespace:Wingcode.Authanatication"
@@ -27,7 +28,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid>
         <ScrollViewer Style="{StaticResource WingcodeScrollViewer}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" TextBlock.TextAlignment="Center">
@@ -49,14 +50,42 @@
                                    FontWeight="Bold"
                                    FontSize="18"/>
                             <StackPanel VerticalAlignment="Center" Margin="15">
+                                
+                                <ComboBox x:Name="branches" materialDesign:HintAssist.Hint="SELECT BRANCH"
+                                          IsEditable="True"
+                                          wbc:IsFocusedProperty.Value="True"
+                                          ItemsSource="{Binding BranchNames}"
+                                          SelectedItem="{Binding SelectedBranch}"
+                                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="PreviewKeyDown">
+                                            <i:InvokeCommandAction Command="{Binding WarrnChangeCommand}"/>
+                                        </i:EventTrigger>
+                                        <i:EventTrigger EventName="PreviewKeyDown">
+                                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=userName}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
                                 <TextBox x:Name="userName" 
                                          Margin="0,10" 
-                                         materialDesign:HintAssist.Hint="USERNAME"
+                                         materialDesign:HintAssist.Hint="USERNAME OR EMAIL"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                          FontWeight="Bold"
-                                         FontSize="14"/>
+                                         Text="{Binding UserName}"
+                                         FontSize="14">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="PreviewKeyDown">
+                                            <i:InvokeCommandAction Command="{Binding WarrnChangeCommand}"/>
+                                        </i:EventTrigger>
+                                        <i:EventTrigger EventName="PreviewKeyDown">
+                                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=password}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBox>
                                 <PasswordBox x:Name="password" 
                                              Margin="0,10" 
+                                             wbc:EnterKeyDown.Command="{Binding LogingCommand}"
+                                             wbc:EnterKeyDown.CommandParameter="{Binding ElementName=LoginView}"
                                              materialDesign:HintAssist.Hint="PASSWORD" 
                                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                                              FontWeight="Bold"

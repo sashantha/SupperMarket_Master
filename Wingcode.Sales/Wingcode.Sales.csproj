@@ -79,10 +79,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wingcode.Authanatication\Wingcode.Authanatication.csproj">
-      <Project>{dfbe9cba-e819-46bc-9adf-d2e693e4e657}</Project>
-      <Name>Wingcode.Authanatication</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Wingcode.Base\Wingcode.Base.csproj">
       <Project>{9946d938-4d07-4ce3-a369-d4860daa7128}</Project>
       <Name>Wingcode.Base</Name>
@@ -90,6 +86,14 @@
     <ProjectReference Include="..\Wingcode.Controls\Wingcode.Controls.csproj">
       <Project>{64e3d73c-c7d6-4f8c-8085-d42b15646c8f}</Project>
       <Name>Wingcode.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wingcode.Data.Rest\Wingcode.Data.Rest.csproj">
+      <Project>{15eed3e4-e43e-4d10-98d7-c12ec2b2a89d}</Project>
+      <Name>Wingcode.Data.Rest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wingcode.Validation\Wingcode.Validation.csproj">
+      <Project>{66901529-817d-4753-9dc1-bde591494cc3}</Project>
+      <Name>Wingcode.Validation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wingcode.ValueConverters\Wingcode.ValueConverters.csproj">
       <Project>{cdcec252-69ba-4622-8858-ed0ebe9b9e60}</Project>

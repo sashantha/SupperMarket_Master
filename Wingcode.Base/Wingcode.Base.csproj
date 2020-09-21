@@ -97,9 +97,11 @@
     <Compile Include="Dialog\WingcodeMsgDialog.xaml.cs">
       <DependentUpon>WingcodeMsgDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Event\DataGridSelectionClearEvent.cs" />
     <Compile Include="Event\MenuItemControlExpandEvent.cs" />
     <Compile Include="Event\MenuCreationEvent.cs" />
     <Compile Include="Event\MenuExpndControlEvent.cs" />
+    <Compile Include="Event\UIElementFocusEvent.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
     <Compile Include="Extensions\FrameworkElementHelper.cs" />
     <Compile Include="Extensions\IconTypeExtensions.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="FileSystem\Internal\SettingsFileSystem.cs" />
     <Compile Include="FileSystem\PhysicalFileSystem.cs" />
     <Compile Include="Input\Behaviors\TextBoxInputBehavior.cs" />
+    <Compile Include="Input\EnterKeyDown.cs" />
     <Compile Include="Input\KeyDownFocusAction.cs" />
     <Compile Include="Input\KeyToCommandAndFocusAction.cs" />
     <Compile Include="Input\RelayCommand.cs" />
@@ -136,6 +139,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Security\SecureStringHelpers.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Tasks\Async\AsyncAwaiter.cs" />
     <Compile Include="Tasks\ITaskManager.cs" />
