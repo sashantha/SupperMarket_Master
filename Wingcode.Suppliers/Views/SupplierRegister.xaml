@@ -6,6 +6,8 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:wc="http://wingcodemicrosystem.net/controls"
+             xmlns:wr="http://wingcodems.net/validations"
+             xmlns:wv="http://wingcodems.net/convertors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
@@ -20,6 +22,7 @@
              TextOptions.TextFormattingMode="Ideal" 
              TextOptions.TextRenderingMode="Auto"
              Width="1100"
+             Loaded="UserControl_Loaded"
              FontFamily="{materialDesign:MaterialDesignFont}">
 
     <Grid Margin="5">
@@ -114,70 +117,81 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0"  
+                <TextBox x:Name="supCode" Grid.Row="0"  
                          materialDesign:HintAssist.Hint="Supplier Code :"                 
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 VerticalAlignment="Center">
-                    <TextBox.Text>
-                        Supplier Code
-                        <!--<Binding Path="Item.ItemName" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <dom:NotEmptyValidationRule/>
-                            </Binding.ValidationRules>
-                        </Binding>-->
-                    </TextBox.Text>
-                </TextBox>
-
-                <TextBox Grid.Row="1" Grid.ColumnSpan="3" 
-                         materialDesign:HintAssist.Hint="Supplier Name :"                 
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 VerticalAlignment="Center">
-                    <TextBox.Text>
-                        Supplier Name
-                        <!--<Binding Path="Item.ItemName" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <dom:NotEmptyValidationRule/>
-                            </Binding.ValidationRules>
-                        </Binding>-->
-                    </TextBox.Text>
-                </TextBox>
-
-                <TextBox Grid.Row="2" Grid.ColumnSpan="3" 
-                         materialDesign:HintAssist.Hint="Supplier Address :"                 
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 VerticalAlignment="Center">
-                    <TextBox.Text>
-                        Supplier Address
-                        <!--<Binding Path="Item.ItemName" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <dom:NotEmptyValidationRule/>
-                            </Binding.ValidationRules>
-                        </Binding>-->
-                    </TextBox.Text>
-                </TextBox>
-
-                <TextBox Grid.Row="3" 
-                         Grid.ColumnSpan="2"
-                         Text="Supplier NIC"
-                         materialDesign:HintAssist.Hint="Supplier NIC :"                 
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding SelectedSupplier.code}"
                          VerticalAlignment="Center"/>
 
-                <TextBox Grid.Row="4" 
-                         Grid.ColumnSpan="2" 
+                <TextBox x:Name="supName" Grid.Row="1" Grid.ColumnSpan="3" 
+                         materialDesign:HintAssist.Hint="Supplier Name :"                 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="SelectedSupplier.name" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <wr:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=supAddress}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+
+                <TextBox x:Name="supAddress" Grid.Row="2" Grid.ColumnSpan="3" 
+                         materialDesign:HintAssist.Hint="Supplier Address :"                 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding SelectedSupplier.address}"
+                         VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=supContact}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+
+                <TextBox x:Name="supContact" Grid.Row="3" 
+                         Grid.ColumnSpan="2"
                          materialDesign:HintAssist.Hint="Supplier Contact :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="Supplier Contact"
-                         VerticalAlignment="Center"/>
+                         Text="{Binding SelectedSupplier.contact}"
+                         VerticalAlignment="Center">
+                    <i:Interaction.Behaviors>
+                        <wbc:TextBoxInputBehavior RegularExpression="^[0-9]+$" MaxLength="50"/>
+                    </i:Interaction.Behaviors>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=supDiscrpt}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+
+                <TextBox x:Name="supDiscrpt" Grid.Row="4" 
+                         Grid.ColumnSpan="2" 
+                         materialDesign:HintAssist.Hint="Supplier Description :"                 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding SelectedSupplier.description}"
+                         VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" 
+                                                            Target="{Binding ElementName=supSave}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
                 <StackPanel Grid.Row="5" 
                             Grid.ColumnSpan="3" 
                             Margin="2" 
                             Orientation="Horizontal" 
                             HorizontalAlignment="Right">
-                    <Button Content="New" Margin="0,0,10,0"/>
-                    <Button Content="Save" Margin="0,0,10,0"/>
-                    <Button Content="Update" />
+                    <Button x:Name="supNew" Content="New" Command="{Binding NewCommand}" Margin="0,0,10,0"/>
+                    <Button x:Name="supSave" Content="Save" Command="{Binding SaveCommand}" Margin="0,0,10,0"/>
+                    <Button x:Name="supUpdate" Content="Update" Command="{Binding UpdateCommand}" Margin="0,0,10,0"/>
+                    <Button x:Name="supDelete" Content="Delete" Command="{Binding DeleteCommand}"/>
                 </StackPanel>
             </Grid>
         </GroupBox>
@@ -191,10 +205,16 @@
                   materialDesign:ColorZoneAssist.Mode="Accent"
                   Style="{StaticResource MaterialDesignCardGroupBox}">
 
-            <wc:PaginDataGrid AutoGenerateColumns="false" 
+            <wc:PaginDataGrid x:Name="supGrid" 
+                              AutoGenerateColumns="false"
+                              IsPagingEnable="False"
                               Filter="{x:Null}"
                               BorderBrush="{DynamicResource SecondaryAccentBrush}"
                               BorderThickness="1"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow"
+                              ItemsSource="{Binding SourceSuppliers}"
+                              SelectedItem="{Binding SelectedSupplier, Mode=OneWayToSource, Converter={wv:IgnoreNewItemPlaceHolderConverter}}"
                               CanUserAddRows="False">
 
                 <wc:PaginDataGrid.PageSizes>
@@ -206,13 +226,12 @@
                 </wc:PaginDataGrid.PageSizes>
 
                 <wc:PaginDataGrid.Columns>
-                    <DataGridCheckBoxColumn/>
-                    <DataGridTextColumn Header="Id"/>
-                    <DataGridTextColumn Header="Supplier Code"/>
-                    <DataGridTextColumn Header="Supplier Name" Width="250"/>
-                    <DataGridTextColumn Header="Supplier Address" Width="350"/>
-                    <DataGridTextColumn Header="Supplier NIC"/>
-                    <DataGridTextColumn Header="Supplier Contact"/>
+                    <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="Supplier Code" IsReadOnly="True" Binding="{Binding code}"/>
+                    <DataGridTextColumn Header="Supplier Name" Width="250" IsReadOnly="True" Binding="{Binding name}"/>
+                    <DataGridTextColumn Header="Supplier Address" Width="350" IsReadOnly="True" Binding="{Binding address}"/>
+                    <DataGridTextColumn Header="Supplier Contact" IsReadOnly="True" Binding="{Binding contact}"/>
+                    <DataGridTextColumn Header="Supplier Description" IsReadOnly="True" Binding="{Binding description}"/>
                 </wc:PaginDataGrid.Columns>
 
             </wc:PaginDataGrid>

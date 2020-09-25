@@ -3,22 +3,30 @@
 namespace Wingcode.Data.Rest.Model
 {
 
+
+	/// <summary>
+	/// The persistent class for the customer_payment database table.
+	/// 
+	/// </summary>
+
 	public class CustomerPayment
 	{
 
-		public long id;
+		public long id { get; set; }
 
-		public decimal amount;
+		public decimal amount { get; set; }
 
-		public DateTime createdAt;
+		public DateTime createdAt { get; set; }
 
-		public DateTime payDate;
+		public DateTime payDate { get; set; }
 
-		public string payMethod;
+		public string payMethod { get; set; }
 
-		public DateTime updatedAt;
+		public DateTime updatedAt { get; set; }
 
-		public CustomerCreditInvoice customerCreditInvoice;
+		// bi-directional many-to-one association to CustomerCreditInvoice
+
+		public CustomerCreditInvoice customerCreditInvoice { get; set; }
 
 	}
 }

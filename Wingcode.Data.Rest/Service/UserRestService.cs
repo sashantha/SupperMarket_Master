@@ -11,6 +11,8 @@ namespace Wingcode.Data.Rest.Service
     public class UserRestService
     {
 
+        #region User Rest Service
+
         public static async Task<User> CreateUserAsync(IRestDataMapper mapper, User data)
         {
             User reds = new User();
@@ -69,6 +71,8 @@ namespace Wingcode.Data.Rest.Service
             string url = $"user/api/v1/users/{namOrMail}/{branchId}";
             reds = await mapper.GetDataAsync<User>(url);
             return reds;
-        }
+        } 
+
+        #endregion
     }
 }

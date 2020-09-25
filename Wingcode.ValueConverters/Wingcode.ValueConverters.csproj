@@ -63,11 +63,13 @@
     <Compile Include="BaseValueConverter.cs" />
     <Compile Include="Convertors\BooleanInvertConverter.cs" />
     <Compile Include="Convertors\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Convertors\BooleanInvertToVisibilityGoneConverter.cs" />
     <Compile Include="Convertors\BooleanToVisibilityGoneConverter.cs" />
     <Compile Include="Convertors\HorizontalAlignmentConverter.cs" />
     <Compile Include="Convertors\IgnoreNewItemPlaceHolderConverter.cs" />
     <Compile Include="Convertors\InvertBooleanConverter.cs" />
     <Compile Include="Convertors\StringRGBToBrushConverter.cs" />
+    <Compile Include="Convertors\StringToDecimalConverter.cs" />
     <Compile Include="Convertors\TimeToDisplayTimeConverter.cs" />
     <Compile Include="Convertors\TimeToReadTimeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

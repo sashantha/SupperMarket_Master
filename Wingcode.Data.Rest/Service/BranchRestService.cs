@@ -7,6 +7,15 @@ namespace Wingcode.Data.Rest.Service
     public class BranchRestService
     {
 
+        #region Constant Value
+
+        public readonly string BRANCH_CODE_FLAG = "bc";
+        public readonly string BRANCH_NAME_FLAG = "bn";
+
+        #endregion
+
+        #region Branch Rest Service
+
         public static async Task<Branch> CreateBranchAsync(IRestDataMapper mapper, Branch data)
         {
             Branch reds = new Branch();
@@ -55,6 +64,8 @@ namespace Wingcode.Data.Rest.Service
             string url = "branch/api/v1/branches";
             data = await mapper.GetDataAsync<ObservableCollection<Branch>>(url);
             return data;
-        }
+        } 
+
+        #endregion
     }
 }

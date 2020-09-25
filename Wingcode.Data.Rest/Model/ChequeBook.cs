@@ -3,34 +3,45 @@
 namespace Wingcode.Data.Rest.Model
 {
 
+
+	/// <summary>
+	/// The persistent class for the cheque_book database table.
+	/// 
+	/// </summary>
 	public class ChequeBook
 	{
 
-		public long id;
+		public long id { get; set; }
 
-		public string bookDescription;
+		public string bookDescription { get; set; }
 
-		public string bookType;
+		public string bookType { get; set; }
 
-		public decimal chequeAmount;
+		public decimal chequeAmount { get; set; }
 
-		public string chequeNo;
+		public string chequeNo { get; set; }
 
-		public string chequeStatus;
+		public string chequeStatus { get; set; }
 
-		public DateTime createdAt;
+		public DateTime createdAt { get; set; }
 
-		public string description;
+		public string description { get; set; }
 
-		public DateTime transactionDate;
+		public DateTime releseDate { get; set; }
 
-		public DateTime updatedAt;
+		public DateTime transactionDate { get; set; }
 
-		public Branch branch;
+		public DateTime updatedAt { get; set; }
 
-		public Purchase purchase;
+		public Branch branch { get; set; }
 
-		public SaleInvoice saleInvoice;
+		public BranchAccount branchAccount { get; set; }
+
+		public Purchase purchase { get; set; }
+
+		public SaleInvoice saleInvoice { get; set; }
+
+		public User user { get; set; }
 
 	}
 }

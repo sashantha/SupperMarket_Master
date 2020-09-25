@@ -1,27 +1,36 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System { get; set; }
 
 namespace Wingcode.Data.Rest.Model
 {
 
-    public class CustomerCreditInvoice
+
+	/// <summary>
+	/// The persistent class for the customer_credit_invoice database table.
+	/// 
+	/// </summary>
+
+	public class CustomerCreditInvoice
 	{
 
-		public long id;
+		public long id { get; set; }
 
-		public decimal balanceAmount;
+		public decimal balanceAmount { get; set; }
 
-		public DateTime createdAt;
+		public DateTime createdAt { get; set; }
 
-		public decimal creditAmount;
+		public decimal creditAmount { get; set; }
 
-		public decimal paidAmount;
+		public decimal paidAmount { get; set; }
 
-		public DateTime updatedAt;
+		public DateTime updatedAt { get; set; }
 
-		public CustomerCreditAccount customerCreditAccount;
+		// bi-directional many-to-one association to CustomerCreditAccount
 
-		public ObservableCollection<CustomerPayment> customerPayments;
+		public CustomerCreditAccount customerCreditAccount { get; set; }
+
+		// bi-directional many-to-one association to SaleInvoice
+
+		public SaleInvoice saleInvoice { get; set; }
 
 	}
 }

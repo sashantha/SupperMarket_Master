@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Model\Bank.cs" />
     <Compile Include="Model\Branch.cs" />
+    <Compile Include="Model\BranchAccount.cs" />
     <Compile Include="Model\CashBook.cs" />
     <Compile Include="Model\ChequeBook.cs" />
     <Compile Include="Model\CustomerCriteria.cs" />
@@ -57,8 +58,10 @@
     <Compile Include="Model\CustomerCreditInvoice.cs" />
     <Compile Include="Model\CustomerPayment.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\ItemCriteria.cs" />
     <Compile Include="Model\ItemGroup.cs" />
     <Compile Include="Model\ItemSubGroup.cs" />
+    <Compile Include="Model\Measurement.cs" />
     <Compile Include="Model\Purchase.cs" />
     <Compile Include="Model\PurchaseItem.cs" />
     <Compile Include="Model\SaleInvoice.cs" />
@@ -67,7 +70,9 @@
     <Compile Include="Model\Supplier.cs" />
     <Compile Include="Model\SupplierCreditAccount.cs" />
     <Compile Include="Model\SupplierCreditInvoice.cs" />
+    <Compile Include="Model\SupplierCriteria.cs" />
     <Compile Include="Model\SupplierPayment.cs" />
+    <Compile Include="Model\UnitOfMeasure.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestConnection.cs" />
@@ -78,6 +83,9 @@
     <Compile Include="Service\CustomerRestService.cs" />
     <Compile Include="Service\ILoggedUserProvider.cs" />
     <Compile Include="Service\IRestDataMapper.cs" />
+    <Compile Include="Service\ItemRestService.cs" />
+    <Compile Include="Service\SupplierCreditAccountRestService.cs" />
+    <Compile Include="Service\SupplierRestService.cs" />
     <Compile Include="Service\UserRestService.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -3,42 +3,56 @@
 namespace Wingcode.Data.Rest.Model
 {
 
+
+	/// <summary>
+	/// The persistent class for the purchase_item database table.
+	/// 
+	/// </summary>
+
 	public class PurchaseItem
 	{
 
-		public long id;
+		public long id { get; set; }
 
-		public decimal amount;
+		public decimal amount { get; set; }
 
-		public decimal availableQuantity;
+		public decimal cost { get; set; }
 
-		public decimal cost;
+		public DateTime createdAt { get; set; }
 
-		public DateTime createdAt;
+		public decimal discount { get; set; }
 
-		public decimal discount;
+		public DateTime expireDate { get; set; }
 
-		public DateTime expireDate;
+		public decimal freeQuantity { get; set; }
 
-		public decimal freeQuantity;
+		public DateTime manufactureDate { get; set; }
 
-		public DateTime manufactureDate;
+		public DateTime purchaseDate { get; set; }
 
-		public DateTime purchaseDate;
+		public decimal purchaseQuantity { get; set; }
 
-		public string purchaseType;
+		public string purchaseType { get; set; }
 
-		public decimal quantity;
+		public decimal quantity { get; set; }
 
-		public decimal reorderLevel;
+		public decimal realQuantity { get; set; }
 
-		public decimal retailPrice;
+		public decimal reorderLevel { get; set; }
 
-		public DateTime updatedAt;
+		public decimal retailPrice { get; set; }
 
-		public decimal wholesalePrice;
+		public DateTime updatedAt { get; set; }
 
-		public Purchase purchase;
+		public decimal wholesalePrice { get; set; }
+
+		// bi-directional many-to-one association to Item
+
+		public Item item { get; set; }
+
+		// bi-directional many-to-one association to Purchase
+
+		public Purchase purchase { get; set; }
 
 	}
 }

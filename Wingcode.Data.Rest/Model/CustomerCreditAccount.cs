@@ -1,19 +1,28 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 namespace Wingcode.Data.Rest.Model
 {
 
-    public class CustomerCreditAccount
-    {
 
-        public long id;
+	/// <summary>
+	/// The persistent class for the customer_credit_account database table.
+	/// 
+	/// </summary>
 
-        public DateTime createdAt;
+	public class CustomerCreditAccount
+	{
 
-        public decimal totalCredit;
+		public long id { get; set; }
 
-        public DateTime updatedAt;
+		public DateTime createdAt { get; set; }
 
-    }
+		public decimal totalCredit { get; set; }
+
+		public DateTime updatedAt { get; set; }
+
+		// bi-directional one-to-one association to Customer
+
+		public Customer customer { get; set; }
+
+	}
 }

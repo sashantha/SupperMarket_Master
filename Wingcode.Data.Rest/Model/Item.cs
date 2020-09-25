@@ -1,34 +1,44 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 namespace Wingcode.Data.Rest.Model
 {
 
-    public class Item
-    {
-        public const long serialVersionUID = 1L;
 
-        public long id { get; set; }
+	/// <summary>
+	/// The persistent class for the item database table.
+	/// 
+	/// </summary>
 
-        public string category { get; set; }
+	public class Item
+	{
 
-        public string barcode { get; set; }
+		public long id { get; set; }
 
-        public string code { get; set; }
+		public string barcode { get; set; }
 
-        public DateTime createdAt { get; set; }
+		public string category { get; set; }
 
-        public string name { get; set; }
+		public string code { get; set; }
 
-        public string otherName { get; set; }
+		public DateTime createdAt { get; set; }
 
-        public DateTime updatedAt { get; set; }
+		public string name { get; set; }
 
-        public ItemGroup itemGroup { get; set; }
+		public string otherName { get; set; }
 
-        public ItemSubGroup itemSubGroup { get; set; }
+		public DateTime updatedAt { get; set; }
 
-        public ObservableCollection<StoreInfor> storeInfors { get; set; }
+		// bi-directional many-to-one association to ItemGroup
 
-    }
+		public ItemGroup itemGroup { get; set; }
+
+		// bi-directional many-to-one association to ItemSubGroup
+
+		public ItemSubGroup itemSubGroup { get; set; }
+
+		// bi-directional one-to-one association to UnitOfMeasure
+
+		public UnitOfMeasure unitOfMeasure { get; set; }
+
+	}
 }

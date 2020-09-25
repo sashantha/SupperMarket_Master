@@ -25,15 +25,6 @@
              Loaded="UserControl_Loaded"
              FontFamily="{materialDesign:MaterialDesignFont}">
 
-    <!--<UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>-->
     <Grid Margin="5">
 
         <Grid.ColumnDefinitions>
@@ -136,7 +127,6 @@
 
                 <TextBox x:Name="cusName" Grid.Row="1" Grid.ColumnSpan="3" 
                          materialDesign:HintAssist.Hint="Customer Name :"
-                         wbc:IsFocusedProperty.Value="True"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          VerticalAlignment="Center">
                     <TextBox.Text>

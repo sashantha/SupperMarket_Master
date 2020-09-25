@@ -1,53 +1,60 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 namespace Wingcode.Data.Rest.Model
 {
 
-    public class Purchase
+
+	/// <summary>
+	/// The persistent class for the purchase database table.
+	/// 
+	/// </summary>
+
+	public class Purchase
 	{
 
-		public long id;
+		public long id { get; set; }
 
-		public DateTime createdAt;
+		public decimal costAmount { get; set; }
 
-		public decimal creditAmount;
+		public DateTime createdAt { get; set; }
 
-		public double discountPercent;
+		public decimal creditAmount { get; set; }
 
-		public decimal invoiceAmount;
+		public double discountPercent { get; set; }
 
-		public string invoiceNo;
+		public decimal invoiceAmount { get; set; }
 
-		public string invoiceType;
+		public string invoiceNo { get; set; }
 
-		public decimal netAmount;
+		public string invoiceType { get; set; }
 
-		public decimal payAmount;
+		public decimal netAmount { get; set; }
 
-		public string payMethod;
+		public decimal payAmount { get; set; }
 
-		public DateTime purchaseDate;
+		public string payMethod { get; set; }
 
-		public decimal purchaseDiscount;
+		public DateTime purchaseDate { get; set; }
 
-		public string recordState;
+		public decimal purchaseDiscount { get; set; }
 
-		public int totalPurchaseItem;
+		public string recordState { get; set; }
 
-		public DateTime updatedAt;
+		public int totalPurchaseItem { get; set; }
 
-		public ObservableCollection<CashBook> cashBooks;
+		public DateTime updatedAt { get; set; }
 
-		public ObservableCollection<ChequeBook> chequeBooks;
+		// bi-directional many-to-one association to Branch
 
-		public Branch branch;
+		public Branch branch { get; set; }
 
-		public Supplier supplier;
+		// bi-directional many-to-one association to Supplier
 
-		public User user;
+		public Supplier supplier { get; set; }
 
-		public ObservableCollection<PurchaseItem> purchaseItems;
+		// bi-directional many-to-one association to User
+
+		public User user { get; set; }
 
 	}
 }

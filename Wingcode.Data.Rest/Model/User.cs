@@ -1,10 +1,14 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 namespace Wingcode.Data.Rest.Model
 {
 
-    public class User
+
+	/// <summary>
+	/// The persistent class for the user database table.
+	/// 
+	/// </summary>
+	public class User
 	{
 
 		public int id { get; set; }

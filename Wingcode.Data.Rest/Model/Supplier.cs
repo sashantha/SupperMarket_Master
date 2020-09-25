@@ -1,11 +1,17 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 namespace Wingcode.Data.Rest.Model
 {
 
-    public class Supplier
+
+	/// <summary>
+	/// The persistent class for the supplier database table.
+	/// 
+	/// </summary>
+
+	public class Supplier
 	{
+
 		public long id { get; set; }
 
 		public string address { get; set; }
@@ -22,7 +28,11 @@ namespace Wingcode.Data.Rest.Model
 
 		public DateTime updatedAt { get; set; }
 
+		// bi-directional many-to-one association to Branch
+
 		public Branch branch { get; set; }
+
+		// bi-directional one-to-one association to SupplierCreditAccount
 
 		public SupplierCreditAccount supplierCreditAccount { get; set; }
 

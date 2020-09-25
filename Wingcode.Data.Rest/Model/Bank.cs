@@ -4,19 +4,20 @@ namespace Wingcode.Data.Rest.Model
 {
 
 
-
+	/// <summary>
+	/// The persistent class for the bank database table.
+	/// 
+	/// </summary>
 	public class Bank
 	{
 
-		public int id;
+		public int id { get; set; }
 
+		public DateTime createdAt { get; set; }
 
-		public DateTime createdAt;
+		public string name { get; set; }
 
-		public string name;
-
-
-		public DateTime updatedAt;
+		public DateTime updatedAt { get; set; }
 
 	}
 }

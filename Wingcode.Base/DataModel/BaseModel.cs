@@ -10,7 +10,7 @@ using Wingcode.Base.Api;
 
 namespace Wingcode.Base.DataModel
 {
-    public abstract class BaseModel<E> : BindableBase, /*INotifyDataErrorInfo,*/ IObjectCloneable<E> where E : class
+    public abstract class BaseModel<E> :/* BindableBase, INotifyDataErrorInfo,*/ IObjectCloneable<E> where E : class
     {
 
         //private Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();

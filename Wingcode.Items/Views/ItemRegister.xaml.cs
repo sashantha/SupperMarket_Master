@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wingcode.Items.ViewModels;
 
 namespace Wingcode.Items.Views
 {
@@ -25,6 +26,9 @@ namespace Wingcode.Items.Views
             InitializeComponent();
         }
 
-       
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ItemRegisterViewModel).Initialize();
+        }
     }
 }

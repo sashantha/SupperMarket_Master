@@ -1,61 +1,68 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 namespace Wingcode.Data.Rest.Model
 {
 
-    public class SaleInvoice
+
+	/// <summary>
+	/// The persistent class for the sale_invoice database table.
+	/// 
+	/// </summary>
+
+	public class SaleInvoice
 	{
 
-		public long id;
+		public long id { get; set; }
 
-		public decimal balanceAmount;
+		public decimal balanceAmount { get; set; }
 
-		public DateTime createdAt;
+		public DateTime createdAt { get; set; }
 
-		public decimal creditAmount;
+		public decimal creditAmount { get; set; }
 
-		public DateTime invoiceDate;
+		public DateTime invoiceDate { get; set; }
 
-		public decimal invoiceDiscount;
+		public decimal invoiceDiscount { get; set; }
 
-		public string invoiceNo;
+		public string invoiceNo { get; set; }
 
-		public string invoiceState;
+		public string invoiceState { get; set; }
 
-		public string invoiceType;
+		public string invoiceType { get; set; }
 
-		public decimal netAmount;
+		public decimal netAmount { get; set; }
 
-		public decimal paidAmount;
+		public decimal paidAmount { get; set; }
 
-		public string payMethod;
+		public string payMethod { get; set; }
 
-		public string recordState;
+		public string recordState { get; set; }
 
-		public string saleType;
+		public int saleItem { get; set; }
 
-		public decimal totalAmount;
+		public string saleType { get; set; }
 
-		public decimal totalCost;
+		public decimal totalAmount { get; set; }
 
-		public decimal totalDiscount;
+		public decimal totalCost { get; set; }
 
-		public decimal totalProfit;
+		public decimal totalDiscount { get; set; }
 
-		public DateTime updatedAt;
+		public decimal totalProfit { get; set; }
 
-		public ObservableCollection<CashBook> cashBooks;
+		public DateTime updatedAt { get; set; }
 
-		public ObservableCollection<ChequeBook> chequeBooks;
+		// bi-directional many-to-one association to Branch
 
-		public Branch branch;
+		public Branch branch { get; set; }
 
-		public CustomerCriteria customer;
+		// bi-directional many-to-one association to Customer
 
-		public User user;
+		public Customer customer { get; set; }
 
-		public ObservableCollection<SaleItem> saleItems;
+		// bi-directional many-to-one association to User
+
+		public User user { get; set; }
 
 	}
 }

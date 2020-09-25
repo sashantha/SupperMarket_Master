@@ -7,6 +7,15 @@ namespace Wingcode.Data.Rest.Service
     public class CustomerRestService
     {
 
+        #region Constant Value
+
+        public readonly string CUSTOMER_CODE_FLAG = "cc";
+        public readonly string CUSTOMER_NAME_FLAG = "cn";
+
+        #endregion
+
+        #region Customer Rest Service
+
         public static async Task<Customer> CreateCustomerAsync(IRestDataMapper mapper, Customer data)
         {
             Customer reds = new Customer();
@@ -85,6 +94,8 @@ namespace Wingcode.Data.Rest.Service
             string url = $"customer/api/v1/customers/{flag}/{codeOrName}/{branchId}";
             reds = await mapper.GetDataAsync<Customer>(url);
             return reds;
-        }
+        } 
+
+        #endregion
     }
 }

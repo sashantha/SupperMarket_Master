@@ -51,7 +51,9 @@
                                    FontSize="18"/>
                             <StackPanel VerticalAlignment="Center" Margin="15">
                                 
-                                <ComboBox x:Name="branches" materialDesign:HintAssist.Hint="SELECT BRANCH"
+                                <ComboBox x:Name="branches" 
+                                          materialDesign:HintAssist.Hint="SELECT BRANCH"
+                                          FontWeight="Bold"
                                           IsEditable="True"
                                           wbc:IsFocusedProperty.Value="True"
                                           ItemsSource="{Binding BranchNames}"
@@ -100,7 +102,7 @@
                                 VerticalAlignment="Bottom" 
                                 Margin="0,65"
                                 Content="LOGIN"/>
-                        <TextBlock Text="{Binding Warrning}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" Foreground="Gray"/>
+                        <TextBlock Text="{Binding Warrning}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" Foreground="Red"/>
                         <Image Source="../Images/home.png" Width="100" Height="100" VerticalAlignment="Top" Margin="30"/>
                     </Grid>
                 </Border>

@@ -3,6 +3,11 @@
 namespace Wingcode.Data.Rest.Model
 {
 
+
+	/// <summary>
+	/// The persistent class for the branch database table.
+	/// 
+	/// </summary>
 	public class Branch
 	{
 
@@ -11,6 +16,8 @@ namespace Wingcode.Data.Rest.Model
 		public string address { get; set; }
 
 		public string code { get; set; }
+
+		public string companyName { get; set; }
 
 		public string contact { get; set; }
 

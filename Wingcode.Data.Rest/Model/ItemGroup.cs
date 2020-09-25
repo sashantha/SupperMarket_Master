@@ -1,21 +1,24 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 
 namespace Wingcode.Data.Rest.Model
 {
 
-    public class ItemGroup
+
+	/// <summary>
+	/// The persistent class for the item_group database table.
+	/// 
+	/// </summary>
+
+	public class ItemGroup
 	{
 
-		public int id;
+		public int id { get; set; }
 
-		public DateTime createdAt;
+		public DateTime createdAt { get; set; }
 
-		public string groupName;
+		public string groupName { get; set; }
 
-		public DateTime updatedAt;
-
-		public ObservableCollection<Item> items;
+		public DateTime updatedAt { get; set; }
 
 	}
 }

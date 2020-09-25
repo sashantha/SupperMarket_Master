@@ -92,9 +92,16 @@ namespace Wingcode.Authanatication.ViewModels
                     if (user.id > 0)
                     {
                         if (userPassword.ComparePassword(user.password))
-                        {                            
+                        {
                             IApplicationController controller = containerExtension.Resolve<IApplicationController>();
                             await controller.LogingApplication(new LoggedUserProvider(user));
+                        }
+                        else
+                        {
+                            Warrning = "Invalid Password Or User Name";
+                            UserName = string.Empty;
+                            havePassword.ClearPassword();
+                            return;
                         }
                     }
                     else

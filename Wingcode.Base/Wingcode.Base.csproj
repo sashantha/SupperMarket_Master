@@ -117,6 +117,7 @@
     <Compile Include="FileSystem\PhysicalFileSystem.cs" />
     <Compile Include="Input\Behaviors\TextBoxInputBehavior.cs" />
     <Compile Include="Input\EnterKeyDown.cs" />
+    <Compile Include="Input\InputLanguageController.cs" />
     <Compile Include="Input\KeyDownFocusAction.cs" />
     <Compile Include="Input\KeyToCommandAndFocusAction.cs" />
     <Compile Include="Input\RelayCommand.cs" />

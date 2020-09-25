@@ -18,5 +18,15 @@ namespace Wingcode.Data.Rest.Service
             reds = await mapper.PostDataAsync(url, data);
             return reds;
         }
+
+        public static async Task<CustomerCreditAccount> updateCustomerCreditAccountAsync(IRestDataMapper mapper, CustomerCreditAccount data)
+        {
+            CustomerCreditAccount reds = new CustomerCreditAccount();
+            if (mapper == null)
+                return reds;
+            string url = $"customercreditac/api/v1/customercac/{data.id}";
+            reds = await mapper.PostDataAsync(url, data);
+            return reds;
+        }
     }
 }
