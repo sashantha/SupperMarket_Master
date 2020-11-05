@@ -69,7 +69,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCompleteTextBox.cs" />
+    <Compile Include="BindingEvaluator.cs" />
+    <Compile Include="ComboBoxItemTemplateSelector.cs" />
+    <Compile Include="IconPlacement.cs" />
+    <Compile Include="ISuggestionProvider.cs" />
     <Compile Include="PagingDataGridSortData.cs" />
+    <Compile Include="SelectionAdapter.cs" />
+    <Compile Include="SuggestionProvider.cs" />
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

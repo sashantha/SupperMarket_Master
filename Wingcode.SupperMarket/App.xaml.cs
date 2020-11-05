@@ -20,6 +20,7 @@ using Wingcode.Expenses;
 using Wingcode.Items;
 using Wingcode.Master;
 using Wingcode.Purchases;
+using Wingcode.Reports;
 using Wingcode.Sales;
 using Wingcode.SupperMarket.CustomRegion;
 using Wingcode.SupperMarket.ViewModels;
@@ -73,6 +74,7 @@ namespace Wingcode.SupperMarket
             moduleCatalog.AddModule<PurchaseModule>();
             moduleCatalog.AddModule<SalesModule>();
             moduleCatalog.AddModule<ExpensModule>();
+            moduleCatalog.AddModule<ReportsModule>();
         }
 
         protected override void OnActivated(EventArgs e)

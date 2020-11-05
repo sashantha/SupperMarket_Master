@@ -9,9 +9,9 @@ namespace Wingcode.Items.Extensions
 {
     internal static class ItemHelperExtensions
     {
-        public static StoreInfor CreateNewStore(this StoreInfor s) 
+        public static StoreInfor CreateNewStore(this StoreInfor s)
         {
-            s = new StoreInfor() 
+            s = new StoreInfor()
             {
                 id = 0,
                 cost = 0.00m,
@@ -24,7 +24,7 @@ namespace Wingcode.Items.Extensions
             return s;
         }
 
-        public static Item CreateNewItem(this Item i) 
+        public static Item CreateNewItem(this Item i)
         {
             i = new Item()
             {
@@ -34,16 +34,54 @@ namespace Wingcode.Items.Extensions
                 barcode = string.Empty,
                 name = string.Empty,
                 otherName = string.Empty
-            };            
+            };
             return i;
         }
 
-        public static bool IsValiedItem(this Item i) 
+        public static bool IsValiedItem(this Item i)
         {
-            return (!string.IsNullOrEmpty(i.category) || 
-                !string.IsNullOrEmpty(i.code) || 
-                !string.IsNullOrEmpty(i.name) || 
+            return (!string.IsNullOrEmpty(i.category) ||
+                !string.IsNullOrEmpty(i.code) ||
+                !string.IsNullOrEmpty(i.name) ||
                 i.itemGroup != null || i.itemSubGroup != null);
+        }
+
+        public static UnitOfMeasurement CreateNewUnitOfMeasurement(this UnitOfMeasurement uom)
+        {
+            return uom = new UnitOfMeasurement()
+            {
+                id = 0,
+                unitDescription = string.Empty,
+                unitType = string.Empty,
+                baseUnitName = string.Empty,
+                basePrecision = 0.000m,
+                baseRatio = 0.000m,
+                purchaseUnitName = string.Empty,
+                purchasePrecision = 0.000m,
+                purchasePrecisionUnitName = string.Empty,
+                baseRatioToPurchase = 0.000m,
+                purchaseQuantifyValue = 0.000m,
+                saleUnitName = string.Empty,
+                salePrecision = 0.000m,
+                baseRatioToSale = 0.000m,
+                saleOtherUnitName = string.Empty
+            };
+        }
+
+        public static bool IsValidUom(this UnitOfMeasurement uom) 
+        {
+            return (!string.IsNullOrEmpty(uom.unitDescription)
+            && !string.IsNullOrEmpty(uom.unitType)
+            && !string.IsNullOrEmpty(uom.baseUnitName)
+            && (uom.basePrecision > 0)
+            && (uom.baseRatio > 0)
+            && !string.IsNullOrEmpty(uom.purchaseUnitName)
+            && (uom.purchasePrecision > 0)
+            && !string.IsNullOrEmpty(uom.purchasePrecisionUnitName)
+            && (uom.baseRatioToPurchase > 0)
+            && !string.IsNullOrEmpty(uom.saleUnitName)
+            && (uom.salePrecision > 0)
+            && (uom.baseRatioToSale > 0));
         }
     }
 }

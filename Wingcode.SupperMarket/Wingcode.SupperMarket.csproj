@@ -38,8 +38,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LibExcel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\WPF Project\WpfReport\libb\LibExcel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors">
       <HintPath>..\Lib\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.BlackTheme, Version=2020.2.1.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\WPF Project\WpfReport\libb\Stimulsoft.Report.Wpf.BlackTheme.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -215,6 +223,10 @@
     <ProjectReference Include="..\Wingcode.Purchases\Wingcode.Purchases.csproj">
       <Project>{c66ae73b-d5ad-4342-a4c8-5a8b5ff6840d}</Project>
       <Name>Wingcode.Purchases</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wingcode.Reports\Wingcode.Reports.csproj">
+      <Project>{af36dbaf-c782-45aa-9223-90c23afa5610}</Project>
+      <Name>Wingcode.Reports</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wingcode.Sales\Wingcode.Sales.csproj">
       <Project>{4ca2c1a7-3c1b-47c7-afa1-fe9deb82ec63}</Project>

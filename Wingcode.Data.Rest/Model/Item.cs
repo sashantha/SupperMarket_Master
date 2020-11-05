@@ -38,7 +38,7 @@ namespace Wingcode.Data.Rest.Model
 
 		// bi-directional one-to-one association to UnitOfMeasure
 
-		public UnitOfMeasure unitOfMeasure { get; set; }
+		public UnitOfMeasurement unitOfMeasurement { get; set; }
 
 	}
 }

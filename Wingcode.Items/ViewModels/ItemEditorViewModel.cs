@@ -12,6 +12,7 @@ using Wingcode.Base.DataModel;
 using Wingcode.Base.Event;
 using Wingcode.Base.Extensions;
 using Wingcode.Base.Input;
+using Wingcode.Controls;
 using Wingcode.Data.Rest.Model;
 using Wingcode.Data.Rest.Service;
 using Wingcode.Items.Event;
@@ -28,9 +29,6 @@ namespace Wingcode.Items.ViewModels
         private IEventAggregator aggregator;
         private ILoggedUserProvider loggedUser;
 
-        public delegate void ItemEditorSynchronizeHandler();
-
-        public event ItemEditorSynchronizeHandler SyncEditro;
 
         private Item _selectedItem;
         public Item SelectedItem
@@ -60,6 +58,13 @@ namespace Wingcode.Items.ViewModels
             set { SetProperty(ref _selectedItemSubGroup, value); }
         }
 
+        private UnitOfMeasurement _selectedUom;
+        public UnitOfMeasurement SelectedUom
+        {
+            get { return _selectedUom; }
+            set { SetProperty(ref _selectedUom, value); }
+        }
+
         private StoreInfor _itemStore;
         public StoreInfor ItemStore
         {
@@ -86,6 +91,13 @@ namespace Wingcode.Items.ViewModels
         {
             get { return _itemSubGroups; }
             set { SetProperty(ref _itemSubGroups, value); }
+        }
+
+        private ISuggestionProvider _uomSugges;
+        public ISuggestionProvider UomSugges
+        {
+            get { return _uomSugges; }
+            set { SetProperty(ref _uomSugges, value); }
         }
         #endregion
 
@@ -139,10 +151,10 @@ namespace Wingcode.Items.ViewModels
         #endregion
 
         #region Functions
-        internal void Initialize()
+        internal async void Initialize()
         {
-            LoadAllItemGroups();
-            LoadAllItemSubGroups();
+            LoadAll();
+            await Task.Delay(500);
             if (IsNew)
                 NewCustomer();
             else
@@ -157,24 +169,24 @@ namespace Wingcode.Items.ViewModels
             ItemStore = await ItemRestService.GetStoreInforByItemIdAndBranchAsync(mapper, SelectedItem.id, loggedUser.LoggedUser.branch.id);
             aggregator.GetEvent<ItemGroupSelectionEvent>().Publish(SelectedItem.itemGroup);
             aggregator.GetEvent<ItemSubGroupSelectionEvent>().Publish(SelectedItem.itemSubGroup);
+            //aggregator.GetEvent<UnitOfMeasureSelectionEvent>().Publish(SelectedItem.unitOfMeasurement);
+            SelectedUom = SelectedItem.unitOfMeasurement;
         }
 
-        private async void LoadAllItemGroups()
+        private async void LoadAll()
         {
             IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
             ItemGroups = await ItemRestService.GetAllItemGroupAsync(mapper);
-        }
-
-        private async void LoadAllItemSubGroups()
-        {
-            IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
             ItemSubGroups = await ItemRestService.GetAllItemSubGroupAsync(mapper);
+            ObservableCollection<UnitOfMeasurement>  ums = await ItemRestService.GetAllUnitOfMeasurementAsync(mapper);
+            UomSugges = new UomSuggestionProvider() { uomSource = ums};
         }
+              
 
         private async void SaveCustomer()
-        {            
+        {
             IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
-            if (SelectedItemGroup == null || SelectedItemSubGroup == null) 
+            if (SelectedItemGroup == null || SelectedItemSubGroup == null || SelectedUom == null) 
             {
                 _ = ShowMessageDialg("New Item Creation", "Can't Save Item Select Group and Sub Group", MsgDialogType.error);
                 return;
@@ -182,6 +194,7 @@ namespace Wingcode.Items.ViewModels
             SelectedItem.barcode = SelectedItem.code;
             SelectedItem.itemGroup = SelectedItemGroup;
             SelectedItem.itemSubGroup = SelectedItemSubGroup;
+            SelectedItem.unitOfMeasurement = SelectedUom;
             if (SelectedItem.IsValiedItem())
             {
                 Item i = await ItemRestService.CreateItemAsync(mapper, SelectedItem);
@@ -193,7 +206,7 @@ namespace Wingcode.Items.ViewModels
                     if (s.id > 0)
                     {
                         _ = ShowMessageDialg("New Item Creation", "Item Created Successfully", MsgDialogType.infor);
-                        SyncEditro?.Invoke();
+                        RizeSyncEvent();
                         Initialize();
                     }
                     else
@@ -221,7 +234,10 @@ namespace Wingcode.Items.ViewModels
             if (SelectedItem != null)
             {
                 if (SelectedItem.id > 0)
-                {
+                { 
+                    if (SelectedItem.unitOfMeasurement.id != SelectedUom.id)
+                        SelectedItem.unitOfMeasurement = SelectedUom;
+
                     Item i = await ItemRestService.UpdateItemAsync(mapper, SelectedItem);
                     if (i.id > 0)
                     {
@@ -229,7 +245,7 @@ namespace Wingcode.Items.ViewModels
                         if (s.id > 0)
                         {
                             _ = ShowMessageDialg("Item Update", "Item Updated Successfully", MsgDialogType.infor);
-                            SyncEditro?.Invoke();
+                            RizeSyncEvent();
                             Initialize();
                         }
                         else
@@ -270,7 +286,7 @@ namespace Wingcode.Items.ViewModels
             bool result = false;
             dialogService.ShowMsgDialog(title, message, dialogType, (r) =>
             {
-                if (r.Result == ButtonResult.OK)
+                if (r.Result == ButtonResult.OK || r.Result == ButtonResult.Yes)
                 {
                     result = true;
                 }

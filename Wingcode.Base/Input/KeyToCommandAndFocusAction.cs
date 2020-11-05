@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interactivity;
+using Wingcode.Controls;
 
 namespace Wingcode.Base.Input
 {
@@ -19,6 +20,8 @@ namespace Wingcode.Base.Input
 		public static readonly DependencyProperty TargetNProperty = DependencyProperty.Register("TargetN", typeof(UIElement), typeof(KeyToCommandAndFocusAction), new UIPropertyMetadata(null));
 
 		public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(KeyToCommandAndFocusAction), new UIPropertyMetadata(null));
+		
+		public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register("CommandParameter", typeof(object), typeof(KeyToCommandAndFocusAction), new UIPropertyMetadata(null));
 
 		private string commandName;
 
@@ -26,11 +29,11 @@ namespace Wingcode.Base.Input
 		{
 			get
 			{
-				return (Key)base.GetValue(KeyProperty);
+				return (Key)GetValue(KeyProperty);
 			}
 			set
 			{
-				base.SetValue(KeyProperty, (object)value);
+                SetValue(KeyProperty, value);
 			}
 		}
 
@@ -38,11 +41,11 @@ namespace Wingcode.Base.Input
 		{
 			get
 			{
-				return (ModifierKeys)base.GetValue(ModifiersProperty);
+				return (ModifierKeys)GetValue(ModifiersProperty);
 			}
 			set
 			{
-				base.SetValue(ModifiersProperty, (object)value);
+                SetValue(ModifiersProperty, value);
 			}
 		}
 
@@ -50,11 +53,11 @@ namespace Wingcode.Base.Input
 		{
 			get
 			{
-				return (UIElement)base.GetValue(TargetProperty);
+				return (UIElement)GetValue(TargetProperty);
 			}
 			set
 			{
-				base.SetValue(TargetProperty, (object)value);
+                SetValue(TargetProperty, value);
 			}
 		}
 
@@ -62,11 +65,11 @@ namespace Wingcode.Base.Input
 		{
 			get
 			{
-				return (UIElement)base.GetValue(TargetNProperty);
+				return (UIElement)GetValue(TargetNProperty);
 			}
 			set
 			{
-				base.SetValue(TargetNProperty, (object)value);
+                SetValue(TargetNProperty, value);
 			}
 		}
 
@@ -74,11 +77,23 @@ namespace Wingcode.Base.Input
 		{
 			get
 			{
-				return (ICommand)base.GetValue(CommandProperty);
+				return (ICommand)GetValue(CommandProperty);
 			}
 			set
 			{
-				base.SetValue(CommandProperty, (object)value);
+                SetValue(CommandProperty, value);
+			}
+		}
+
+		public object CommandParameter
+		{
+			get
+			{
+				return GetValue(CommandParameterProperty);
+			}
+			set
+			{
+				SetValue(CommandParameterProperty, value);
 			}
 		}
 
@@ -86,16 +101,16 @@ namespace Wingcode.Base.Input
 		{
 			get
 			{
-				base.ReadPreamble();
+                ReadPreamble();
 				return commandName;
 			}
 			set
 			{
 				if (CommandName != value)
 				{
-					base.WritePreamble();
+                    WritePreamble();
 					commandName = value;
-					base.WritePostscript();
+                    WritePostscript();
 				}
 			}
 		}
@@ -165,10 +180,11 @@ namespace Wingcode.Base.Input
 		{
 			if (AssociatedObject != null)
 			{
+				object commandParameter = CommandParameter != null ? CommandParameter : parameter;
 				ICommand command = ResolveCommand();
-				if (command?.CanExecute(parameter) ?? false)
+				if (command?.CanExecute(commandParameter) ?? false)
 				{
-					command.Execute(parameter);
+					command.Execute(commandParameter);
 				}
 			}
 		}
@@ -179,6 +195,11 @@ namespace Wingcode.Base.Input
 				&& !Validation.GetHasError(AssociatedObject) 
 				&& (!(AssociatedObject is TextBox) || !string.IsNullOrEmpty((AssociatedObject as TextBox).Text)))
 			{
+                if (AssociatedObject is AutoCompleteTextBox box)
+                {
+					if (box.SelectedItem == null && Key == Key.Enter)
+						return;
+                }
 				FocusAction();
 				ExecuteAction(parameter);
 			}

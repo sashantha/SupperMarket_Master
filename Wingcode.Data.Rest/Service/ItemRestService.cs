@@ -12,12 +12,12 @@ namespace Wingcode.Data.Rest.Service
     {
         #region Constant Value
 
-        public readonly string ITEM_CODE_FLAG = "cd";
-        public readonly string ITEM_BARCODE_FLAG = "bcd";
-        public readonly string ITEM_NAME_FLAG = "nm";
+        public static readonly string ITEM_CODE_FLAG = "cd";
+        public static readonly string ITEM_BARCODE_FLAG = "bcd";
+        public static readonly string ITEM_NAME_FLAG = "nm";
 
-        public readonly string ITEM_GROUP_FLAG = "ig";
-        public readonly string ITEM_SUBGROUP_FLAG = "isg";
+        public static readonly string ITEM_GROUP_FLAG = "ig";
+        public static readonly string ITEM_SUBGROUP_FLAG = "isg";
 
         #endregion
 
@@ -253,6 +253,114 @@ namespace Wingcode.Data.Rest.Service
             string url = $"item/api/v1/itemstores/{itemId}/{branchId}";
             reds = await mapper.GetDataAsync<StoreInfor>(url);
             return reds;
+        }
+
+        #endregion
+
+        #region Unit Rest Service
+
+        public static async Task<Unit> CreateUnitAsync(IRestDataMapper mapper, Unit data)
+        {
+            Unit reds = new Unit();
+            if (mapper == null)
+                return reds;
+            string url = "item/api/v1/units";
+            reds = await mapper.PostDataAsync(url, data);
+            return reds;
+        }
+
+        public static async Task<Unit> UpdateUnitAsync(IRestDataMapper mapper, Unit data)
+        {
+            Unit reds = new Unit();
+            if (mapper == null)
+                return reds;
+            string url = $"item/api/v1/units/{data.id}";
+            reds = await mapper.PutDataAsync(url, data);
+            return reds;
+        }
+                
+        public static async Task<ObservableCollection<Unit>> GetAllUnitAsync(IRestDataMapper mapper)
+        {
+            ObservableCollection<Unit> data = new ObservableCollection<Unit>();
+            if (mapper == null)
+                return data;
+            string url = "item/api/v1/units";
+            data = await mapper.GetDataAsync<ObservableCollection<Unit>>(url);
+            return data;
+        }
+
+        public static async Task<ObservableCollection<Unit>> GetAllUnitByTypeAsync(IRestDataMapper mapper, string unitType)
+        {
+            ObservableCollection<Unit> data = new ObservableCollection<Unit>();
+            if (mapper == null)
+                return data;
+            string url = $"item/api/v1/units/type/{unitType}";
+            data = await mapper.GetDataAsync<ObservableCollection<Unit>>(url);
+            return data;
+        }
+
+        public static async Task<Unit> GetAllUnitByNameAsync(IRestDataMapper mapper, string unitName)
+        {
+            Unit data = new Unit();
+            if (mapper == null)
+                return data;
+            string url = $"item/api/v1/units/name/{unitName}";
+            data = await mapper.GetDataAsync<Unit>(url);
+            return data;
+        }
+
+        #endregion
+
+        #region Unit of Measurement Rest Service
+
+        public static async Task<UnitOfMeasurement> CreateUnitOfMeasurementAsync(IRestDataMapper mapper, UnitOfMeasurement data)
+        {
+            UnitOfMeasurement reds = new UnitOfMeasurement();
+            if (mapper == null)
+                return reds;
+            string url = "item/api/v1/uoms";
+            reds = await mapper.PostDataAsync(url, data);
+            return reds;
+        }
+
+        public static async Task<UnitOfMeasurement> UpdateUnitOfMeasurementAsync(IRestDataMapper mapper, UnitOfMeasurement data)
+        {
+            UnitOfMeasurement reds = new UnitOfMeasurement();
+            if (mapper == null)
+                return reds;
+            string url = $"item/api/v1/uoms/{data.id}";
+            reds = await mapper.PutDataAsync(url, data);
+            return reds;
+        }
+
+        public static async Task<ObservableCollection<UnitOfMeasurement>> GetAllUnitOfMeasurementAsync(IRestDataMapper mapper)
+        {
+            ObservableCollection<UnitOfMeasurement> data = new ObservableCollection<UnitOfMeasurement>();
+            if (mapper == null)
+                return data;
+            string url = "item/api/v1/uoms";
+            data = await mapper.GetDataAsync<ObservableCollection<UnitOfMeasurement>>(url);
+            return data;
+        }
+
+        public static async Task<ObservableCollection<UnitOfMeasurement>> GetAllUnitOfMeasurementByTypeAsync(IRestDataMapper mapper, string unitType)
+        {
+            ObservableCollection<UnitOfMeasurement> data = new ObservableCollection<UnitOfMeasurement>();
+            if (mapper == null)
+                return data;
+            string url = $"item/api/v1/uoms/type/{unitType}";
+            data = await mapper.GetDataAsync<ObservableCollection<UnitOfMeasurement>>(url);
+            return data;
+        }
+
+        public static async Task<UnitOfMeasurement> GetAllUnitOfMeasurementByDescriptionAsync(IRestDataMapper mapper, string desc)
+        {
+            UnitOfMeasurement data = new UnitOfMeasurement();
+            if (mapper == null)
+                return data;
+            string url = $"item/api/v1/uoms/description/{desc}";
+            data = await mapper.GetDataAsync<UnitOfMeasurement>(url);
+            return data;
         }
 
         #endregion

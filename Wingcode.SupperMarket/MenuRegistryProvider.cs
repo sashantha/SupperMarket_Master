@@ -57,14 +57,14 @@ namespace Wingcode.SupperMarket
         private void CreateDefualts()
         {
             int i = 0;
-            foreach (string str in ConstantValues.MENUITEMTEXTARRAY)
+            foreach (string str in ConstValues.MENUITEMTEXTARRAY)
             {
                 Registry.Add(str, new MenuItemViewModel()
                 {
                     Index = i,
                     Text = str,
                     Name = str,
-                    IconKind = ConstantValues.PACKICONKINDS[i],
+                    IconKind = ConstValues.PACKICONKINDS[i],
                     AttachedControl = typeof(EmptyView)
                 });
                 i++;

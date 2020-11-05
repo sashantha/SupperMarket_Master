@@ -64,8 +64,41 @@ namespace Wingcode.Data.Rest.Service
             string url = "branch/api/v1/branches";
             data = await mapper.GetDataAsync<ObservableCollection<Branch>>(url);
             return data;
-        } 
+        }
 
+        #endregion
+
+        #region Branch Account Rest
+
+        public static async Task<BranchAccount> CreateBranchAccountAsync(IRestDataMapper mapper, BranchAccount data)
+        {
+            BranchAccount reds = new BranchAccount();
+            if (mapper == null)
+                return reds;
+            string url = "branch/api/v1/brancheacs";
+            reds = await mapper.PostDataAsync(url, data);
+            return reds;
+        }
+
+        public static async Task<BranchAccount> UpdateBranchAccountAsync(IRestDataMapper mapper, BranchAccount data)
+        {
+            BranchAccount reds = new BranchAccount();
+            if (mapper == null)
+                return reds;
+            string url = $"branch/api/v1/brancheacs/{data.id}";
+            reds = await mapper.PutDataAsync(url, data);
+            return reds;
+        }
+        
+        public static async Task<ObservableCollection<BranchAccount>> GetAllBranchAccountAsync(IRestDataMapper mapper, int brId)
+        {
+            ObservableCollection<BranchAccount> data = new ObservableCollection<BranchAccount>();
+            if (mapper == null)
+                return data;
+            string url = $"branch/api/v1/brancheacs/{brId}";
+            data = await mapper.GetDataAsync<ObservableCollection<BranchAccount>>(url);
+            return data;
+        }
         #endregion
     }
 }

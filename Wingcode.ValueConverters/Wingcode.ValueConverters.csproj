@@ -70,6 +70,7 @@
     <Compile Include="Convertors\InvertBooleanConverter.cs" />
     <Compile Include="Convertors\StringRGBToBrushConverter.cs" />
     <Compile Include="Convertors\StringToDecimalConverter.cs" />
+    <Compile Include="Convertors\StringToDecimalConverterTwo.cs" />
     <Compile Include="Convertors\TimeToDisplayTimeConverter.cs" />
     <Compile Include="Convertors\TimeToReadTimeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

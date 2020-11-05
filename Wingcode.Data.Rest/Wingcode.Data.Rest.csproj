@@ -61,7 +61,7 @@
     <Compile Include="Model\ItemCriteria.cs" />
     <Compile Include="Model\ItemGroup.cs" />
     <Compile Include="Model\ItemSubGroup.cs" />
-    <Compile Include="Model\Measurement.cs" />
+    <Compile Include="Model\Unit.cs" />
     <Compile Include="Model\Purchase.cs" />
     <Compile Include="Model\PurchaseItem.cs" />
     <Compile Include="Model\SaleInvoice.cs" />
@@ -72,23 +72,31 @@
     <Compile Include="Model\SupplierCreditInvoice.cs" />
     <Compile Include="Model\SupplierCriteria.cs" />
     <Compile Include="Model\SupplierPayment.cs" />
-    <Compile Include="Model\UnitOfMeasure.cs" />
+    <Compile Include="Model\UnitOfMeasurement.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestConnection.cs" />
     <Compile Include="RestDataMapper.cs" />
     <Compile Include="RestMethodType.cs" />
+    <Compile Include="Service\BankRestService.cs" />
     <Compile Include="Service\BranchRestService.cs" />
     <Compile Include="Service\CustomerCreditAccountRestService.cs" />
     <Compile Include="Service\CustomerRestService.cs" />
     <Compile Include="Service\ILoggedUserProvider.cs" />
     <Compile Include="Service\IRestDataMapper.cs" />
     <Compile Include="Service\ItemRestService.cs" />
+    <Compile Include="Service\PurchaseRestService.cs" />
+    <Compile Include="Service\SalesRestService.cs" />
     <Compile Include="Service\SupplierCreditAccountRestService.cs" />
     <Compile Include="Service\SupplierRestService.cs" />
     <Compile Include="Service\UserRestService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Wingcode.Base\Wingcode.Base.csproj">
+      <Project>{9946d938-4d07-4ce3-a369-d4860daa7128}</Project>
+      <Name>Wingcode.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

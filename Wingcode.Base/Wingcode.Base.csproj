@@ -77,8 +77,8 @@
     <Compile Include="AttachedProperties\PasswordBoxAttachedProperties.cs" />
     <Compile Include="AttachedProperties\ScrollViewerAttachedProperties.cs" />
     <Compile Include="AttachedProperties\TextAttachedProperties.cs" />
-    <Compile Include="ConstantValues.cs" />
-    <Compile Include="DataModel\BaseModel.cs" />
+    <Compile Include="ConstValues.cs" />
+    <Compile Include="DataModel\ModelBase.cs" />
     <Compile Include="DataModel\BaseViewModel.cs" />
     <Compile Include="DataModel\ElementHorizontalAlignment.cs" />
     <Compile Include="DataModel\IconType.cs" />
@@ -103,6 +103,7 @@
     <Compile Include="Event\MenuExpndControlEvent.cs" />
     <Compile Include="Event\UIElementFocusEvent.cs" />
     <Compile Include="Expressions\ExpressionHelpers.cs" />
+    <Compile Include="Extensions\CollectionExtension.cs" />
     <Compile Include="Extensions\FrameworkElementHelper.cs" />
     <Compile Include="Extensions\IconTypeExtensions.cs" />
     <Compile Include="Extensions\WingcodeDialogServiceExtensions.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Input\InputLanguageController.cs" />
     <Compile Include="Input\KeyDownFocusAction.cs" />
     <Compile Include="Input\KeyToCommandAndFocusAction.cs" />
+    <Compile Include="Input\KeyToInvokeActionCommand.cs" />
     <Compile Include="Input\RelayCommand.cs" />
     <Compile Include="Input\RelayParameterizedCommand.cs" />
     <Compile Include="LoginInfor.cs" />
@@ -213,10 +215,55 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Wingcode.Controls\Wingcode.Controls.csproj">
+      <Project>{64E3D73C-C7D6-4F8C-8085-D42B15646C8F}</Project>
+      <Name>Wingcode.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wingcode.ValueConverters\Wingcode.ValueConverters.csproj">
       <Project>{cdcec252-69ba-4622-8858-ed0ebe9b9e60}</Project>
       <Name>Wingcode.ValueConverters</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Localization\ar.xml" />
+    <Resource Include="Localization\be.xml" />
+    <Resource Include="Localization\bg.xml" />
+    <Resource Include="Localization\bh.xml" />
+    <Resource Include="Localization\ca-ES.xml" />
+    <Resource Include="Localization\cs.xml" />
+    <Resource Include="Localization\de.xml" />
+    <Resource Include="Localization\el-GR.xml" />
+    <Resource Include="Localization\en-GB.xml" />
+    <Resource Include="Localization\en.xml" />
+    <Resource Include="Localization\es.xml" />
+    <Resource Include="Localization\eu-ES.xml" />
+    <Resource Include="Localization\fa.xml" />
+    <Resource Include="Localization\fr.xml" />
+    <Resource Include="Localization\gl-ES.xml" />
+    <Resource Include="Localization\hr.xml" />
+    <Resource Include="Localization\hu.xml" />
+    <Resource Include="Localization\id.xml" />
+    <Resource Include="Localization\it.xml" />
+    <Resource Include="Localization\ja.xml" />
+    <Resource Include="Localization\ka.xml" />
+    <Resource Include="Localization\ko.xml" />
+    <Resource Include="Localization\lt.xml" />
+    <Resource Include="Localization\nb-NO.xml" />
+    <Resource Include="Localization\nl.xml" />
+    <Resource Include="Localization\pl.xml" />
+    <Resource Include="Localization\pt-BR.xml" />
+    <Resource Include="Localization\pt.xml" />
+    <Resource Include="Localization\ro.xml" />
+    <Resource Include="Localization\ru.xml" />
+    <Resource Include="Localization\sk.xml" />
+    <Resource Include="Localization\sr.xml" />
+    <Resource Include="Localization\sv.xml" />
+    <Resource Include="Localization\tr.xml" />
+    <Resource Include="Localization\uk.xml" />
+    <Resource Include="Localization\vi.xml" />
+    <Resource Include="Localization\zh-CHS.xml" />
+    <Resource Include="Localization\zh-CHT.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -52,15 +52,9 @@ namespace Wingcode.Data.Rest.Model
 
 		public DateTime updatedAt { get; set; }
 
-		// bi-directional many-to-one association to Branch
-
 		public Branch branch { get; set; }
 
-		// bi-directional many-to-one association to Customer
-
 		public Customer customer { get; set; }
-
-		// bi-directional many-to-one association to User
 
 		public User user { get; set; }
 

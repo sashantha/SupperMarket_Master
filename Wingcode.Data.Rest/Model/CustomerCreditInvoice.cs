@@ -1,4 +1,4 @@
-﻿using System { get; set; }
+﻿using System;
 
 namespace Wingcode.Data.Rest.Model
 {
@@ -24,11 +24,9 @@ namespace Wingcode.Data.Rest.Model
 
 		public DateTime updatedAt { get; set; }
 
-		// bi-directional many-to-one association to CustomerCreditAccount
+		public int dueDays { get; set; }
 
 		public CustomerCreditAccount customerCreditAccount { get; set; }
-
-		// bi-directional many-to-one association to SaleInvoice
 
 		public SaleInvoice saleInvoice { get; set; }
 

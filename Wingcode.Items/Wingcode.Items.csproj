@@ -50,10 +50,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Event\UnitOfMeasureSelectionEvent.cs" />
     <Compile Include="Event\ItemGroupSelectionEvent.cs" />
     <Compile Include="Event\ItemSubGroupSelectionEvent.cs" />
     <Compile Include="Extensions\ItemHelperExtensions.cs" />
     <Compile Include="ItemEditorSynchronizeEventArgs.cs" />
+    <Compile Include="UnitOfMeasureValidationRule.cs" />
     <Compile Include="ItemSubGroupValidationRule.cs" />
     <Compile Include="ItemGroupValidationRule.cs" />
     <Compile Include="ItemMenusRegistry.cs" />
@@ -71,10 +73,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="UomSuggestionProvider.cs" />
     <Compile Include="ViewModels\ItemEditorViewModel.cs" />
     <Compile Include="ViewModels\ItemGroupEditorViewModel.cs" />
     <Compile Include="ViewModels\ItemRegisterViewModel.cs" />
     <Compile Include="ViewModels\ItemSubGroupEditorViewModel.cs" />
+    <Compile Include="ViewModels\UnitOfMeasureEditorViewModel.cs" />
     <Compile Include="Views\ItemEditor.xaml.cs">
       <DependentUpon>ItemEditor.xaml</DependentUpon>
     </Compile>
@@ -86,6 +90,9 @@
     </Compile>
     <Compile Include="Views\ItemSubGroupEditor.xaml.cs">
       <DependentUpon>ItemSubGroupEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UnitOfMeasureEditor.xaml.cs">
+      <DependentUpon>UnitOfMeasureEditor.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -135,6 +142,10 @@
     <Page Include="Views\ItemSubGroupEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UnitOfMeasureEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

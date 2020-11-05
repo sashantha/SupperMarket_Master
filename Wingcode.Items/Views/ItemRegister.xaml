@@ -117,7 +117,7 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.8*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
@@ -132,7 +132,8 @@
                         <Button Content="New Item" Command="{Binding ItemEditorCommand}" CommandParameter="True" Margin="0,0,10,0"/>
                         <Button Content="Update Item" Command="{Binding ItemEditorCommand}" CommandParameter="False" Margin="0,0,10,0"/>
                         <Button Content="Groups" Command="{Binding GroupEditorCommand}" Margin="0,0,10,0"/>
-                        <Button Content="Sub Group" Command="{Binding SubGroupEditorCommand}"/>
+                        <Button Content="Sub Group" Command="{Binding SubGroupEditorCommand}" Margin="0,0,10,0"/>
+                        <Button Content="Unit of Measurement" Command="{Binding UomEditorCommand}"/>
                     </StackPanel>
                 </Grid>
             </materialDesign:ColorZone>
@@ -169,11 +170,12 @@
                         <DataGridTextColumn Header="Id" Width="100" IsReadOnly="True" Binding="{Binding id}"/>
                         <DataGridTextColumn Header="Code" Width="100" IsReadOnly="True" Binding="{Binding code}"/>
                         <DataGridTextColumn Header="Barcode" Width="100" IsReadOnly="True" Binding="{Binding barcode}"/>
-                        <DataGridTextColumn Header="Name" Width="240" IsReadOnly="True" Binding="{Binding name}"/>
-                        <DataGridTextColumn Header="Other Name" Width="240" IsReadOnly="True" Binding="{Binding otherName}"/>
+                        <DataGridTextColumn Header="Name" Width="200" IsReadOnly="True" Binding="{Binding name}"/>
+                        <DataGridTextColumn Header="Other Name" Width="200" IsReadOnly="True" Binding="{Binding otherName}"/>
                         <DataGridTextColumn Header="Category" Width="100" IsReadOnly="True" Binding="{Binding category}"/>
                         <DataGridTextColumn Header="Group" Width="100" IsReadOnly="True" Binding="{Binding itemGroup.groupName}"/>
                         <DataGridTextColumn Header="Sub Group" Width="100" IsReadOnly="True" Binding="{Binding itemSubGroup.subGroupName}"/>
+                        <DataGridTextColumn Header="UOM" Width="100" IsReadOnly="True" Binding="{Binding unitOfMeasurement.unitDescription}"/>
                     </wc:PaginDataGrid.Columns>
 
                 </wc:PaginDataGrid>

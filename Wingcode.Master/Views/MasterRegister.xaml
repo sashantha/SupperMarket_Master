@@ -2,24 +2,220 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Wingcode.Master.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wbc="http://wingcodems.net/base"
+             xmlns:wv="http://wingcodems.net/convertors"
+             xmlns:wr="http://wingcodems.net/validations"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="1000" 
+             d:DesignWidth="1150"
              xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True" >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Loaded="UserControl_Loaded"
+             Width="1150">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
+    <materialDesign:DialogHost Identifier="MasterRoot">
         
-        
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Header="Branches" 
+                      Margin="5"
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      Height="250"
+                      materialDesign:ColorZoneAssist.Mode="Accent"
+                      Style="{StaticResource MaterialDesignCardGroupBox}">
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="brGrid"
+                              Grid.Row="0"
+                              Grid.RowSpan="2"
+                              AutoGenerateColumns="false"
+                              BorderBrush="{DynamicResource SecondaryAccentBrush}"
+                              BorderThickness="1"
+                              ItemsSource="{Binding Branches}"
+                              SelectedItem="{Binding SelectedBranch, Mode=OneWayToSource, Converter={wv:IgnoreNewItemPlaceHolderConverter}}"
+                              SelectionUnit="FullRow"
+                              SelectionMode="Single"
+                              CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Branch Code" IsReadOnly="True" Binding="{Binding code}"/>
+                            <DataGridTextColumn Header="Branch Name" IsReadOnly="True" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="Company Name" Width="150" IsReadOnly="True" Binding="{Binding companyName}"/>
+                            <DataGridTextColumn Header="Address" Width="150" IsReadOnly="True" Binding="{Binding address}"/>
+                            <DataGridTextColumn Header="Contact" IsReadOnly="True" Binding="{Binding contact}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Grid.Row="1"
+                            ToolTip="New Branch"
+                            Margin="480,0,0,0"
+                            Width="40"
+                            Height="40"
+                            Command="{Binding BranchEditorCommand}"
+                            Visibility="{Binding CanAccessBranch, Converter={wv:BooleanInvertToVisibilityGoneConverter}}" 
+                            Style="{StaticResource MaterialDesignFloatingActionButton}">                        
+                        <materialDesign:PackIcon Kind="PlusCircleOutline" Width="24" Height="24"/>
+                    </Button>
+                </Grid>
+
+            </GroupBox>
+
+            <GroupBox Header="Banks" 
+                      Margin="5"
+                      Grid.Row="0"
+                      Height="250"
+                      Grid.Column="1"
+                      materialDesign:ColorZoneAssist.Mode="Accent"
+                      Style="{StaticResource MaterialDesignCardGroupBox}">
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="bGrid"
+                              Grid.Row="0"
+                              Grid.RowSpan="2"
+                              AutoGenerateColumns="false"
+                              BorderBrush="{DynamicResource SecondaryAccentBrush}"
+                              BorderThickness="1"
+                              VerticalScrollBarVisibility="Auto"
+                              ItemsSource="{Binding Banks}"
+                              SelectedItem="{Binding SelectedBank, Mode=OneWayToSource, Converter={wv:IgnoreNewItemPlaceHolderConverter}}"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow"
+                              CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding id}"/>
+                            <DataGridTextColumn Header="Bank Name" IsReadOnly="True" Binding="{Binding name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Grid.Row="1"
+                            ToolTip="New Branch"
+                            Margin="480,0,0,0"
+                            Width="40"
+                            Height="40"
+                            Command="{Binding BankEditorCommand}"
+                            Style="{StaticResource MaterialDesignFloatingActionButton}">
+                        <materialDesign:PackIcon Kind="PlusCircleOutline" Width="24" Height="24"/>
+                    </Button>
+                </Grid>
+
+            </GroupBox>
+
+            <GroupBox Header="Branche Accounts" 
+                      Margin="5"
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      Height="250"
+                      materialDesign:ColorZoneAssist.Mode="Accent"
+                      Style="{StaticResource MaterialDesignCardGroupBox}">
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="brcGrid"
+                              Grid.Row="0"
+                              Grid.RowSpan="2"
+                              AutoGenerateColumns="false"
+                              BorderBrush="{DynamicResource SecondaryAccentBrush}"
+                              BorderThickness="1"
+                              ItemsSource="{Binding BrancheAcs}"
+                              SelectedItem="{Binding SelectedBranchAc, Mode=OneWayToSource, Converter={wv:IgnoreNewItemPlaceHolderConverter}}"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow"
+                              CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding id}"/>
+                            <DataGridTextColumn Header="Bank Name" IsReadOnly="True" Binding="{Binding bank.name}"/>
+                            <DataGridTextColumn Header="Account No" Width="150" IsReadOnly="True" Binding="{Binding accountNo}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Grid.Row="1"
+                            ToolTip="New Branch"
+                            Margin="480,0,0,0"
+                            Width="40"
+                            Height="40"
+                            Command="{Binding BranchAccEditorCommand}"
+                            Visibility="{Binding CanAccessBranch, Converter={wv:BooleanInvertToVisibilityGoneConverter}}"
+                            Style="{StaticResource MaterialDesignFloatingActionButton}">
+                        <materialDesign:PackIcon Kind="PlusCircleOutline" Width="24" Height="24"/>
+                    </Button>
+                </Grid>
+
+            </GroupBox>
+
+            <GroupBox Header="Units" 
+                      Margin="5"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      Height="250"
+                      materialDesign:ColorZoneAssist.Mode="Accent"
+                      Style="{StaticResource MaterialDesignCardGroupBox}">
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="mGrid"
+                              Grid.Row="0"
+                              Grid.RowSpan="2"
+                              AutoGenerateColumns="false"
+                              BorderBrush="{DynamicResource SecondaryAccentBrush}"
+                              BorderThickness="1"
+                              ItemsSource="{Binding Measures}"
+                              SelectedItem="{Binding SelectedMeasure, Mode=OneWayToSource, Converter={wv:IgnoreNewItemPlaceHolderConverter}}"
+                              SelectionMode="Single"
+                              SelectionUnit="FullRow"
+                              CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" IsReadOnly="True" Binding="{Binding id}"/>
+                            <DataGridTextColumn Header="Unit Name" IsReadOnly="True" Binding="{Binding unitName}"/>
+                            <DataGridTextColumn Header="Abbreviation" IsReadOnly="True" Binding="{Binding abbreviation}"/>
+                            <DataGridTextColumn Header="Unit Type" IsReadOnly="True" Binding="{Binding unitType}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Grid.Row="1"
+                            ToolTip="New Branch"
+                            Margin="480,0,0,0"
+                            Width="40"
+                            Height="40"
+                            Command="{Binding MeasureEditorCommand}"
+                            Style="{StaticResource MaterialDesignFloatingActionButton}">
+                        <materialDesign:PackIcon Kind="PlusCircleOutline" Width="24" Height="24"/>
+                    </Button>
+                </Grid>
+
+            </GroupBox>
+
+        </Grid>
+    </materialDesign:DialogHost>
 </UserControl>

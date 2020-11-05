@@ -5,12 +5,15 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib" 
     xmlns:local="clr-namespace:Wingcode.Controls">
 
+    
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
 
     <Style x:Key="PagingControlButton" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
         <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="0"/>
@@ -171,4 +174,208 @@
         </Setter>
         <!--<Setter Property="ItemsSource" Value="{Binding Path=ItemsSource, RelativeSource={RelativeSource AncestorType=local:PagingControl}}"/>-->
     </Style>
+
+    <Style TargetType="ListBoxItem" x:Key="SuggestionItemStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border x:Name="ContentBorder"
+                            Background="{Binding Path=SuggestionBackground, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:AutoCompleteTextBox}, Mode=OneWay}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="ContentBorder"
+                                    Value="{x:Static SystemColors.HighlightBrush}" />
+                            <Setter 
+                                Property="TextElement.Foreground" 
+                                Value="{x:Static SystemColors.HighlightTextBrush}"/>
+                            <Setter Property="IsSelected"
+                                    Value="True" />
+                        </Trigger>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    TargetName="ContentBorder"
+                                    Value="{x:Static SystemColors.HighlightBrush}" />
+                            <Setter 
+                                Property="TextElement.Foreground"
+                                Value="{x:Static SystemColors.HighlightTextBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}"
+           x:Key="TransparentTextBoxStyle">
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Background="Transparent"
+                                      Focusable="True"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      VerticalScrollBarVisibility="Hidden" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:AutoCompleteTextBox}">
+        <!--<Setter Property="Focusable"  Value="False" />-->
+        <!--<Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="Gray" />-->
+        <Setter Property="Validation.ErrorTemplate" 
+                Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AutoCompleteTextBox}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <DockPanel>
+                                <ContentPresenter ContentSource="Icon"
+                                                  x:Name="PART_Icon"
+                                                  Visibility="{TemplateBinding IconVisibility}" />
+                                <Grid>
+                                    <TextBlock x:Name="PART_Watermark"                                               
+                                               Visibility="Collapsed"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Focusable="False"
+                                               Foreground="Gray"
+                                               Text="{TemplateBinding Watermark}"
+                                               Margin="3,0" />
+                                    <TextBox x:Name="PART_Editor"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Center"
+											 Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Text="{Binding Path=Text, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}" />
+                                </Grid>
+                            </DockPanel>
+                            <!--Width="{TemplateBinding ActualWidth}"-->
+                            <Popup x:Name="PART_Popup"
+                                   IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent},Mode=TwoWay}"                                   
+                                   HorizontalOffset="0"
+                                   MinHeight="25"
+                                   MaxHeight="600"
+                                   AllowsTransparency="True"
+                                   PopupAnimation="Slide"
+                                   Focusable="False">
+                                <Border Background="White"
+                                        BorderThickness="1"
+                                        BorderBrush="Gray"                                        
+                                        Padding="2">
+                                    <Grid>
+                                        <ListBox x:Name="PART_Selector"
+                                                 ItemTemplate="{TemplateBinding ItemTemplate}"
+                                                 ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                 Focusable="False"
+                                                 BorderThickness="0"
+                                                 MaxHeight="{Binding Path=MaxPopupHeight, RelativeSource={RelativeSource Mode=TemplatedParent},Mode=TwoWay}"
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                 ItemContainerStyle="{StaticResource ResourceKey=SuggestionItemStyle}">
+                                        </ListBox>
+                                        <Border Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource ResourceKey=BoolToVisConverter}}">
+                                            <ContentPresenter ContentSource="LoadingContent"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </Popup>
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text"
+                                 Value=""
+                                 SourceName="PART_Editor">
+                            <Setter Property="Visibility"
+                                    Value="Visible"
+                                    TargetName="PART_Watermark" />
+                        </Trigger>
+                        <Trigger Property="IconPlacement"
+                                 Value="Left">
+                            <Setter Property="DockPanel.Dock"
+                                    Value="Left"
+                                    TargetName="PART_Icon" />
+                        </Trigger>
+                        <Trigger Property="IconPlacement"
+                                 Value="Right">
+                            <Setter Property="DockPanel.Dock"
+                                    Value="Right"
+                                    TargetName="PART_Icon" />
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="BorderBrush"
+                                    Value="Red"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style TargetType="{x:Type local:AutoCompleteTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AutoCompleteTextBox}">
+                    <Grid>
+                        <StackPanel x:Name="PART_PANEL">
+                            <TextBox x:Name="PART_SERACHTEXT" TabIndex="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                            </TextBox>
+                            <Border x:Name="PART_POPUPBORDER" Width="{Binding ActualWidth, ElementName=PART_SERACHTEXT}" Background="White">
+                                <Popup x:Name="PART_DROPDOWN" IsOpen="False" Width="{Binding ActualWidth, ElementName=PART_SERACHTEXT}" AllowsTransparency="True" MaxHeight="1000" StaysOpen="False">
+                                    <ListView  x:Name="PART_LISTVIEW" VirtualizingStackPanel.IsVirtualizing="True" 
+                               VirtualizingStackPanel.VirtualizationMode="Standard" TabIndex="1" SelectionMode="Multiple"
+                               Width="{Binding ActualWidth, ElementName=PART_SERACHTEXT}" ItemsSource="{Binding Path= Source}">
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListViewItem}">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                <Setter Property="Padding" Value="0"/>
+                                                <Setter Property="Margin" Value="0"  />
+                                                <Setter Property="Focusable" Value="True"  />
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                                <Setter Property= "Foreground" Value="Black"/>
+                                                <Setter Property="Background" Value="White"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property ="IsMouseOver" Value="True">
+                                                        <Setter Property= "Foreground" Value="Black"/>
+                                                        <Setter Property= "Background" Value="Blue"/>
+                                                    </Trigger>
+
+                                                    <Trigger Property ="IsFocused" Value="True">
+                                                        <Setter Property= "Foreground" Value="White"/>
+                                                        <Setter Property= "Background" Value="Blue"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border>
+                                                    <TextBlock Text="{Binding}"  Margin="5,2,0,2" TextWrapping="Wrap"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Popup>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
 </ResourceDictionary>

@@ -20,7 +20,7 @@ namespace Wingcode.Data.Rest.Model
 
 		public decimal creditAmount { get; set; }
 
-		public double discountPercent { get; set; }
+		public decimal discountPercent { get; set; }
 
 		public decimal invoiceAmount { get; set; }
 
@@ -44,15 +44,9 @@ namespace Wingcode.Data.Rest.Model
 
 		public DateTime updatedAt { get; set; }
 
-		// bi-directional many-to-one association to Branch
-
 		public Branch branch { get; set; }
 
-		// bi-directional many-to-one association to Supplier
-
 		public Supplier supplier { get; set; }
-
-		// bi-directional many-to-one association to User
 
 		public User user { get; set; }
 

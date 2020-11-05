@@ -36,7 +36,9 @@ namespace Wingcode.Items.Views
             aggregator.GetEvent<UIElementFocusEvent>().Subscribe(FocusElement, ThreadOption.UIThread);
             aggregator.GetEvent<ItemGroupSelectionEvent>().Subscribe(ItemGroupSelection, ThreadOption.UIThread);
             aggregator.GetEvent<ItemSubGroupSelectionEvent>().Subscribe(ItemSubGroupSelection, ThreadOption.UIThread);
+            //aggregator.GetEvent<UnitOfMeasureSelectionEvent>().Subscribe(UnitOfMeasureSelection, ThreadOption.UIThread);
         }
+        
 
         private void ItemSubGroupSelection(ItemSubGroup obj)
         {
@@ -57,6 +59,7 @@ namespace Wingcode.Items.Views
         private void FocusElement(string elementName)
         {
             icat.Focus();
+           
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

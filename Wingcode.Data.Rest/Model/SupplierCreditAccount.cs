@@ -18,11 +18,7 @@ namespace Wingcode.Data.Rest.Model
 
 		public decimal totalCredit { get; set; }
 
-		public DateTime updatedAt { get; set; }
-
-		// bi-directional one-to-one association to Supplier
-
-		public Supplier supplier { get; set; }
+		public DateTime updatedAt { get; set; }				
 
 	}
 }

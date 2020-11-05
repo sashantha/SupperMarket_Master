@@ -38,6 +38,8 @@ namespace Wingcode.Data.Rest.Model
 
 		public decimal realQuantity { get; set; }
 
+		public decimal availableQuantity { get; set; }
+
 		public decimal reorderLevel { get; set; }
 
 		public decimal retailPrice { get; set; }
@@ -46,11 +48,13 @@ namespace Wingcode.Data.Rest.Model
 
 		public decimal wholesalePrice { get; set; }
 
-		// bi-directional many-to-one association to Item
+		public decimal defectQuantity { get; set; }
+
+		public string defectState { get; set; }
+
+		public string recordState { get; set; }
 
 		public Item item { get; set; }
-
-		// bi-directional many-to-one association to Purchase
 
 		public Purchase purchase { get; set; }
 

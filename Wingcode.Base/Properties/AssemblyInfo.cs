@@ -12,6 +12,7 @@ using System.Windows.Markup;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly. 
 [assembly: XmlnsPrefix("http://wingcodems.net/base", "wcb")]
+[assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Api")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.DataModel")]
 [assembly: XmlnsDefinition("http://wingcodems.net/base", "Wingcode.Base.Expressions")]

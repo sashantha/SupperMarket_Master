@@ -19,10 +19,6 @@ namespace Wingcode.Data.Rest.Model
 		public decimal totalCredit { get; set; }
 
 		public DateTime updatedAt { get; set; }
-
-		// bi-directional one-to-one association to Customer
-
-		public Customer customer { get; set; }
-
+		
 	}
 }

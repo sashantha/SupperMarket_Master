@@ -24,11 +24,9 @@ namespace Wingcode.Data.Rest.Model
 
 		public DateTime updatedAt { get; set; }
 
-		// bi-directional many-to-one association to Purchase
+		public int dueDays { get; set; }
 
 		public Purchase purchase { get; set; }
-
-		// bi-directional many-to-one association to SupplierCreditAccount
 
 		public SupplierCreditAccount supplierCreditAccount { get; set; }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interactivity;
@@ -41,6 +40,7 @@ namespace Wingcode.Base.Input
 			if (Keyboard.IsKeyDown(Key))
 			{
 				Target.Focus();
+				
 				if (Target is TextBoxBase)
 				{
 					(Target as TextBoxBase).SelectAll();

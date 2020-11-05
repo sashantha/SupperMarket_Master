@@ -55,6 +55,7 @@
                                           materialDesign:HintAssist.Hint="SELECT BRANCH"
                                           FontWeight="Bold"
                                           IsEditable="True"
+                                          PreviewTextInput="branches_PreviewTextInput"
                                           wbc:IsFocusedProperty.Value="True"
                                           ItemsSource="{Binding BranchNames}"
                                           SelectedItem="{Binding SelectedBranch}"

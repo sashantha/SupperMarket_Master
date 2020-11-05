@@ -21,5 +21,12 @@ namespace Wingcode.Authanatication.Views
             password.Password = string.Empty;
             userName.Focus();
         }
-}
+
+        private void branches_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {            
+            if (sender is ComboBox combo)
+                combo.IsDropDownOpen = true;
+        }
+
+    }
 }

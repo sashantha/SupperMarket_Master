@@ -49,6 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\PurchaseHelperExtension.cs" />
     <Compile Include="PurchaseMenuRegistry.cs" />
     <Compile Include="PurchaseModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -64,6 +65,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ItemSuggestionProvider.cs" />
+    <Compile Include="BranchAccountSuggestionProvider.cs" />
+    <Compile Include="SupplierSuggestionProvider.cs" />
     <Compile Include="ViewModels\GRNSheetViewModel.cs" />
     <Compile Include="Views\GRNSheet.xaml.cs">
       <DependentUpon>GRNSheet.xaml</DependentUpon>

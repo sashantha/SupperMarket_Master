@@ -49,6 +49,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Event\BankSelectionEvent.cs" />
+    <Compile Include="Event\StringCellSelectionEvent.cs" />
+    <Compile Include="Extension\MasterHelper.cs" />
+    <Compile Include="BankValidationRule.cs" />
     <Compile Include="MasterMenuRegistry.cs" />
     <Compile Include="MasterModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -64,9 +68,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\BankEditorViewModel.cs" />
+    <Compile Include="ViewModels\BranchAccountEditorViewModel.cs" />
+    <Compile Include="ViewModels\BranchEditorViewModel.cs" />
     <Compile Include="ViewModels\MasterRegisterViewModel.cs" />
+    <Compile Include="ViewModels\MeasureEditorViewModel.cs" />
+    <Compile Include="Views\BankEditor.xaml.cs">
+      <DependentUpon>BankEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BranchAccountEditor.xaml.cs">
+      <DependentUpon>BranchAccountEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BranchEditor.xaml.cs">
+      <DependentUpon>BranchEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MasterRegister.xaml.cs">
       <DependentUpon>MasterRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MeasureEditor.xaml.cs">
+      <DependentUpon>MeasureEditor.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -101,7 +121,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\BankEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BranchAccountEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BranchEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MasterRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MeasureEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

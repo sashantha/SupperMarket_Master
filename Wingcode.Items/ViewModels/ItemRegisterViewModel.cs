@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Services.Dialogs;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Wingcode.Base.DataModel;
@@ -74,6 +75,13 @@ namespace Wingcode.Items.ViewModels
             set { SetProperty(ref _subGroupEditorCommand, value); }
         }
 
+        private DelegateCommand _uomEditorCommand;
+        public DelegateCommand UomEditorCommand
+        {
+            get { return _uomEditorCommand; }
+            set { SetProperty(ref _uomEditorCommand, value); }
+        }
+
         #endregion
 
         #region Constructor
@@ -86,6 +94,7 @@ namespace Wingcode.Items.ViewModels
             ItemEditorCommand = new RelayParameterizedCommand((p) => ShowItemEditor(bool.Parse(p.ToString())));
             GroupEditorCommand = new DelegateCommand(ShowGroupEditor);
             SubGroupEditorCommand = new DelegateCommand(ShowSubGroupEditor);
+            UomEditorCommand = new DelegateCommand(ShowUomEditor);
             loggedUser = containerExtension.Resolve<ILoggedUserProvider>();
             dialogService = containerExtension.Resolve<IDialogService>();
         }
@@ -118,6 +127,14 @@ namespace Wingcode.Items.ViewModels
             _= await DialogHost.Show(new ItemGroupEditor() 
             {
                 DataContext = new ItemGroupEditorViewModel(containerExtension, loggedUser)
+            }, "ItemRoot", EditorClosing);
+        }
+
+        private async void ShowUomEditor()
+        {
+            _ = await DialogHost.Show(new UnitOfMeasureEditor()
+            {
+                DataContext = new UnitOfMeasureEditorViewModel(containerExtension, loggedUser)
             }, "ItemRoot", EditorClosing);
         }
 

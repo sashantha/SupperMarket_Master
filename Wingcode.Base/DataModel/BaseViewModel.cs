@@ -9,6 +9,13 @@ namespace Wingcode.Base.DataModel
     public class BaseViewModel : BindableBase
     {
 
+        #region Sync Event
+
+        public delegate void SynchronizeHandler();
+
+        public event SynchronizeHandler SyncEditro;
+        #endregion
+
         #region Command Helpers
 
         /// <summary>
@@ -39,6 +46,11 @@ namespace Wingcode.Base.DataModel
                 //set flag back to false after finish
                 updatingFlag.SetPropertyValue(false);
             }
+        }
+
+        protected void RizeSyncEvent() 
+        {
+            SyncEditro?.Invoke();
         }
         #endregion
     }

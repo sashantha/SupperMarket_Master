@@ -80,12 +80,12 @@ namespace Wingcode.Data.Rest.Service
             return data;
         }
 
-        public static async Task<Supplier> GetSupplierByIdAndBranchIdAsync(IRestDataMapper mapper, long cusId, int branchId)
+        public static async Task<Supplier> GetSupplierByIdAndBranchIdAsync(IRestDataMapper mapper, long supId, int branchId)
         {
             Supplier reds = new Supplier();
             if (mapper == null)
                 return reds;
-            string url = $"supplier/api/v1/suppliers/{cusId}/{branchId}";
+            string url = $"supplier/api/v1/suppliers/{supId}/{branchId}";
             reds = await mapper.GetDataAsync<Supplier>(url);
             return reds;
         }

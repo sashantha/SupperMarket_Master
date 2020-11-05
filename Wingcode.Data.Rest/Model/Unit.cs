@@ -9,7 +9,7 @@ namespace Wingcode.Data.Rest.Model
 	/// 
 	/// </summary>
 
-	public class Measurement
+	public class Unit
 	{
 
 		public int id { get; set; }
@@ -17,6 +17,10 @@ namespace Wingcode.Data.Rest.Model
 		public DateTime createdAt { get; set; }
 
 		public string unitName { get; set; }
+
+		public string unitType { get; set; }
+
+		public string abbreviation { get; set; }
 
 		public DateTime updatedAt { get; set; }
 
