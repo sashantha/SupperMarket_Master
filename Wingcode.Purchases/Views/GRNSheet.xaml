@@ -9,6 +9,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:wc="http://wingcodemicrosystem.net/controls"
+             xmlns:wcn="http://wingcodems.net/convertors"
              mc:Ignorable="d" 
              d:DesignHeight="920" 
              d:DesignWidth="1200"
@@ -198,12 +199,18 @@
                                 Grid.Column="2"
                                 Height="40"
                                 Margin="5,0,10,0"
-                                SelectedDate="{Binding CurrenPurchase.purchaseDate}"
                                 materialDesign:HintAssist.Hint="Purchase Date :"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="CurrenPurchase.purchaseDate" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <wr:DateValidationRule ValidatesOnTargetUpdated="True"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DatePicker.SelectedDate>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewKeyDown">
-                                <wbc:KeyToCommandAndFocusAction Key="Enter" Target="{Binding ElementName=itmCode}"/>
+                                <wbc:KeyToCommandAndFocusAction Key="Enter" Target="{Binding ElementName=itmCode}" Command="{Binding CreatePurchaseCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </DatePicker>
@@ -289,14 +296,35 @@
                          materialDesign:HintAssist.Hint="Item Cost :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="CurrentPurchaseItem.cost" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <wcn:StringToDecimalConverter/>
+                            </Binding.Converter>
+                            <Binding.ValidationRules>
+                                <wr:DecimalValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=iDicont}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </TextBox>
 
                 <TextBox x:Name="iDicont" Grid.Row="3"
                          Grid.Column="1"
                          Margin="0,0,5,0"
-                         materialDesign:HintAssist.Hint="Discount :"                 
+                         materialDesign:HintAssist.Hint="Discount :"
+                         Text="{Binding CurrentPurchaseItem.discount, Converter={wcn:StringToDecimalConverter}, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyToCommandAndFocusAction Key="Enter" Target="{Binding ElementName=iWsp}" Command="{Binding CalDiscountCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </TextBox>
 
                 <TextBox x:Name="iWsp" Grid.Row="4"
@@ -440,7 +468,7 @@
 
                 <Button x:Name="pSave" Grid.Row="8" 
                         Grid.Column="3" 
-                        Content="Save And Next Invoice" 
+                        Content="Finish And Next Invoice" 
                         Margin="10,0,0,0" />
             </Grid>
         </GroupBox>

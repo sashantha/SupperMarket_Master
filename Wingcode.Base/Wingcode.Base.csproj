@@ -186,6 +186,9 @@
     <PackageReference Include="Prism.Wpf">
       <Version>7.2.0.1422</Version>
     </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.3.1</Version>
+    </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
       <Version>4.5.3</Version>
     </PackageReference>
@@ -224,7 +227,9 @@
       <Name>Wingcode.ValueConverters</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Localization\ar.xml" />
     <Resource Include="Localization\be.xml" />

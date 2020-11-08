@@ -67,6 +67,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Rules\DateValidationRule.cs" />
     <Compile Include="Rules\DecimalValidationRule.cs" />
     <Compile Include="Rules\NotEmptyValidationRule.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

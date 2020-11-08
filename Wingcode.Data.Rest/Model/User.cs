@@ -1,4 +1,5 @@
 ﻿using System;
+using Wingcode.Base.DataModel;
 
 namespace Wingcode.Data.Rest.Model
 {
@@ -8,7 +9,7 @@ namespace Wingcode.Data.Rest.Model
 	/// The persistent class for the user database table.
 	/// 
 	/// </summary>
-	public class User
+	public class User : ModelBase<User>
 	{
 
 		public int id { get; set; }

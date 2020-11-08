@@ -65,10 +65,21 @@ namespace Wingcode.Data.Rest.Service
             Purchase data = new Purchase();
             if (mapper == null)
                 return data;
-            string url = $"purchasing/api/v1/purchases/Invoices/{bid}/{inv}";
+            string url = $"purchasing/api/v1/purchases/invs/{bid}/{inv}";
             data = await mapper.GetDataAsync<Purchase>(url);
             return data;
         }
+
+        public static async Task<Purchase> GetAllPurchaseByInvoiceNoAndRecordStAsync(IRestDataMapper mapper, int bid, string inv, string rst)
+        {
+            Purchase data = new Purchase();
+            if (mapper == null)
+                return data;
+            string url = $"purchasing/api/v1/purchases/invs/{bid}/{inv}/{rst}";
+            data = await mapper.GetDataAsync<Purchase>(url);
+            return data;
+        }
+
 
         public static async Task<ObservableCollection<Purchase>> GetAllPurchaseBySupplierIdAsync(IRestDataMapper mapper, int bid, long id)
         {

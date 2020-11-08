@@ -1,4 +1,5 @@
 ﻿using System;
+using Wingcode.Base.DataModel;
 
 namespace Wingcode.Data.Rest.Model
 {
@@ -8,7 +9,7 @@ namespace Wingcode.Data.Rest.Model
 	/// The persistent class for the branch_account database table.
 	/// 
 	/// </summary>
-	public class BranchAccount
+	public class BranchAccount : ModelBase<BranchAccount>
 	{
 
 		public int id { get; set; }

@@ -1,6 +1,8 @@
-﻿namespace Wingcode.Data.Rest.Model
+﻿using Wingcode.Base.DataModel;
+
+namespace Wingcode.Data.Rest.Model
 {
-	public class SupplierCriteria
+	public class SupplierCriteria : ModelBase<SupplierCriteria>
 	{
 
 		public long id { get; set; }

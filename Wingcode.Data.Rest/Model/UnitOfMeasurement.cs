@@ -1,4 +1,5 @@
 ﻿using System;
+using Wingcode.Base.DataModel;
 
 namespace Wingcode.Data.Rest.Model
 {
@@ -9,7 +10,7 @@ namespace Wingcode.Data.Rest.Model
     /// 
     /// </summary>
 
-    public class UnitOfMeasurement
+    public class UnitOfMeasurement : ModelBase<UnitOfMeasurement>
     {
 
         public int id { get; set; }

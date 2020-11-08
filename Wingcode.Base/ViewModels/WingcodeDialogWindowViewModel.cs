@@ -168,7 +168,6 @@ namespace Wingcode.Base.ViewModels
 
         #endregion
 
-
         #region Private Helpers
 
         /// <summary>
@@ -194,12 +193,12 @@ namespace Wingcode.Base.ViewModels
         private void WindowResized()
         {
             // Fire off events for all properties that are affected by a resize
-            OnPropertyChanged(new PropertyChangedEventArgs(nameof(Borderless)));
-            OnPropertyChanged(new PropertyChangedEventArgs(nameof(ResizeBorderThickness)));
-            OnPropertyChanged(new PropertyChangedEventArgs(nameof(OuterMarginSize)));
-            OnPropertyChanged(new PropertyChangedEventArgs(nameof(OuterMarginSizeThickness)));
-            OnPropertyChanged(new PropertyChangedEventArgs(nameof(WindowRadius)));
-            OnPropertyChanged(new PropertyChangedEventArgs(nameof(WindowCornerRadius)));
+            OnPropertyChanged(nameof(Borderless));
+            OnPropertyChanged(nameof(ResizeBorderThickness));
+            OnPropertyChanged(nameof(OuterMarginSize));
+            OnPropertyChanged(nameof(OuterMarginSizeThickness));
+            OnPropertyChanged(nameof(WindowRadius));
+            OnPropertyChanged(nameof(WindowCornerRadius));
         }
 
 

@@ -13,26 +13,11 @@ namespace Wingcode.Base.ViewModels
     public abstract class BaseDialogHostViewModel : BaseViewModel
     {
 
-        private string _title;
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        public string Title { get; set; }
 
-        private Control _container;
-        public Control Container
-        {
-            get { return _container; }
-            set { SetProperty(ref _container, value);}
-        }
+        public Control Container { get; set; }
 
-        private DelegateCommand<string> _closeCommand;
-        public DelegateCommand<string> CloseCommand
-        {
-            get { return _closeCommand; }
-            set { SetProperty(ref _closeCommand, value); }
-        }
+        public DelegateCommand<string> CloseCommand { get; set; }
 
     }
 }

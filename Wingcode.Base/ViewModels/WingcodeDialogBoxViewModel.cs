@@ -12,26 +12,11 @@ namespace Wingcode.Base.ViewModels
 {
     public class WingcodeDialogBoxViewModel : BaseDialogViewModel, IDialogAware
     {
-        private string _title;
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        public string Title { get; set; }
 
-        private BaseDialogHostViewModel _dialogHost;
-        public BaseDialogHostViewModel DialogHost
-        {
-            get { return _dialogHost; }
-            set { SetProperty(ref _dialogHost, value); }
-        }
+        public BaseDialogHostViewModel DialogHost { get; set; }
 
-        private Control _container;
-        public Control Container
-        {
-            get { return _container; }
-            set { SetProperty(ref _container, value); }
-        }
+        public Control Container { get; set; }
 
         public event Action<IDialogResult> RequestClose;
 

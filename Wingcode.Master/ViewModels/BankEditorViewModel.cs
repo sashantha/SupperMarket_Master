@@ -23,44 +23,19 @@ namespace Wingcode.Master.ViewModels
         private ILoggedUserProvider loggedUser;
 
 
-        private Bank _selectedBank;
-        public Bank SelectedBank
-        {
-            get { return _selectedBank; }
-            set { SetProperty(ref _selectedBank, value); }
-        }
+        public Bank SelectedBank { get; set; }
 
-        private bool _isNew;
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set { SetProperty(ref _isNew, value); }
-        }
+        public bool IsNew { get; set; }
 
         #endregion
 
         #region Commands
 
-        private DelegateCommand _saveCommand;
-        public DelegateCommand SaveCommand
-        {
-            get { return _saveCommand; }
-            set { SetProperty(ref _saveCommand, value); }
-        }
+        public DelegateCommand SaveCommand { get; set; }
 
-        private DelegateCommand _newCommand;
-        public DelegateCommand NewCommand
-        {
-            get { return _newCommand; }
-            set { SetProperty(ref _newCommand, value); }
-        }
+        public DelegateCommand NewCommand { get; set; }
 
-        private DelegateCommand _updateCommand;
-        public DelegateCommand UpdateCommand
-        {
-            get { return _updateCommand; }
-            set { SetProperty(ref _updateCommand, value); }
-        }
+        public DelegateCommand UpdateCommand { get; set; }
 
         #endregion
 

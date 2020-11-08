@@ -29,28 +29,20 @@ namespace Wingcode.Authanatication.ViewModels
         private IContainerExtension containerExtension;
         private ObservableCollection<Branch> branches;
 
-        private string userName;
 
-        public string UserName { get => userName; set => SetProperty(ref userName, value); }
+        public string UserName { get; set; }
 
-        private bool loginIsRunning;
+        public bool LoginIsRunning { get; set; }
 
-        public bool LoginIsRunning { get => loginIsRunning; set => SetProperty(ref loginIsRunning, value); }
+        public string Warrning { get; set; }
 
-        private string warrning = "Loging Here";
-        public string Warrning { get => warrning; set => SetProperty(ref warrning, value); }
+        public ICommand LogingCommand { get; set; }
 
-        private ICommand logingCommand;
-        public ICommand LogingCommand { get => logingCommand; set => SetProperty(ref logingCommand, value); }
+        public ICommand WarrnChangeCommand { get; set; }
 
-        private ICommand warrnChangeCommand;
-        public ICommand WarrnChangeCommand { get => warrnChangeCommand; set => SetProperty(ref warrnChangeCommand, value); }
+        public List<string> BranchNames { get; set; }
 
-        private List<string> branchNames;
-        public List<string> BranchNames { get => branchNames; set => SetProperty(ref branchNames, value); }
-
-        private string selectedBranch;
-        public string SelectedBranch { get => selectedBranch; set => SetProperty(ref selectedBranch, value); }
+        public string SelectedBranch { get; set; }
 
         public LoginPageViewModel(IContainerExtension container)
         {

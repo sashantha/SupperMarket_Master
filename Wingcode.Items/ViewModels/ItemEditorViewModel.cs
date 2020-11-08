@@ -30,107 +30,36 @@ namespace Wingcode.Items.ViewModels
         private ILoggedUserProvider loggedUser;
 
 
-        private Item _selectedItem;
-        public Item SelectedItem
-        {
-            get { return _selectedItem; }
-            set { SetProperty(ref _selectedItem, value); }
-        }
+        public Item SelectedItem { get; set; }
 
-        private bool _isNew;
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set { SetProperty(ref _isNew, value); }
-        }
+        public bool IsNew { get; set; }
 
-        private ItemGroup _selectedItemGroup;
-        public ItemGroup SelectedItemGroup
-        {
-            get { return _selectedItemGroup; }
-            set { SetProperty(ref _selectedItemGroup, value); }
-        }
+        public ItemGroup SelectedItemGroup { get; set; }
 
-        private ItemSubGroup _selectedItemSubGroup;
-        public ItemSubGroup SelectedItemSubGroup
-        {
-            get { return _selectedItemSubGroup; }
-            set { SetProperty(ref _selectedItemSubGroup, value); }
-        }
+        public ItemSubGroup SelectedItemSubGroup { get; set; }
 
-        private UnitOfMeasurement _selectedUom;
-        public UnitOfMeasurement SelectedUom
-        {
-            get { return _selectedUom; }
-            set { SetProperty(ref _selectedUom, value); }
-        }
+        public UnitOfMeasurement SelectedUom { get; set; }
 
-        private StoreInfor _itemStore;
-        public StoreInfor ItemStore
-        {
-            get { return _itemStore; }
-            set { SetProperty(ref _itemStore, value); }
-        }
+        public StoreInfor ItemStore { get; set; }
 
-        private ObservableCollection<Item> _sourceItemGroups;
-        public ObservableCollection<Item> SourceItemGroups
-        {
-            get { return _sourceItemGroups; }
-            set { SetProperty(ref _sourceItemGroups, value); }
-        }
+        public ObservableCollection<Item> SourceItemGroups { get; set; }
 
-        private ObservableCollection<ItemGroup> _itemGroups;
-        public ObservableCollection<ItemGroup> ItemGroups
-        {
-            get { return _itemGroups; }
-            set { SetProperty(ref _itemGroups, value); }
-        }
+        public ObservableCollection<ItemGroup> ItemGroups { get; set; }
 
-        private ObservableCollection<ItemSubGroup> _itemSubGroups;
-        public ObservableCollection<ItemSubGroup> ItemSubGroups
-        {
-            get { return _itemSubGroups; }
-            set { SetProperty(ref _itemSubGroups, value); }
-        }
+        public ObservableCollection<ItemSubGroup> ItemSubGroups { get; set; }
 
-        private ISuggestionProvider _uomSugges;
-        public ISuggestionProvider UomSugges
-        {
-            get { return _uomSugges; }
-            set { SetProperty(ref _uomSugges, value); }
-        }
+        public ISuggestionProvider UomSugges { get; set; }
         #endregion
 
         #region Commands
 
-        private DelegateCommand _languageSwapCommand;
-        public DelegateCommand LanguageSwapCommand
-        {
-            get { return _languageSwapCommand; }
-            set { SetProperty(ref _languageSwapCommand, value); }
-        }
+        public DelegateCommand LanguageSwapCommand { get; set; }
 
+        public DelegateCommand SaveCommand { get; set; }
 
-        private DelegateCommand _saveCommand;
-        public DelegateCommand SaveCommand
-        {
-            get { return _saveCommand; }
-            set { SetProperty(ref _saveCommand, value); }
-        }
+        public DelegateCommand NewCommand { get; set; }
 
-        private DelegateCommand _newCommand;
-        public DelegateCommand NewCommand
-        {
-            get { return _newCommand; }
-            set { SetProperty(ref _newCommand, value); }
-        }
-
-        private DelegateCommand _updateCommand;
-        public DelegateCommand UpdateCommand
-        {
-            get { return _updateCommand; }
-            set { SetProperty(ref _updateCommand, value); }
-        }
+        public DelegateCommand UpdateCommand { get; set; }
 
         #endregion
 

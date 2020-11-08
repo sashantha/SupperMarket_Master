@@ -31,224 +31,66 @@ namespace Wingcode.Purchases.ViewModels
         private ILoggedUserProvider loggedUser;
         private Branch branch;
 
-        private bool _isCode;
+        public bool IsCode { get; set; }
 
-        public bool IsCode
-        {
-            get { return _isCode; }
-            set { SetProperty(ref _isCode, value); }
-        }
+        public bool IsBarcode { get; set; }
 
-        private bool _isBarcode;
+        public bool IsName { get; set; }
 
-        public bool IsBarcode
-        {
-            get { return _isBarcode; }
-            set { SetProperty(ref _isBarcode, value); }
-        }
+        public bool IsPurchase { get; set; }
 
-        private bool _isName;
+        public bool IsFree { get; set; }
 
-        public bool IsName
-        {
-            get { return _isName; }
-            set { SetProperty(ref _isName, value); }
-        }
+        public bool IsNew { get; set; }
 
-        private bool _isPurchase;
+        public string DisplayMem { get; set; }
 
-        public bool IsPurchase
-        {
-            get { return _isPurchase; }
-            set { SetProperty(ref _isPurchase, value); }
-        }
+        public ISuggestionProvider SupSugges { get; set; }
 
-        private bool _isFree;
+        public ISuggestionProvider ItmSugges { get; set; }
 
-        public bool IsFree
-        {
-            get { return _isFree; }
-            set { SetProperty(ref _isFree, value); }
-        }
+        public ISuggestionProvider BacSugges { get; set; }
 
-        private bool _isNew;
+        public SupplierCriteria SelectedSupCt { get; set; }
 
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set { SetProperty(ref _isNew, value); }
-        }
+        public ItemCriteria SelectedItmCt { get; set; }
 
-        private string _displayMem;
+        public BranchAccount SelectedBac { get; set; }
 
-        public string DisplayMem
-        {
-            get { return _displayMem; }
-            set { SetProperty(ref _displayMem, value); }
-        }
+        public Purchase CurrenPurchase { get; set; }
 
+        public CashBook CurrenCashBook { get; set; }
 
-        private ISuggestionProvider _supSugges;
-        public ISuggestionProvider SupSugges
-        {
-            get { return _supSugges; }
-            set { SetProperty(ref _supSugges, value); }
-        }
+        public ChequeBook CurrenChqueBook { get; set; }
 
-        private ISuggestionProvider _itmSugges;
-        public ISuggestionProvider ItmSugges
-        {
-            get { return _itmSugges; }
-            set { SetProperty(ref _itmSugges, value); }
-        }
+        public Supplier SelectedSupplier { get; set; }
 
-        private ISuggestionProvider _bacSugges;
-        public ISuggestionProvider BacSugges
-        {
-            get { return _bacSugges; }
-            set { SetProperty(ref _bacSugges, value); }
-        }
+        public Item SelectedItem { get; set; }
 
-        private SupplierCriteria selectedSupct;
+        public PurchaseItem CurrentPurchaseItem { get; set; }
 
-        public SupplierCriteria SelectedSupCt
-        {
-            get { return selectedSupct; }
-            set { SetProperty(ref selectedSupct, value); }
-        }
-
-        private ItemCriteria selectedItmCt;
-
-        public ItemCriteria SelectedItmCt
-        {
-            get { return selectedItmCt; }
-            set { SetProperty(ref selectedItmCt, value); }
-        }
-
-        private BranchAccount selectedBac;
-
-        public BranchAccount SelectedBac
-        {
-            get { return selectedBac; }
-            set { SetProperty(ref selectedBac, value); }
-        }
-
-        private Purchase currenPurchase;
-
-        public Purchase CurrenPurchase
-        {
-            get { return currenPurchase; }
-            set { SetProperty(ref currenPurchase, value); }
-        }
-
-        private CashBook currenCashBook;
-
-        public CashBook CurrenCashBook
-        {
-            get { return currenCashBook; }
-            set { SetProperty(ref currenCashBook, value); }
-        }
-
-        private ChequeBook currenChqueBook;
-
-        public ChequeBook CurrenChqueBook
-        {
-            get { return currenChqueBook; }
-            set { SetProperty(ref currenChqueBook, value); }
-        }
-
-        private Supplier selectedSupplier;
-
-        public Supplier SelectedSupplier
-        {
-            get { return selectedSupplier; }
-            set { SetProperty(ref selectedSupplier, value); }
-        }
-
-        private Item selectedItem;
-
-        public Item SelectedItem
-        {
-            get { return selectedItem; }
-            set { SetProperty(ref selectedItem, value); }
-        }
-
-        private PurchaseItem currentPurchaseItem;
-
-        public PurchaseItem CurrentPurchaseItem
-        {
-            get { return currentPurchaseItem; }
-            set { SetProperty(ref currentPurchaseItem, value); }
-        }
-
-        private ObservableCollection<PurchaseItem> purchaseItems;
-
-        public ObservableCollection<PurchaseItem> PurchaseItems
-        {
-            get { return purchaseItems; }
-            set { SetProperty(ref purchaseItems, value); }
-        }
+        public ObservableCollection<PurchaseItem> PurchaseItems { get; set; }
 
         #endregion
 
         #region Commands
 
-        private DelegateCommand<string> _optionChangeCommand;
+        public DelegateCommand<string> OptionChangeCommand { get; set; }
 
-        public DelegateCommand<string> OptionChangeCommand
-        {
-            get { return _optionChangeCommand; }
-            set { SetProperty(ref _optionChangeCommand, value); }
-        }
+        public DelegateCommand<string> PurchaseoptionCommand { get; set; }
 
-        private DelegateCommand<string> _purchaseoptionCommand;
+        public DelegateCommand SearchItemCommand { get; set; }
 
-        public DelegateCommand<string> PurchaseoptionCommand
-        {
-            get { return _purchaseoptionCommand; }
-            set { SetProperty(ref _purchaseoptionCommand, value); }
-        }
-        
+        public DelegateCommand SearchSupplierCommand { get; set; }
 
-        private DelegateCommand searchItemCommand;
+        public DelegateCommand SearchOldCommand { get; set; }
 
-        public DelegateCommand SearchItemCommand
-        {
-            get { return searchItemCommand; }
-            set { SetProperty(ref searchItemCommand, value); }
-        }
+        public DelegateCommand EndPurchaseCommand { get; set; }
 
-        private DelegateCommand searchSupplierCommand;
+        public DelegateCommand CreatePurchaseCommand { get; set; }
 
-        public DelegateCommand SearchSupplierCommand
-        {
-            get { return searchSupplierCommand; }
-            set { SetProperty(ref searchSupplierCommand, value); }
-        }
+        public DelegateCommand CalDiscountCommand { get; set; }
 
-        private DelegateCommand searchOldCommand;
-
-        public DelegateCommand SearchOldCommand
-        {
-            get { return searchOldCommand; }
-            set { SetProperty(ref searchOldCommand, value); }
-        }
-
-        private DelegateCommand endPurchaseCommand;
-
-        public DelegateCommand EndPurchaseCommand
-        {
-            get { return endPurchaseCommand; }
-            set { SetProperty(ref endPurchaseCommand, value); }
-        }
-
-        private DelegateCommand createPurchaseCommand;
-
-        public DelegateCommand CreatePurchaseCommand
-        {
-            get { return createPurchaseCommand; }
-            set { SetProperty(ref createPurchaseCommand, value); }
-        }
         #endregion
 
         #region Constructor
@@ -268,13 +110,13 @@ namespace Wingcode.Purchases.ViewModels
 
         #region Function and Events
 
-        internal void Initialize() 
+        internal void Initialize()
         {
             LoadAutoData();
             NewPurchase();
         }
 
-        private void CreateCommands() 
+        private void CreateCommands()
         {
             SearchItemCommand = new DelegateCommand(SearchItem);
             SearchSupplierCommand = new DelegateCommand(SearchSupplier);
@@ -282,11 +124,34 @@ namespace Wingcode.Purchases.ViewModels
             OptionChangeCommand = new DelegateCommand<string>(OptionChange);
             PurchaseoptionCommand = new DelegateCommand<string>(PurcuaseOptionChange);
             CreatePurchaseCommand = new DelegateCommand(CreatePurchase);
+            CalDiscountCommand = new DelegateCommand(CalWithDiscount);
+        }
+
+        private void CalWithDiscount()
+        {
+            CurrentPurchaseItem.CalculateCostWithDiscount();
         }
 
         private async void CreatePurchase()
         {
-            
+            if (IsNew)
+            {
+                IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
+                CurrenPurchase.branch = branch;
+                CurrenPurchase.supplier = SelectedSupplier;
+                CurrenPurchase.user = loggedUser.LoggedUser;
+                CurrenPurchase.payMethod = ConstValues.INVT_CASH;
+                CurrenPurchase = await PurchaseRestService.CreatePurchaseAsync(mapper, CurrenPurchase);
+                if (CurrenPurchase.id == 0)
+                {
+                    if (ShowMessageDialg("Purchase Creating", "Found some problem, Can't Create Purchase", MsgDialogType.error))
+                    {
+                        Initialize();
+                        return;
+                    }
+                }
+
+            }
         }
 
         private async void SearchSupplier()
@@ -303,15 +168,38 @@ namespace Wingcode.Purchases.ViewModels
                 return;
             IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
             SelectedItem = await ItemRestService.GetItemByParamAsync(mapper, ItemRestService.ITEM_CODE_FLAG, SelectedItmCt.code);
+            CurrentPurchaseItem = CurrentPurchaseItem.CreateNew(CurrenPurchase, SelectedItem);
         }
 
-        private void SearchOldPurChase()
+        private async void SearchOldPurChase()
         {
-            string inv = CurrenPurchase.invoiceNo;
-            aggregator.GetEvent<UIElementFocusEvent>().Publish("sup");
+            IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
+            Purchase p = await PurchaseRestService.GetAllPurchaseByInvoiceNoAndRecordStAsync(mapper, branch.id, CurrenPurchase.invoiceNo, ConstValues.RCS_NEW);
+            if (p != null)
+            {
+                string msg = "Found Exist Purchase Invoice, Do you want to Continue it?";
+                if (ShowMessageDialg("Find Exist Purchase", msg, MsgDialogButtonType.YesNo, MsgDialogType.Confirmation))
+                {
+                    CurrenPurchase = p;
+                    IsNew = false;
+                    SelectedSupCt = CurrenPurchase.supplier.ToSupplierCriterita();
+                    SelectedSupplier = CurrenPurchase.supplier;
+                    PurchaseItems = await PurchaseRestService.GetAllPurchaseItemByParamAsync(mapper, branch.id, PurchaseRestService.PI_PID_FLAG, p.id);
+                    aggregator.GetEvent<UIElementFocusEvent>().Publish("pdt");
+                }
+                else
+                {
+                    CurrenPurchase.invoiceNo = string.Empty;
+                    aggregator.GetEvent<UIElementFocusEvent>().Publish("inv");
+                }
+            }
+            else
+            {
+                aggregator.GetEvent<UIElementFocusEvent>().Publish("sup");
+            }
         }
 
-        private void InitiOptions() 
+        private void InitiOptions()
         {
             DisplayMem = "code";
             IsCode = true;
@@ -335,7 +223,7 @@ namespace Wingcode.Purchases.ViewModels
             }
         }
 
-        private string GetPurchaseType() 
+        private string GetPurchaseType()
         {
             if (IsPurchase && !IsFree)
                 return ConstValues.PT_PURCHASE;
@@ -395,8 +283,9 @@ namespace Wingcode.Purchases.ViewModels
             BacSugges = new BranchAccountSuggestionProvider() { brancgAcCriterias = bacs };
         }
 
-        private async void NewPurchase() 
+        private async void NewPurchase()
         {
+            IsNew = true;
             aggregator.GetEvent<UIElementFocusEvent>().Publish("inv");
             await Task.Delay(500);
             CurrenPurchase = CurrenPurchase.CreateNew();
@@ -415,6 +304,20 @@ namespace Wingcode.Purchases.ViewModels
             });
             return result;
         }
+
+        private bool ShowMessageDialg(string title, string message, MsgDialogButtonType dialogButtonType, MsgDialogType dialogType)
+        {
+            bool result = false;
+            dialogService.ShowMsgDialog(title, message, dialogButtonType, dialogType, (r) =>
+            {
+                if (r.Result == ButtonResult.OK || r.Result == ButtonResult.Yes)
+                {
+                    result = true;
+                }
+            });
+            return result;
+        }
+
         #endregion
     }
 }

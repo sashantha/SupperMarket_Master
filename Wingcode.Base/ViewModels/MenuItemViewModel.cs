@@ -30,15 +30,7 @@ namespace Wingcode.Base.ViewModels
 
         public Color SelectionColor => new PaletteHelper().GetTheme().Selection;
 
-        private bool _isExpanded = false;
-
-        public bool IsExpanded
-        {
-            get { return _isExpanded; }
-            set { 
-                SetProperty(ref _isExpanded, value);
-            }
-        }
+        public bool IsExpanded { get; set; }
 
         public MenuItemViewModel()
         {

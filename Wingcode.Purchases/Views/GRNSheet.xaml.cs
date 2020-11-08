@@ -40,10 +40,14 @@ namespace Wingcode.Purchases.Views
             switch (obj)
             {
                 case "inv":
+                    invNo.Clear();
                     invNo.Focus();
                     break;
                 case "sup":
                     supName.Focus();
+                    break;
+                case "pdt":
+                    pdtp.Focus();
                     break;
                 default:
                     invNo.Focus();

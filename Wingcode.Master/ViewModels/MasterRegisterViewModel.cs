@@ -23,104 +23,37 @@ namespace Wingcode.Master.ViewModels
         private IDialogService dialogService;
         private IEventAggregator aggregator;
 
-        private Branch selectedBranch;
-        public Branch SelectedBranch
-        {
-            get { return selectedBranch; }
-            set { SetProperty(ref selectedBranch, value); }
-        }
+        public Branch SelectedBranch { get; set; }
 
-        private ObservableCollection<Branch> branches;
-        public ObservableCollection<Branch> Branches
-        {
-            get { return branches; }
-            set { SetProperty(ref branches, value); }
-        }
+        public ObservableCollection<Branch> Branches { get; set; }
 
-        private bool canAccessBranch;   
+        public bool CanAccessBranch { get; set; }
 
-        public bool CanAccessBranch
-        {
-            get { return canAccessBranch; }
-            set { canAccessBranch = value; }
-        }
+        public Bank SelectedBank { get; set; }
+
+        public ObservableCollection<Bank> Banks { get; set; }
+
+        public BranchAccount SelectedBranchAc { get; set; }
+
+        public ObservableCollection<BranchAccount> BrancheAcs { get; set; }
+
+        public Unit SelectedMeasure { get; set; }
+
+        public ObservableCollection<Unit> Measures { get; set; }
 
 
-        private Bank selectedBank;
-        public Bank SelectedBank
-        {
-            get { return selectedBank; }
-            set { SetProperty(ref selectedBank, value); }
-        }
-
-        private ObservableCollection<Bank> banks;
-        public ObservableCollection<Bank> Banks
-        {
-            get { return banks; }
-            set { SetProperty(ref banks, value); }
-        }
-
-        private BranchAccount selectedBranchAc;
-        public BranchAccount SelectedBranchAc
-        {
-            get { return selectedBranchAc; }
-            set { SetProperty(ref selectedBranchAc, value); }
-        }
-
-        private ObservableCollection<BranchAccount> brancheacs;
-        public ObservableCollection<BranchAccount> BrancheAcs
-        {
-            get { return brancheacs; }
-            set { SetProperty(ref brancheacs, value); }
-        }
-
-        private Unit selectedMeasure;
-        public Unit SelectedMeasure
-        {
-            get { return selectedMeasure; }
-            set { SetProperty(ref selectedMeasure, value); }
-        }
-
-        private ObservableCollection<Unit> measures;
-        public ObservableCollection<Unit> Measures
-        {
-            get { return measures; }
-            set { SetProperty(ref measures, value); }
-        }
-
-        
         #endregion
 
         #region Commands
 
-        private DelegateCommand _branchEditorCommand;
-        public DelegateCommand BranchEditorCommand
-        {
-            get { return _branchEditorCommand; }
-            set { SetProperty(ref _branchEditorCommand, value); }
-        }
+        public DelegateCommand BranchEditorCommand { get; set; }
 
-        private DelegateCommand _branchAccEditorCommand;
-        public DelegateCommand BranchAccEditorCommand
-        {
-            get { return _branchAccEditorCommand; }
-            set { SetProperty(ref _branchAccEditorCommand, value); }
-        }
+        public DelegateCommand BranchAccEditorCommand { get; set; }
 
-        private DelegateCommand _bankEditorCommand;
-        public DelegateCommand BankEditorCommand
-        {
-            get { return _bankEditorCommand; }
-            set { SetProperty(ref _bankEditorCommand, value); }
-        }
+        public DelegateCommand BankEditorCommand { get; set; }
 
-        private DelegateCommand measureEditorCommand;
-        public DelegateCommand MeasureEditorCommand
-        {
-            get { return measureEditorCommand; }
-            set { SetProperty(ref measureEditorCommand, value); }
-        }
-               
+        public DelegateCommand MeasureEditorCommand { get; set; }
+
         #endregion
 
         #region Constructor

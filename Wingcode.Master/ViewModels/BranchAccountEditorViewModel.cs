@@ -20,6 +20,7 @@ namespace Wingcode.Master.ViewModels
 {
     public class BranchAccountEditorViewModel : BaseViewModel
     {
+
         #region Property
 
         private IDialogService dialogService;
@@ -28,58 +29,23 @@ namespace Wingcode.Master.ViewModels
         private ILoggedUserProvider loggedUser;
 
 
-        private BranchAccount _selectedBranchAcc;
-        public BranchAccount SelectedBranchAcc
-        {
-            get { return _selectedBranchAcc; }
-            set { SetProperty(ref _selectedBranchAcc, value); }
-        }
+        public BranchAccount SelectedBranchAcc { get; set; }
 
-        private bool _isNew;
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set { SetProperty(ref _isNew, value); }
-        }
+        public bool IsNew { get; set; }
 
-        private Bank selectedBank;
-        public Bank SelectedBank
-        {
-            get { return selectedBank; }
-            set { SetProperty(ref selectedBank, value); }
-        }
+        public Bank SelectedBank { get; set; }
 
-        private ObservableCollection<Bank> banks;
-        public ObservableCollection<Bank> Banks
-        {
-            get { return banks; }
-            set { SetProperty(ref banks, value); }
-        }
+        public ObservableCollection<Bank> Banks { get; set; }
 
         #endregion
 
         #region Commands
 
-        private DelegateCommand _saveCommand;
-        public DelegateCommand SaveCommand
-        {
-            get { return _saveCommand; }
-            set { SetProperty(ref _saveCommand, value); }
-        }
+        public DelegateCommand SaveCommand { get; set; }
 
-        private DelegateCommand _newCommand;
-        public DelegateCommand NewCommand
-        {
-            get { return _newCommand; }
-            set { SetProperty(ref _newCommand, value); }
-        }
+        public DelegateCommand NewCommand { get; set; }
 
-        private DelegateCommand _updateCommand;
-        public DelegateCommand UpdateCommand
-        {
-            get { return _updateCommand; }
-            set { SetProperty(ref _updateCommand, value); }
-        }
+        public DelegateCommand UpdateCommand { get; set; }
 
         #endregion
 
@@ -117,13 +83,13 @@ namespace Wingcode.Master.ViewModels
         private async void SaveBranch()
         {
             IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
-            if (selectedBank == null)
+            if (SelectedBank == null)
             {
                 _ = ShowMessageDialg("New Branch Account Creation", "Can't Save Branch Account, Bank not selected", MsgDialogType.error);
             }
             if (SelectedBranchAcc.IsValidBranchAccount())
             {
-                SelectedBranchAcc.bank = selectedBank;
+                SelectedBranchAcc.bank = SelectedBank;
                 SelectedBranchAcc.branch = loggedUser.LoggedUser.branch;
                 BranchAccount b = await BranchRestService.CreateBranchAccountAsync(mapper, SelectedBranchAcc);
                 if (b.id > 0)

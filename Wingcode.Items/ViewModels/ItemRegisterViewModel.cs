@@ -16,71 +16,32 @@ namespace Wingcode.Items.ViewModels
 {
     public class ItemRegisterViewModel : BaseViewModel
     {
+
         #region Property
 
         private IContainerExtension containerExtension;
         private ILoggedUserProvider loggedUser;
         private IDialogService dialogService;
 
-        private string _searchText;
-        public string SearchText
-        {
-            get { return _searchText; }
-            set { SetProperty(ref _searchText, value); }
-        }
+        public string SearchText { get; set; }
 
-        private Item _selectedItem;
-        public Item SelectedItem
-        {
-            get { return _selectedItem; }
-            set { SetProperty(ref _selectedItem, value); }
-        }
+        public Item SelectedItem { get; set; }
 
-        private ObservableCollection<Item> _sourceItems;
-        public ObservableCollection<Item> SourceItems
-        {
-            get { return _sourceItems; }
-            set { SetProperty(ref _sourceItems, value); }
-        }
+        public ObservableCollection<Item> SourceItems { get; set; }
 
         #endregion
 
         #region Commands
 
-        private DelegateCommand _searchCommand;
-        public DelegateCommand SearchCommand
-        {
-            get { return _searchCommand; }
-            set { SetProperty(ref _searchCommand, value); }
-        }
+        public DelegateCommand SearchCommand { get; set; }
 
-        private ICommand _itemEditorCommand;
-        public ICommand ItemEditorCommand
-        {
-            get { return _itemEditorCommand; }
-            set { SetProperty(ref _itemEditorCommand, value); }
-        }
+        public ICommand ItemEditorCommand { get; set; }
 
-        private DelegateCommand _groupEditorCommand;
-        public DelegateCommand GroupEditorCommand
-        {
-            get { return _groupEditorCommand; }
-            set { SetProperty(ref _groupEditorCommand, value); }
-        }
+        public DelegateCommand GroupEditorCommand { get; set; }
 
-        private DelegateCommand _subGroupEditorCommand;
-        public DelegateCommand SubGroupEditorCommand
-        {
-            get { return _subGroupEditorCommand; }
-            set { SetProperty(ref _subGroupEditorCommand, value); }
-        }
+        public DelegateCommand SubGroupEditorCommand { get; set; }
 
-        private DelegateCommand _uomEditorCommand;
-        public DelegateCommand UomEditorCommand
-        {
-            get { return _uomEditorCommand; }
-            set { SetProperty(ref _uomEditorCommand, value); }
-        }
+        public DelegateCommand UomEditorCommand { get; set; }
 
         #endregion
 

@@ -31,67 +31,26 @@ namespace Wingcode.Customers.ViewModels
 
         #region Public Full Property
 
-        private string _searchText;
-        public string SearchText
-        {
-            get { return _searchText; }
-            set { SetProperty(ref _searchText, value); }
-        }
+        public string SearchText { get; set; }
 
-        private Customer selectedCustomer;
 
-        public Customer SelectedCustomer
-        {
-            get { return selectedCustomer; }
-            set { SetProperty(ref selectedCustomer, value); }
-        }
+        public Customer SelectedCustomer { get; set; }
 
-        private ObservableCollection<Customer> sourceCustomers;
-
-        public ObservableCollection<Customer> SourceCustomers
-        {
-            get { return sourceCustomers; }
-            set { SetProperty(ref sourceCustomers, value); }
-        }
+        public ObservableCollection<Customer> SourceCustomers { get; set; }
 
         #endregion
 
         #region Commands
 
-        private DelegateCommand _searchCommand;
-        public DelegateCommand SearchCommand
-        {
-            get { return _searchCommand; }
-            set { SetProperty(ref _searchCommand, value); }
-        }
+        public DelegateCommand SearchCommand { get; set; }
 
-        private DelegateCommand _saveCommand;
-        public DelegateCommand SaveCommand
-        {
-            get { return _saveCommand; }
-            set { SetProperty(ref _saveCommand, value); }
-        }
+        public DelegateCommand SaveCommand { get; set; }
 
-        private DelegateCommand _newCommand;
-        public DelegateCommand NewCommand
-        {
-            get { return _newCommand; }
-            set { SetProperty(ref _newCommand, value); }
-        }
+        public DelegateCommand NewCommand { get; set; }
 
-        private DelegateCommand _updateCommand;
-        public DelegateCommand UpdateCommand
-        {
-            get { return _updateCommand; }
-            set { SetProperty(ref _updateCommand, value); }
-        }
+        public DelegateCommand UpdateCommand { get; set; }
 
-        private DelegateCommand _deleteCommand;
-        public DelegateCommand DeleteCommand
-        {
-            get { return _deleteCommand; }
-            set { SetProperty(ref _deleteCommand, value); }
-        }
+        public DelegateCommand DeleteCommand { get; set; }
 
         #endregion
 
@@ -194,7 +153,7 @@ namespace Wingcode.Customers.ViewModels
             {
                 if (SelectedCustomer.id > 0)
                 {
-                    Customer c = await CustomerRestService.UpdateCustomerAsync(mapper, selectedCustomer);
+                    Customer c = await CustomerRestService.UpdateCustomerAsync(mapper, SelectedCustomer);
                     if (c != null)
                     {
                         if (c.id > 0)
@@ -257,7 +216,7 @@ namespace Wingcode.Customers.ViewModels
             {
                 if (SelectedCustomer.id > 0)
                 {
-                    int c = await CustomerRestService.DeleteCustomerAsync(mapper, selectedCustomer.id);
+                    int c = await CustomerRestService.DeleteCustomerAsync(mapper, SelectedCustomer.id);
                     if (c > 0)
                     {
                         dialogService.ShowMsgDialog("Customer Details Delete", "Customer Delete Successfully", MsgDialogType.infor, (r) =>

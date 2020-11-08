@@ -31,67 +31,25 @@ namespace Wingcode.Suppliers.ViewModels
 
         #region Public Full Property
 
-        private string _searchText;
-        public string SearchText
-        {
-            get { return _searchText; }
-            set { SetProperty(ref _searchText, value); }
-        }
+        public string SearchText { get; set; }
 
-        private Supplier selectedSupplier;
+        public Supplier SelectedSupplier { get; set; }
 
-        public Supplier SelectedSupplier
-        {
-            get { return selectedSupplier; }
-            set { SetProperty(ref selectedSupplier, value); }
-        }
-
-        private ObservableCollection<Supplier> sourceSuppliers;
-
-        public ObservableCollection<Supplier> SourceSuppliers
-        {
-            get { return sourceSuppliers; }
-            set { SetProperty(ref sourceSuppliers, value); }
-        }
+        public ObservableCollection<Supplier> SourceSuppliers { get; set; }
 
         #endregion
 
         #region Commands
 
-        private DelegateCommand _searchCommand;
-        public DelegateCommand SearchCommand
-        {
-            get { return _searchCommand; }
-            set { SetProperty(ref _searchCommand, value); }
-        }
+        public DelegateCommand SearchCommand { get; set; }
 
-        private DelegateCommand _saveCommand;
-        public DelegateCommand SaveCommand
-        {
-            get { return _saveCommand; }
-            set { SetProperty(ref _saveCommand, value); }
-        }
+        public DelegateCommand SaveCommand { get; set; }
 
-        private DelegateCommand _newCommand;
-        public DelegateCommand NewCommand
-        {
-            get { return _newCommand; }
-            set { SetProperty(ref _newCommand, value); }
-        }
+        public DelegateCommand NewCommand { get; set; }
 
-        private DelegateCommand _updateCommand;
-        public DelegateCommand UpdateCommand
-        {
-            get { return _updateCommand; }
-            set { SetProperty(ref _updateCommand, value); }
-        }
+        public DelegateCommand UpdateCommand { get; set; }
 
-        private DelegateCommand _deleteCommand;
-        public DelegateCommand DeleteCommand
-        {
-            get { return _deleteCommand; }
-            set { SetProperty(ref _deleteCommand, value); }
-        }
+        public DelegateCommand DeleteCommand { get; set; }
 
         #endregion
 
@@ -194,7 +152,7 @@ namespace Wingcode.Suppliers.ViewModels
             {
                 if (SelectedSupplier.id > 0)
                 {
-                    Supplier c = await SupplierRestService.UpdateSupplierAsync(mapper, selectedSupplier);
+                    Supplier c = await SupplierRestService.UpdateSupplierAsync(mapper, SelectedSupplier);
                     if (c != null)
                     {
                         if (c.id > 0)
@@ -257,7 +215,7 @@ namespace Wingcode.Suppliers.ViewModels
             {
                 if (SelectedSupplier.id > 0)
                 {
-                    int c = await SupplierRestService.DeleteSupplierAsync(mapper, selectedSupplier.id);
+                    int c = await SupplierRestService.DeleteSupplierAsync(mapper, SelectedSupplier.id);
                     if (c > 0)
                     {
                         dialogService.ShowMsgDialog("Supplier Details Delete", "Supplier Delete Successfully", MsgDialogType.infor, (r) =>

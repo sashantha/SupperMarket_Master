@@ -28,77 +28,28 @@ namespace Wingcode.Items.ViewModels
         private ILoggedUserProvider loggedUser;
 
 
-        private UnitOfMeasurement _selectedUom;
-        public UnitOfMeasurement SelectedUom
-        {
-            get { return _selectedUom; }
-            set { SetProperty(ref _selectedUom, value); }
-        }
+        public UnitOfMeasurement SelectedUom { get; set; }
 
-        private ObservableCollection<UnitOfMeasurement> uoms;
-        public ObservableCollection<UnitOfMeasurement> Uoms
-        {
-            get { return uoms; }
-            set { SetProperty(ref uoms, value); }
-        }
-        private bool _isNew;
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set { SetProperty(ref _isNew, value); }
-        }
+        public ObservableCollection<UnitOfMeasurement> Uoms { get; set; }
 
-        private ObservableCollection<string> unitNames;
-        public ObservableCollection<string> UnitNames
-        {
-            get { return unitNames; }
-            set { SetProperty(ref unitNames, value); }
-        }
+        public bool IsNew { get; set; }
 
-        private ObservableCollection<string> unitTypes;
-        public ObservableCollection<string> UnitTypes
-        {
-            get { return unitTypes; }
-            set { SetProperty(ref unitTypes, value); }
-        }
+        public ObservableCollection<string> UnitNames { get; set; }
+
+        public ObservableCollection<string> UnitTypes { get; set; }
         #endregion
 
         #region Commands
 
-        private DelegateCommand _saveCommand;
-        public DelegateCommand SaveCommand
-        {
-            get { return _saveCommand; }
-            set { SetProperty(ref _saveCommand, value); }
-        }
+        public DelegateCommand SaveCommand { get; set; }
 
-        private DelegateCommand _newCommand;
-        public DelegateCommand NewCommand
-        {
-            get { return _newCommand; }
-            set { SetProperty(ref _newCommand, value); }
-        }
+        public DelegateCommand NewCommand { get; set; }
 
-        private DelegateCommand _updateCommand;
-        public DelegateCommand UpdateCommand
-        {
-            get { return _updateCommand; }
-            set { SetProperty(ref _updateCommand, value); }
-        }
+        public DelegateCommand UpdateCommand { get; set; }
 
-        private DelegateCommand _gridSelectionChangedCommand;
-        public DelegateCommand GridSelectionChangedCommand
-        {
-            get { return _gridSelectionChangedCommand; }
-            set { SetProperty(ref _gridSelectionChangedCommand, value); }
-        }
+        public DelegateCommand GridSelectionChangedCommand { get; set; }
 
-        private DelegateCommand _typeChangedCommand;
-        public DelegateCommand TypeChangedCommand
-        {
-            get { return _typeChangedCommand; }
-            set { SetProperty(ref _typeChangedCommand, value); }
-        }
+        public DelegateCommand TypeChangedCommand { get; set; }
         #endregion
 
         #region Constructor

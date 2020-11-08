@@ -14,6 +14,7 @@ namespace Wingcode.Items.ViewModels
 {
     public class ItemSubGroupEditorViewModel : BaseViewModel
     {
+
         #region Property
 
         private IDialogService dialogService;
@@ -22,45 +23,20 @@ namespace Wingcode.Items.ViewModels
         private ILoggedUserProvider loggedUser;
 
 
-        private ItemSubGroup _selectedItemGroup;
-        public ItemSubGroup SelectedItemGroup
-        {
-            get { return _selectedItemGroup; }
-            set { SetProperty(ref _selectedItemGroup, value); }
-        }
+        public ItemSubGroup SelectedItemGroup { get; set; }
 
-        private ObservableCollection<ItemSubGroup> _sourceItemGroups;
-        public ObservableCollection<ItemSubGroup> SourceItemGroups
-        {
-            get { return _sourceItemGroups; }
-            set { SetProperty(ref _sourceItemGroups, value); }
-        }
+        public ObservableCollection<ItemSubGroup> SourceItemGroups { get; set; }
 
 
         #endregion
 
         #region Commands
 
-        private DelegateCommand _saveCommand;
-        public DelegateCommand SaveCommand
-        {
-            get { return _saveCommand; }
-            set { SetProperty(ref _saveCommand, value); }
-        }
+        public DelegateCommand SaveCommand { get; set; }
 
-        private DelegateCommand _newCommand;
-        public DelegateCommand NewCommand
-        {
-            get { return _newCommand; }
-            set { SetProperty(ref _newCommand, value); }
-        }
+        public DelegateCommand NewCommand { get; set; }
 
-        private DelegateCommand _updateCommand;
-        public DelegateCommand UpdateCommand
-        {
-            get { return _updateCommand; }
-            set { SetProperty(ref _updateCommand, value); }
-        }
+        public DelegateCommand UpdateCommand { get; set; }
 
         #endregion
 

@@ -22,10 +22,18 @@ namespace Wingcode.Base
 
         public static readonly string RCS_CANCLE = "cancel";
         public static readonly string RCS_FINE = "fine";
+        public static readonly string RCS_NEW = "creating";
         public static readonly string RCS_DELETED = "deleted";
         public static readonly string RCS_EXPIRE = "expired";
         public static readonly string RCS_CREDIT = "credit";
         public static readonly string RCS_CASH = "cash";
+
+        public static readonly string DFS_RTN = "rtn";
+        public static readonly string DFS_DMG = "dmg";
+        public static readonly string DFS_NON = "none";
+
+        public static readonly string INVT_CASH = "cach";
+        public static readonly string INVT_CREDIT = "credit";
         #endregion
     }
 }

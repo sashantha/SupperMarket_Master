@@ -1,19 +1,24 @@
-﻿using Prism.Mvvm;
+﻿using PropertyChanged;
 using System;
+using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Wingcode.Base.Expressions;
 
 namespace Wingcode.Base.DataModel
 {
-    public class BaseViewModel : BindableBase
+    [AddINotifyPropertyChangedInterface]
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
 
-        #region Sync Event
+        #region Event
 
         public delegate void SynchronizeHandler();
 
         public event SynchronizeHandler SyncEditro;
+
+        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+
         #endregion
 
         #region Command Helpers
@@ -52,6 +57,15 @@ namespace Wingcode.Base.DataModel
         {
             SyncEditro?.Invoke();
         }
+        #endregion
+
+        #region Method
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
         #endregion
     }
 }

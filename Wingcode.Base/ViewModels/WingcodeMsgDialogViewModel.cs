@@ -14,54 +14,19 @@ namespace Wingcode.Base.ViewModels
     public class WingcodeMsgDialogViewModel : BaseDialogViewModel, IDialogAware
     {
 
-        private string _title;
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        public string Title { get; set; }
 
-        private PackIconKind _packIcon;
-        public PackIconKind IconKind
-        {
-            get { return _packIcon; }
-            set { SetProperty(ref _packIcon, value); }
-        }
+        public PackIconKind IconKind { get; set; }
 
-        private bool _isNotIconVisible;
-        public bool IsNotIconVisible
-        {
-            get { return _isNotIconVisible; }
-            set { SetProperty(ref _isNotIconVisible, value); }
-        }
+        public bool IsNotIconVisible { get; set; }
 
-        private string _message;
-        public string Message
-        {
-            get { return _message; }
-            set { SetProperty(ref _message, value); }
-        }
+        public string Message { get; set; }
 
-        private bool _okEnable;
-        public bool OkEnable
-        {
-            get { return _okEnable; }
-            set { SetProperty(ref _okEnable, value); }
-        }
+        public bool OkEnable { get; set; }
 
-        private bool _okCancelEnable;
-        public bool OkCancelEnable
-        {
-            get { return _okCancelEnable; }
-            set { SetProperty(ref _okCancelEnable, value); }
-        }
+        public bool OkCancelEnable { get; set; }
 
-        private bool _yesNoEnable;
-        public bool YesNoEnable
-        {
-            get { return _yesNoEnable; }
-            set { SetProperty(ref _yesNoEnable, value); }
-        }
+        public bool YesNoEnable { get; set; }
 
         public DelegateCommand<string> OkDialogCommand { get; set; }
         public DelegateCommand<string> YesDialogCommand { get; set; }
