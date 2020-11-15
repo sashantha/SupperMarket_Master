@@ -121,6 +121,7 @@
     <Compile Include="Input\InputLanguageController.cs" />
     <Compile Include="Input\KeyDownFocusAction.cs" />
     <Compile Include="Input\KeyToCommandAndFocusAction.cs" />
+    <Compile Include="Input\KeyToConditionalFocusCommadAction.cs" />
     <Compile Include="Input\KeyToInvokeActionCommand.cs" />
     <Compile Include="Input\RelayCommand.cs" />
     <Compile Include="Input\RelayParameterizedCommand.cs" />

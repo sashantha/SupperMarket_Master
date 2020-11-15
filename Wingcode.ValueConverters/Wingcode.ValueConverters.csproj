@@ -65,6 +65,7 @@
     <Compile Include="Convertors\BooleanToVisibilityConverter.cs" />
     <Compile Include="Convertors\BooleanInvertToVisibilityGoneConverter.cs" />
     <Compile Include="Convertors\BooleanToVisibilityGoneConverter.cs" />
+    <Compile Include="Convertors\DateTimeToStringConverter.cs" />
     <Compile Include="Convertors\HorizontalAlignmentConverter.cs" />
     <Compile Include="Convertors\IgnoreNewItemPlaceHolderConverter.cs" />
     <Compile Include="Convertors\InvertBooleanConverter.cs" />

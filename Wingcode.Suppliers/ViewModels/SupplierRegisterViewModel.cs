@@ -96,7 +96,7 @@ namespace Wingcode.Suppliers.ViewModels
             if (!string.IsNullOrEmpty(SelectedSupplier.name) && SelectedSupplier.id == 0)
             {
                 SelectedSupplier.branch = loggedUser.LoggedUser.branch;
-                SupplierCreditAccount ac = await SupplierCreditAccountRestService
+                SupplierCreditAccount ac = await SupplierCreditRestService
                     .CreateSupplierCreditAccountAsync(mapper, new SupplierCreditAccount() { id = 0, totalCredit = 0.00m });
                 if (ac.id <= 0)
                 {

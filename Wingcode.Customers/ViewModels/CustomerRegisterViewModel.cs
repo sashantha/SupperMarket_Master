@@ -97,7 +97,7 @@ namespace Wingcode.Customers.ViewModels
             if (!string.IsNullOrEmpty(SelectedCustomer.name) && SelectedCustomer.id == 0)
             {
                 SelectedCustomer.branch = loggedUser.LoggedUser.branch;
-                CustomerCreditAccount ac = await CustomerCreditAccountRestService
+                CustomerCreditAccount ac = await CustomerCreditRestService
                     .CreateCustomerCreditAccountAsync(mapper, new CustomerCreditAccount() { id = 0, totalCredit = 0.00m});
                 if (ac.id <= 0) 
                 {

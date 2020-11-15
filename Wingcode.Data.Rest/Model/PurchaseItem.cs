@@ -31,8 +31,6 @@ namespace Wingcode.Data.Rest.Model
 
 		public DateTime purchaseDate { get; set; }
 
-		public decimal purchaseQuantity { get; set; }
-
 		public string purchaseType { get; set; }
 
 		public decimal quantity { get; set; }
@@ -48,10 +46,6 @@ namespace Wingcode.Data.Rest.Model
 		public DateTime updatedAt { get; set; }
 
 		public decimal wholesalePrice { get; set; }
-
-		public decimal defectQuantity { get; set; }
-
-		public string defectState { get; set; }
 
 		public string recordState { get; set; }
 

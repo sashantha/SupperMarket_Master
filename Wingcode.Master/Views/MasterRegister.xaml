@@ -71,7 +71,7 @@
                             Width="40"
                             Height="40"
                             Command="{Binding BranchEditorCommand}"
-                            Visibility="{Binding CanAccessBranch, Converter={wv:BooleanInvertToVisibilityGoneConverter}}" 
+                            Visibility="{Binding CanAccessBranch, Converter={wv:BooleanToVisibilityGoneConverter}}" 
                             Style="{StaticResource MaterialDesignFloatingActionButton}">                        
                         <materialDesign:PackIcon Kind="PlusCircleOutline" Width="24" Height="24"/>
                     </Button>
@@ -162,7 +162,7 @@
                             Width="40"
                             Height="40"
                             Command="{Binding BranchAccEditorCommand}"
-                            Visibility="{Binding CanAccessBranch, Converter={wv:BooleanInvertToVisibilityGoneConverter}}"
+                            Visibility="{Binding CanAccessBranch, Converter={wv:BooleanToVisibilityGoneConverter}}"
                             Style="{StaticResource MaterialDesignFloatingActionButton}">
                         <materialDesign:PackIcon Kind="PlusCircleOutline" Width="24" Height="24"/>
                     </Button>

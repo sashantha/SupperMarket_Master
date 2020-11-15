@@ -24,9 +24,8 @@ namespace Wingcode.ValueConverters
 			{
 				return 0.00m;
 			}
-			decimal result = 0.00m;
-			decimal.TryParse((string)value, out result);
-			return result;
+            decimal.TryParse((string)value, out decimal result);
+            return result;
 		}
 	}
 }

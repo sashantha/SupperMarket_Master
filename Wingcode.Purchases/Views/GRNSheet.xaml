@@ -112,19 +112,19 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        
+
                         <TextBlock Text="Purchase Type :"
                            Margin="5"
                            VerticalAlignment="Center" 
                            Style="{StaticResource MaterialDesignSubtitle2TextBlock}"/>
-                        
+
                         <TextBlock Grid.Column="1" Width="75" 
                                    FontSize="8"
                                    FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Text="(Cursour Place in Invoice No Box)" 
                                    TextWrapping="Wrap"/>
-                        
+
                         <RadioButton Grid.Row="1" Content="Purchase Press F6" 
                                      IsChecked="{Binding IsPurchase}" 
                                      GroupName="POption" 
@@ -136,7 +136,7 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </RadioButton>
-                        
+
                         <RadioButton Grid.Row="1" 
                                      Grid.Column="1" 
                                      Content="Free  Press F7" 
@@ -202,7 +202,7 @@
                                 materialDesign:HintAssist.Hint="Purchase Date :"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
                         <DatePicker.SelectedDate>
-                            <Binding Path="CurrenPurchase.purchaseDate" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="CurrenPurchase.purchaseDate" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <wr:DateValidationRule ValidatesOnTargetUpdated="True"/>
                                 </Binding.ValidationRules>
@@ -266,7 +266,7 @@
                             <wbc:KeyToCommandAndFocusAction Key="Enter" Target="{Binding ElementName=iCost}" Command="{Binding SearchItemCommand}"/>
                         </i:EventTrigger>
                         <i:EventTrigger EventName="PreviewKeyDown">
-                            <wbc:KeyToInvokeActionCommand Inputkey="Esc" Command="{Binding EndPurchaseCommand}"/>
+                            <wbc:KeyDownFocusAction Key="Esc" Target="{Binding ElementName=pDiscont}"/>
                         </i:EventTrigger>
                         <i:EventTrigger EventName="PreviewKeyDown">
                             <wbc:KeyToInvokeActionCommand Inputkey="F3" Command="{Binding OptionChangeCommand}" CommandParameter="code"/>
@@ -331,50 +331,127 @@
                          Margin="0,0,10,0"
                          materialDesign:HintAssist.Hint="Wholesale Price :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="CurrentPurchaseItem.wholesalePrice" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <wcn:StringToDecimalConverter/>
+                            </Binding.Converter>
+                            <Binding.ValidationRules>
+                                <wr:DecimalValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=iRsp}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
                 <TextBox x:Name="iRsp" Grid.Row="4"
                          Margin="0,0,5,0"
                          Grid.Column="1" 
                          materialDesign:HintAssist.Hint="Retail Price :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="CurrentPurchaseItem.retailPrice" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <wcn:StringToDecimalConverter/>
+                            </Binding.Converter>
+                            <Binding.ValidationRules>
+                                <wr:DecimalValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=iQty}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
                 <TextBox x:Name="iQty" Grid.Row="5"
                          Margin="0,0,10,0"
                          materialDesign:HintAssist.Hint="Quantity :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="CurrentPurchaseItem.quantity" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <wcn:StringToDecimalConverterTwo/>
+                            </Binding.Converter>
+                            <Binding.ValidationRules>
+                                <wr:DecimalValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=iFqty}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
 
-                <TextBox x:Name="iFqty" Grid.Row="5"
-                         Margin="0,0,5,0"
-                         Grid.Column="1" 
+                </TextBox>
+
+                <TextBox x:Name="iFqty" Grid.Row="4"
+                         Margin="0,40,5,4"
+                         Grid.Column="1"
+                         Text="{Binding CurrentPurchaseItem.freeQuantity, Mode=TwoWay, Converter={wcn:StringToDecimalConverterTwo}}"
                          materialDesign:HintAssist.Hint="Free Quantity :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center" Grid.RowSpan="2">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyToCommandAndFocusAction Key="Enter" Target="{Binding ElementName=iRqty}" Command="{Binding CalculateCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
                 <TextBox x:Name="iRqty" Grid.Row="6"
                          Margin="0,0,10,0"
-                         materialDesign:HintAssist.Hint="Reorder Quantity :"                 
+                         Text="{Binding CurrentPurchaseItem.reorderLevel, Mode=TwoWay, Converter={wcn:StringToDecimalConverter}}"
+                         materialDesign:HintAssist.Hint="Reorder Level (Should Lessthan Purchase Qty):"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=iMfd}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
                 <DatePicker x:Name="iMfd" Grid.Row="7"
-                            Margin="0,0,10,0" 
+                            Margin="0,0,10,0"
+                            SelectedDate="{Binding CurrentPurchaseItem.manufactureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             materialDesign:HintAssist.Hint="Manufacture Date :"
-                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=iExd}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DatePicker>
 
                 <DatePicker x:Name="iExd" Grid.Row="7"
                             Grid.Column="1"
-                            Margin="0,0,5,0" 
+                            Margin="0,0,5,0"
+                            SelectedDate="{Binding CurrentPurchaseItem.expireDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             materialDesign:HintAssist.Hint="Expire Date :"
-                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyToCommandAndFocusAction Key="Enter" Target="{Binding ElementName=itmCode}" Command="{Binding SavePurchaseItemCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DatePicker>
 
                 <TextBox Grid.Row="8"
                          Grid.RowSpan="2"
                          Margin="0,0,10,0"
-                         Text="0.00"
-                         FontSize="20"
+                         Text="{Binding CurrentPurchaseItem.amount, Mode=TwoWay, Converter={wcn:StringToDecimalConverter}}"
+                         FontSize="15"
                          FontWeight="Bold"
                          IsReadOnly="True"
                          materialDesign:HintAssist.Hint="Amount :"                 
@@ -385,34 +462,42 @@
                          Grid.Column="2"
                          Margin="0,0,5,0"
                          IsReadOnly="True"
+                         Text="{Binding SelectedSupplier.supplierCreditAccount.totalCredit, Converter={wcn:StringToDecimalConverter}}"
                          materialDesign:HintAssist.Hint="Supplier Old Credit :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         VerticalAlignment="Center">
-                </TextBox>
+                         VerticalAlignment="Center"/>
 
                 <TextBox Grid.Row="2"
                          Grid.Column="2"
                          Margin="0,0,10,0"
                          IsReadOnly="True"
                          FontWeight="Bold"
+                         Text="{Binding CurrenPurchase.invoiceAmount, Converter={wcn:StringToDecimalConverter}}"
                          materialDesign:HintAssist.Hint="Total Amount :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         VerticalAlignment="Center" Text="0.00" >
-                </TextBox>
+                         VerticalAlignment="Center"/>
 
-                <TextBox x:Name="pDiscont" Grid.Row="3"
+                <TextBox x:Name="pDiscont" Grid.Row="2"
                          Grid.Column="2"
-                         Margin="0,0,5,0"
-                         materialDesign:HintAssist.Hint="Discount Amount :"                 
+                         Margin="0,41,5,3"
+                         materialDesign:HintAssist.Hint="Discount Amount :"
+                         Text="{Binding CurrenPurchase.discountPercent, Converter={wcn:StringToDecimalConverter}, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         VerticalAlignment="Center">
+                         VerticalAlignment="Center" Grid.RowSpan="2">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyToInvokeActionCommand Inputkey="Enter" Command="{Binding CalTotalDiscountCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </TextBox>
 
                 <TextBox x:Name="pGtot" Grid.Row="4"
                          Grid.Column="2"
                          Margin="0,0,10,0"
                          FontWeight="Bold"
-                         materialDesign:HintAssist.Hint="Grand Total :"                 
+                         IsReadOnly="True"
+                         materialDesign:HintAssist.Hint="Grand Total :"
+                         Text="{Binding CurrenPurchase.netAmount, Converter={wcn:StringToDecimalConverter}}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          VerticalAlignment="Center"/>
 
@@ -420,54 +505,97 @@
                          Grid.Column="2"
                          Margin="0,0,5,0"
                          FontWeight="Bold"
-                         materialDesign:HintAssist.Hint="Cash Amount :"                 
+                         materialDesign:HintAssist.Hint="Cash Amount :" 
+                         Text="{Binding CurrenPurchase.payAmount, Converter={wcn:StringToDecimalConverter}, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyToInvokeActionCommand Inputkey="Enter" Command="{Binding CashPayEnterCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
                 <TextBox x:Name="pChqamt" Grid.Row="6"
                          Grid.Column="2"
                          Margin="0,0,10,0"
-                         materialDesign:HintAssist.Hint="Check Amount :"                 
+                         materialDesign:HintAssist.Hint="Check Amount :"
+                         Text="{Binding CurrenPurchase.chqAmount, Converter={wcn:StringToDecimalConverter}, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyToInvokeActionCommand Inputkey="Enter" Command="{Binding ChequePayEnterCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
-                <TextBox x:Name="pChqno" Grid.Row="1"
+                <TextBox x:Name="pChqno"
                          Grid.Column="3"
-                         Margin="0,0,10,0"
-                         materialDesign:HintAssist.Hint="Check No :"                 
+                         Margin="0,61,10,4"
+                         materialDesign:HintAssist.Hint="Check No :" 
+                         Text="{Binding CurrenChqueBook.chequeNo, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         VerticalAlignment="Center"/>
+                         VerticalAlignment="Center" Grid.RowSpan="2">
+                    <i:Interaction.Behaviors>
+                        <wbc:TextBoxInputBehavior RegularExpression="^[0-9]+$" MaxLength="6"/>
+                    </i:Interaction.Behaviors>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=pReldtp}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
 
                 <DatePicker x:Name="pReldtp" Grid.Row="2"
                             Grid.Column="3"
                             Margin="0,0,5,0" 
                             materialDesign:HintAssist.Hint="Realise Date :"
-                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                    <DatePicker.SelectedDate>
+                        <Binding Path="CurrenChqueBook.releseDate" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <wr:FutureDateValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=pBrac}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DatePicker>
 
                 <wc:AutoCompleteTextBox x:Name="pBrac" Grid.Row="3"
                                         Grid.Column="3"
                                         MaxLength="50"
                                         DisplayMember="bank.name"
-                                        SelectedItem="{Binding SelectedBac}"
+                                        SelectedItem="{Binding SelectedBac, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                                         Provider="{Binding BacSugges}"
                                         ItemTemplate="{StaticResource ResourceKey=BacTemplate}"
                                         materialDesign:HintAssist.Hint="Branch Account :"
                                         VerticalAlignment="Center">
-                    
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewKeyDown">
+                            <wbc:KeyDownFocusAction Key="Enter" Target="{Binding ElementName=pSave}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </wc:AutoCompleteTextBox>
-                
+
 
                 <TextBox Grid.Row="4"
                          Grid.Column="3"
                          Margin="0,0,10,0"
                          IsReadOnly="True"
                          FontWeight="Bold"
+                         Text="{Binding CurrenPurchase.creditAmount, Converter={wcn:StringToDecimalConverter}}"
                          materialDesign:HintAssist.Hint="Credit Balence :"                 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          VerticalAlignment="Center"/>
 
                 <Button x:Name="pSave" Grid.Row="8" 
-                        Grid.Column="3" 
+                        Grid.Column="3"
+                        Command="{Binding EndPurchaseCommand}"
                         Content="Finish And Next Invoice" 
                         Margin="10,0,0,0" />
             </Grid>
@@ -488,32 +616,42 @@
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
-                <DataGrid x:Name="pDg" AutoGenerateColumns="false"
+                <DataGrid x:Name="pDg" 
+                          AutoGenerateColumns="false"
                           Grid.ColumnSpan="2"
-                          Margin="0,20,0,0"
+                          Margin="0,19,0,1"
                           BorderBrush="{DynamicResource SecondaryAccentBrush}"
                           BorderThickness="1"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"                          
+                          ItemsSource="{Binding PurchaseItems}"
+                          SelectedItem="{Binding CurrentPurchaseItem, Mode=OneWayToSource, Converter={wcn:IgnoreNewItemPlaceHolderConverter}}"
                           CanUserAddRows="False">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Purchase Id"/>
-                        <DataGridTextColumn Header="Purchase Date"/>
-                        <DataGridTextColumn Header="Item Name"/>
-                        <DataGridTextColumn Header="Cost"/>
-                        <DataGridTextColumn Header="Quantity"/>
-                        <DataGridTextColumn Header="Free Quantity"/>
-                        <DataGridTextColumn Header="Real Quantity"/>
-                        <DataGridTextColumn Header="Discount"/>
-                        <DataGridTextColumn Header="Amount"/>
-                        <DataGridTextColumn Header="Wholesale Price"/>
-                        <DataGridTextColumn Header="Retail Price"/>
-                        <DataGridTextColumn Header="Manufacture Date"/>
-                        <DataGridTextColumn Header="Expire Date"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Purchase Id" Binding="{Binding purchase.id}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Purchase Date" Binding="{Binding purchaseDate, Converter={wcn:DateTimeToStringConverter}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Item Name" Binding="{Binding item.name}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Cost" Binding="{Binding cost, Converter={wcn:StringToDecimalConverter}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Quantity" Binding="{Binding quantity, Converter={wcn:StringToDecimalConverterTwo}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Free Quantity" Binding="{Binding freeQuantity, Converter={wcn:StringToDecimalConverterTwo}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Real Quantity" Binding="{Binding realQuantity, Converter={wcn:StringToDecimalConverterTwo}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Discount" Binding="{Binding discount, Converter={wcn:StringToDecimalConverter}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Amount" Binding="{Binding amount, Converter={wcn:StringToDecimalConverter}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Wholesale Price" Binding="{Binding wholesalePrice, Converter={wcn:StringToDecimalConverter}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Retail Price" Binding="{Binding retailPrice, Converter={wcn:StringToDecimalConverter}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Manufacture Date" Binding="{Binding manufactureDate, Converter={wcn:DateTimeToStringConverter}}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Expire Date" Binding="{Binding expireDate, Converter={wcn:DateTimeToStringConverter}}"/>
                     </DataGrid.Columns>
 
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding SelectionCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </DataGrid>
 
-                <Button Grid.Column="1" Margin="50,-320,0,0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                <Button Grid.Column="1" Margin="55,-6,5,317" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                     <materialDesign:PackIcon Kind="DeleteCircleOutline" 
                                      Width="32" 
                                      Height="32"/>

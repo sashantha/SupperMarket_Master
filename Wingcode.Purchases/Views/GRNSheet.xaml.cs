@@ -49,6 +49,23 @@ namespace Wingcode.Purchases.Views
                 case "pdt":
                     pdtp.Focus();
                     break;
+                case "itm":
+                    itmCode.Focus();
+                    break;
+                case "cah":
+                    pCasha.Focus();
+                    pCasha.SelectAll();
+                    break;
+                case "chqa":
+                    pChqamt.Focus();
+                    pChqamt.SelectAll();
+                    break;
+                case "chq":
+                    pChqno.Focus();
+                    break;
+                case "sav":
+                    pSave.Focus();
+                    break;
                 default:
                     invNo.Focus();
                     break;
@@ -59,5 +76,6 @@ namespace Wingcode.Purchases.Views
         {
             (DataContext as GRNSheetViewModel).Initialize();
         }
+
     }
 }

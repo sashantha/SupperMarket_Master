@@ -86,14 +86,15 @@
     <Compile Include="RestMethodType.cs" />
     <Compile Include="Service\BankRestService.cs" />
     <Compile Include="Service\BranchRestService.cs" />
-    <Compile Include="Service\CustomerCreditAccountRestService.cs" />
+    <Compile Include="Service\CustomerCreditRestService.cs" />
     <Compile Include="Service\CustomerRestService.cs" />
+    <Compile Include="Service\FinancialRestService.cs" />
     <Compile Include="Service\ILoggedUserProvider.cs" />
     <Compile Include="Service\IRestDataMapper.cs" />
     <Compile Include="Service\ItemRestService.cs" />
     <Compile Include="Service\PurchaseRestService.cs" />
     <Compile Include="Service\SalesRestService.cs" />
-    <Compile Include="Service\SupplierCreditAccountRestService.cs" />
+    <Compile Include="Service\SupplierCreditRestService.cs" />
     <Compile Include="Service\SupplierRestService.cs" />
     <Compile Include="Service\UserRestService.cs" />
   </ItemGroup>

@@ -12,6 +12,7 @@ namespace Wingcode.Base
             PackIconKind.RegisteredTrademark, PackIconKind.Store,
             PackIconKind.PointOfSale, PackIconKind.CashRemove, PackIconKind.FileChart, PackIconKind.AccountGroup, PackIconKind.Cog };
         public static readonly string[] UNIT_TYPES = { "Default", "Mass", "Length", "Volume", "Quantify" };
+        public static readonly string[] CHQ_STAT = { "waiting", "relesed", "returned", "stoped" };
 
         #endregion
 
@@ -33,7 +34,14 @@ namespace Wingcode.Base
         public static readonly string DFS_NON = "none";
 
         public static readonly string INVT_CASH = "cach";
+        public static readonly string INVT_CHEQUE = "cheque";
+        public static readonly string INVT_CASH_CHEQUE = "cach_cheque";
         public static readonly string INVT_CREDIT = "credit";
+        public static readonly string INVT_PAID = "paid";
+
+        public static readonly string BT_CREDITED = "credited";
+        public static readonly string BT_DEBITED = "debited";
+
         #endregion
     }
 }

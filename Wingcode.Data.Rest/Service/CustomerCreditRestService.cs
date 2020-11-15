@@ -7,7 +7,7 @@ using Wingcode.Data.Rest.Model;
 
 namespace Wingcode.Data.Rest.Service
 {
-    public class CustomerCreditAccountRestService
+    public class CustomerCreditRestService
     {
         public static async Task<CustomerCreditAccount> CreateCustomerCreditAccountAsync(IRestDataMapper mapper, CustomerCreditAccount data)
         {

@@ -33,6 +33,8 @@ namespace Wingcode.Data.Rest.Model
 
 		public decimal payAmount { get; set; }
 
+		public decimal chqAmount { get; set; }
+
 		public string payMethod { get; set; }
 
 		public DateTime purchaseDate { get; set; }

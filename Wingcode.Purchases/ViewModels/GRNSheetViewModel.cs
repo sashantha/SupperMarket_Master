@@ -31,6 +31,8 @@ namespace Wingcode.Purchases.ViewModels
         private ILoggedUserProvider loggedUser;
         private Branch branch;
 
+        public SupplierCreditInvoice CreditInvoice { get; set; }
+
         public bool IsCode { get; set; }
 
         public bool IsBarcode { get; set; }
@@ -69,6 +71,10 @@ namespace Wingcode.Purchases.ViewModels
 
         public PurchaseItem CurrentPurchaseItem { get; set; }
 
+        public StoreInfor SelectedStore { get; set; }
+
+        public UnitOfMeasurement SelectedUom { get; set; }
+
         public ObservableCollection<PurchaseItem> PurchaseItems { get; set; }
 
         #endregion
@@ -90,6 +96,18 @@ namespace Wingcode.Purchases.ViewModels
         public DelegateCommand CreatePurchaseCommand { get; set; }
 
         public DelegateCommand CalDiscountCommand { get; set; }
+
+        public DelegateCommand CalculateCommand { get; set; }
+
+        public DelegateCommand SavePurchaseItemCommand { get; set; }
+
+        public DelegateCommand SelectionCommand { get; set; }
+
+        public DelegateCommand CalTotalDiscountCommand { get; set; }
+
+        public DelegateCommand CashPayEnterCommand { get; set; }
+
+        public DelegateCommand ChequePayEnterCommand { get; set; }
 
         #endregion
 
@@ -125,6 +143,227 @@ namespace Wingcode.Purchases.ViewModels
             PurchaseoptionCommand = new DelegateCommand<string>(PurcuaseOptionChange);
             CreatePurchaseCommand = new DelegateCommand(CreatePurchase);
             CalDiscountCommand = new DelegateCommand(CalWithDiscount);
+            CalculateCommand = new DelegateCommand(CalculatePurchaseItem);
+            SavePurchaseItemCommand = new DelegateCommand(SavePurchaseItem);
+            SelectionCommand = new DelegateCommand(SelectionChanged);
+            EndPurchaseCommand = new DelegateCommand(EndPurchase);
+            CalTotalDiscountCommand = new DelegateCommand(CalTotalDiscount);
+            CashPayEnterCommand = new DelegateCommand(CashEnter);
+            ChequePayEnterCommand = new DelegateCommand(ChequePayEnter);
+        }
+
+        private void ChequePayEnter()
+        {
+            if (CurrenPurchase.chqAmount > 0.00m)
+            {
+                if (CurrenPurchase.chqAmount == CurrenPurchase.netAmount)
+                {
+                    CurrenPurchase.invoiceType = ConstValues.INVT_PAID;
+                    CurrenPurchase.payMethod = ConstValues.INVT_CHEQUE;
+                    CurrenPurchase.creditAmount = CurrenPurchase.netAmount - (CurrenPurchase.payAmount + CurrenPurchase.chqAmount);
+                    CurrenChqueBook = CurrenChqueBook.CreateNewChequeBook(branch, loggedUser.LoggedUser, CurrenPurchase);
+                    aggregator.GetEvent<UIElementFocusEvent>().Publish("chq");
+                }
+                else if (CurrenPurchase.chqAmount < CurrenPurchase.netAmount)
+                {
+                    if (CurrenPurchase.chqAmount == CurrenPurchase.creditAmount)
+                    {
+                        CurrenPurchase.invoiceType = ConstValues.INVT_PAID;
+                        if ((CurrenPurchase.payAmount + CurrenPurchase.chqAmount) == CurrenPurchase.netAmount)
+                            CurrenPurchase.payMethod = ConstValues.INVT_CASH_CHEQUE;
+                        else
+                            CurrenPurchase.payMethod = ConstValues.INVT_CHEQUE;
+                        CurrenPurchase.creditAmount = CurrenPurchase.netAmount - (CurrenPurchase.payAmount + CurrenPurchase.chqAmount);
+                        CurrenChqueBook = CurrenChqueBook.CreateNewChequeBook(branch, loggedUser.LoggedUser, CurrenPurchase);
+                        aggregator.GetEvent<UIElementFocusEvent>().Publish("chq");
+                    }
+                    else
+                    {
+                        CurrenPurchase.creditAmount = CurrenPurchase.netAmount - (CurrenPurchase.payAmount + CurrenPurchase.chqAmount);
+                        CurrenPurchase.invoiceType = ConstValues.INVT_CREDIT;
+                        CurrenPurchase.payMethod = ConstValues.INVT_CHEQUE;
+                        CurrenChqueBook = CurrenChqueBook.CreateNewChequeBook(branch, loggedUser.LoggedUser, CurrenPurchase);
+                        aggregator.GetEvent<UIElementFocusEvent>().Publish("chq");
+                    }
+                }
+                else
+                {
+                    ShowMessageDialg("Purchasing", "Invoice Cheque Amount Greater Than to Net Amount", MsgDialogType.warrning);
+                    aggregator.GetEvent<UIElementFocusEvent>().Publish("chqa");
+                }
+            }
+            else
+            {
+                CurrenPurchase.creditAmount = CurrenPurchase.netAmount - (CurrenPurchase.payAmount + CurrenPurchase.chqAmount);
+                CurrenPurchase.invoiceType = ConstValues.INVT_CREDIT;
+                CurrenPurchase.payMethod = ConstValues.INVT_CREDIT;
+                aggregator.GetEvent<UIElementFocusEvent>().Publish("sav");
+            }
+        }
+
+        private void CashEnter()
+        {
+            if (CurrenPurchase.payAmount > 0.00m)
+            {
+                if (CurrenPurchase.payAmount == CurrenPurchase.netAmount)
+                {
+                    CurrenPurchase.invoiceType = ConstValues.INVT_PAID;
+                    CurrenPurchase.payMethod = ConstValues.INVT_CASH;
+                    aggregator.GetEvent<UIElementFocusEvent>().Publish("sav");
+                }
+                else if (CurrenPurchase.payAmount < CurrenPurchase.netAmount)
+                {
+                    CurrenPurchase.creditAmount = CurrenPurchase.netAmount - CurrenPurchase.payAmount;
+                    CurrenPurchase.chqAmount = CurrenPurchase.creditAmount;
+                    aggregator.GetEvent<UIElementFocusEvent>().Publish("chqa");
+                }
+                else
+                {
+                    ShowMessageDialg("Purchasing", "Invoice Pay Amount Greater Than to Net Amount", MsgDialogType.warrning);
+                    aggregator.GetEvent<UIElementFocusEvent>().Publish("cah");
+                }
+            }
+            else
+            {
+                CurrenPurchase.chqAmount = CurrenPurchase.netAmount;
+                aggregator.GetEvent<UIElementFocusEvent>().Publish("chqa");
+            }
+        }
+
+        private void CalTotalDiscount()
+        {
+            CurrenPurchase.CalaculatePurchase(PurchaseItems);
+            if (CurrenPurchase.discountPercent > 0.00m)
+            {
+                if (CurrenPurchase.netAmount == 0.00m)
+                {
+
+                }
+            }
+            else
+            {
+                CurrenPurchase.netAmount = CurrenPurchase.invoiceAmount;
+                CurrenPurchase.payAmount = CurrenPurchase.netAmount;
+            }
+            aggregator.GetEvent<UIElementFocusEvent>().Publish("cah");
+        }
+
+        private async void EndPurchase()
+        {
+            IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
+            CurrenPurchase.recordState = ConstValues.RCS_FINE;
+            _ = await PurchaseRestService.UpdatePurchaseAsync(mapper, CurrenPurchase);
+            if (CurrenPurchase.creditAmount > 0.00m)
+            {
+                CurrenPurchase.invoiceType = ConstValues.INVT_CREDIT;
+                CreditInvoice = CreditInvoice.CreateNewCreditInvoice(branch, loggedUser.LoggedUser, CurrenPurchase);
+                SelectedSupplier.supplierCreditAccount.totalCredit += CurrenPurchase.creditAmount;
+                _ = await SupplierCreditRestService.updateSupplierCreditAccountAsync(mapper, SelectedSupplier.supplierCreditAccount);
+                _ = await SupplierCreditRestService.CreateSupplierCreditInvoiceAsync(mapper, CreditInvoice);
+
+            }
+            if (CurrenPurchase.payAmount > 0.00m)
+            {
+                CurrenCashBook = CurrenCashBook.CreateNewCashBook(branch, loggedUser.LoggedUser, CurrenPurchase);
+                CurrenCashBook.branchAccount = SelectedBac;
+                _ = await FinancialRestService.CreateCashBookAsync(mapper, CurrenCashBook);
+            }
+            if (CurrenPurchase.chqAmount > 0.00m)
+            {
+                CurrenChqueBook = CurrenChqueBook.CreateNewChequeBook(branch, loggedUser.LoggedUser, CurrenPurchase);
+                CurrenChqueBook.branchAccount = SelectedBac;
+                _ = await FinancialRestService.CreateChequeBookAsync(mapper, CurrenChqueBook);
+            }
+            SelectedStore = null;
+            SelectedUom = null;
+            SelectedItem = null;
+            SelectedItmCt = null;
+            CurrentPurchaseItem = null;
+            CurrenPurchase = null;
+            SelectedSupCt = null;
+            SelectedSupplier = null;
+            CreditInvoice = null;
+            CurrenCashBook = null;
+            CurrenChqueBook = null;
+            PurchaseItems.Clear();
+            Initialize();
+        }
+
+        private void SelectionChanged()
+        {
+            if (CurrentPurchaseItem != null)
+            {
+                SelectedItmCt = CurrentPurchaseItem.item.ToItemCriteria();
+                SelectedItem = CurrentPurchaseItem.item;
+                aggregator.GetEvent<UIElementFocusEvent>().Publish("itm");
+            }
+        }
+
+        private async void SavePurchaseItem()
+        {
+            IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
+            CurrentPurchaseItem.recordState = ConstValues.RCS_FINE;
+            CurrentPurchaseItem.purchaseType = GetPurchaseType();
+            decimal rq = (CurrentPurchaseItem.reorderLevel * SelectedUom.baseRatioToPurchase * SelectedUom.purchaseQuantifyValue);
+            PurchaseItem pi = PurchaseItems.Where(i => i.item.id == SelectedItem.id).FirstOrDefault();
+            if (pi != null)
+            {
+                SelectedStore.reorderLevel += rq;
+                CurrentPurchaseItem.reorderLevel = rq;
+                CurrentPurchaseItem = CurrentPurchaseItem.Merge(pi);
+                _ = await PurchaseRestService.UpdatePurchaseItemAsync(mapper, CurrentPurchaseItem);
+                _ = await ItemRestService.UpdateStoreInforAsync(mapper, SelectedStore);
+                PurchaseItem np = CurrentPurchaseItem.CloneObject();
+                PurchaseItems.Remove(pi);
+                PurchaseItems.Add(np);
+                SelectedStore = null;
+                SelectedUom = null;
+                SelectedItem = null;
+                SelectedItmCt = null;
+                CurrentPurchaseItem = null;
+            }
+            else
+            {
+                CurrentPurchaseItem.reorderLevel = rq;
+                SelectedStore.reorderLevel = rq;
+                CurrentPurchaseItem = await PurchaseRestService.CreatePurchaseItemAsync(mapper, CurrentPurchaseItem);
+                if (CurrentPurchaseItem.id > 0)
+                {
+                    _ = await ItemRestService.UpdateStoreInforAsync(mapper, SelectedStore);
+                    PurchaseItems.Add(CurrentPurchaseItem.CloneObject());
+                    SelectedStore = null;
+                    SelectedUom = null;
+                    SelectedItem = null;
+                    SelectedItmCt = null;
+                    CurrentPurchaseItem = null;
+                }
+                else
+                {
+                    _ = ShowMessageDialg("Saving Purchase Item", "Can't Savae Purchase Item, found Some problems.", MsgDialogType.error);
+                }
+            }
+            CurrenPurchase.CalaculatePurchase(PurchaseItems);
+            _ = await PurchaseRestService.UpdatePurchaseAsync(mapper, CurrenPurchase);
+        }
+
+        private async void CalculatePurchaseItem()
+        {
+            IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
+            SelectedStore = await ItemRestService.GetStoreInforByItemIdAndBranchAsync(mapper, SelectedItem.id, branch.id);
+            SelectedUom = SelectedItem.unitOfMeasurement;
+            decimal pq = (CurrentPurchaseItem.quantity * SelectedUom.baseRatioToPurchase * SelectedUom.purchaseQuantifyValue);
+            decimal fq = (CurrentPurchaseItem.freeQuantity * SelectedUom.baseRatioToPurchase * SelectedUom.purchaseQuantifyValue);
+            decimal pc = (CurrentPurchaseItem.cost / (SelectedUom.baseRatioToPurchase * SelectedUom.purchaseQuantifyValue));
+            CurrentPurchaseItem.cost = pc;
+            CurrentPurchaseItem.quantity = pq;
+            CurrentPurchaseItem.freeQuantity = fq;
+            CurrentPurchaseItem.realQuantity = pq + fq;
+            CurrentPurchaseItem.availableQuantity = pq + fq;
+            CurrentPurchaseItem.amount = (CurrentPurchaseItem.realQuantity * CurrentPurchaseItem.cost);
+            SelectedStore.cost = pc;
+            SelectedStore.retailPrice = CurrentPurchaseItem.retailPrice;
+            SelectedStore.wholesalePrice = CurrentPurchaseItem.wholesalePrice;
+            SelectedStore.availableQuantity += pq + fq;
         }
 
         private void CalWithDiscount()
@@ -168,7 +407,14 @@ namespace Wingcode.Purchases.ViewModels
                 return;
             IRestDataMapper mapper = containerExtension.Resolve<IRestDataMapper>();
             SelectedItem = await ItemRestService.GetItemByParamAsync(mapper, ItemRestService.ITEM_CODE_FLAG, SelectedItmCt.code);
-            CurrentPurchaseItem = CurrentPurchaseItem.CreateNew(CurrenPurchase, SelectedItem);
+            if (CurrentPurchaseItem == null)
+            {
+                CurrentPurchaseItem = CurrentPurchaseItem.CreateNew(CurrenPurchase, SelectedItem);
+            }
+            else
+            {
+                CurrentPurchaseItem.item = SelectedItem;
+            }
         }
 
         private async void SearchOldPurChase()

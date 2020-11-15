@@ -41,10 +41,6 @@ namespace Wingcode.Data.Rest.Model
 
         public string recordState { get; set; }
 
-        public decimal defectQuantity { get; set; }
-
-        public string defectState { get; set; }
-
         public DateTime updatedAt { get; set; }
 
         public Item item { get; set; }
